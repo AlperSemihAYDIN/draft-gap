@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <rect width="64" height="64" rx="12" fill="#0A1428"/>
+  <path d="M32 8L8 20v24l24 12 24-12V20L32 8z" stroke="#C89B3C" stroke-width="2" fill="none"/>
+  <path d="M32 16l-16 8v16l16 8 16-8V24l-16-8z" stroke="#0AC8B9" stroke-width="1.5" fill="none"/>
+  <text x="32" y="40" text-anchor="middle" fill="#C89B3C" font-size="18" font-weight="bold" font-family="sans-serif">DG</text>
+</svg>
