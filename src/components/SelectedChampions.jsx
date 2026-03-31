@@ -1,6 +1,9 @@
 // Seçilmiş Şampiyonlar bileşeni — Seçilen şampiyonları chip olarak gösterir
 
+import { useLanguage } from '../i18n/LanguageContext';
+
 export default function SelectedChampions({ champions, version, onRemove, label, maxCount }) {
+  const { t } = useLanguage();
   return (
     <div>
       <div className="flex items-center justify-between mb-2">
@@ -14,7 +17,7 @@ export default function SelectedChampions({ champions, version, onRemove, label,
       {champions.length === 0 && (
         <div className="flex items-center justify-center h-16 border border-dashed 
                         border-lol-light/20 rounded-lg text-lol-light/30 text-sm">
-          Henüz şampiyon seçilmedi
+          {t('noChampSelected')}
         </div>
       )}
 
@@ -37,7 +40,7 @@ export default function SelectedChampions({ champions, version, onRemove, label,
             <button
               onClick={() => onRemove(champ.id)}
               className="ml-1 text-lol-light/40 hover:text-lol-red transition-colors"
-              title="Kaldır"
+              title={t('remove')}
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}

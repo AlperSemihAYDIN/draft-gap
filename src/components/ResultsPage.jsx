@@ -1,6 +1,7 @@
 // Sonuçlar Sayfası bileşeni — Önerilen 5 şampiyonu gösterir
 
 import RecommendationCard from './RecommendationCard';
+import { useLanguage } from '../i18n/LanguageContext';
 
 // Rol etiketleri (Türkçe görüntüleme için)
 const ROLE_LABELS = {
@@ -19,21 +20,23 @@ export default function ResultsPage({
   allyChampions,
   onBack,
 }) {
+  const { t } = useLanguage();
+
   return (
     <div className="space-y-6 animate-fadeIn">
       {/* Başlık ve geri butonu */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <h2 className="text-2xl font-bold text-white">
-            Önerilen Şampiyonlar
+            {t('resultsTitle')}
           </h2>
           <p className="text-lol-light/50 text-sm mt-1">
-            <span className="text-lol-blue font-medium">{ROLE_LABELS[selectedRole]}</span> rolü için
+            <span className="text-lol-blue font-medium">{ROLE_LABELS[selectedRole]}</span> {t('resultsForRole')}
             {enemyChampions.length > 0 && (
-              <> • {enemyChampions.length} rakip şampiyona karşı</>
+              <> • {enemyChampions.length} {t('resultsAgainst')}</>
             )}
             {allyChampions.length > 0 && (
-              <> • {allyChampions.length} takım arkadaşıyla</>
+              <> • {allyChampions.length} {t('resultsWith')}</>
             )}
           </p>
         </div>
@@ -47,7 +50,7 @@ export default function ResultsPage({
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
           </svg>
-          Draft'a Dön
+          {t('backToDraft')}
         </button>
       </div>
 
@@ -55,10 +58,10 @@ export default function ResultsPage({
       {recommendations.length === 0 && (
         <div className="text-center py-16">
           <p className="text-lol-light/40 text-lg">
-            Bu rol için yeterli veri bulunamadı.
+            {t('noResults')}
           </p>
           <p className="text-lol-light/30 text-sm mt-2">
-            Farklı bir rol seçmeyi deneyin.
+            {t('tryOtherRole')}
           </p>
         </div>
       )}
@@ -77,9 +80,9 @@ export default function ResultsPage({
 
       {/* Bilgi notu */}
       <div className="text-center text-lol-light/30 text-xs pt-4 border-t border-lol-light/5">
-        Öneriler counter, sinerji, meta gücü ve blind pick güvenilirliği kriterlerine göre hesaplanmıştır.
+        {t('resultsNote')}
         <br />
-        Veriler statik analiz verisine dayalıdır — gerçek oyun performansı farklılık gösterebilir.
+        {t('resultsDisclaimer')}
       </div>
     </div>
   );

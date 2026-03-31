@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import championMeta from '../data/championMeta.json';
 import { getChampionImageUrl, getChampions, getLatestVersion } from '../services/dataDragon';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const ROLES = [
   { id: 'top', label: 'Top', icon: '🏔️' },
@@ -84,6 +85,7 @@ function ChampionIcon({ champId, champData, version }) {
 }
 
 export default function TierList() {
+  const { t } = useLanguage();
   const [selectedRole, setSelectedRole] = useState('mid');
   const [version, setVersion] = useState(null);
   const [ddChampions, setDdChampions] = useState(null);
@@ -139,11 +141,10 @@ export default function TierList() {
       {/* Başlık */}
       <div className="text-center mb-6">
         <h2 className="text-2xl font-bold text-lol-gold mb-2">
-          Tier List — Patch {meta?.patch || '26.6'}
+          {t('tierListTitle')} {meta?.patch || '26.6'}
         </h2>
         <p className="text-sm text-lol-light/60 max-w-2xl mx-auto">
-          Plat+ ranked solo/duo verilerine dayanan şampiyon sıralaması. 
-          Win rate ve pick rate değerleri gösterilmektedir.
+          {t('tierListDesc')}
         </p>
       </div>
 
@@ -185,12 +186,12 @@ export default function TierList() {
                 </span>
                 <div className="flex items-center gap-2">
                   <span className="text-sm text-lol-light/60">
-                    {tier === 'S' && 'OP / Meta Tanımlayan'}
-                    {tier === 'A' && 'Güçlü / Tutarlı Performans'}
-                    {tier === 'B' && 'Orta / Durumsal'}
-                    {tier === 'C' && 'Zayıf / Meta Dışı'}
+                    {tier === 'S' && t('tierS')}
+                    {tier === 'A' && t('tierA')}
+                    {tier === 'B' && t('tierB')}
+                    {tier === 'C' && t('tierC')}
                   </span>
-                  <span className="text-xs text-lol-light/30">({champs.length} şampiyon)</span>
+                  <span className="text-xs text-lol-light/30">({champs.length} {t('champCount')})</span>
                 </div>
               </div>
 
@@ -213,7 +214,7 @@ export default function TierList() {
       {/* Metodoloji Notu */}
       <div className="mt-8 bg-lol-gray/30 border border-lol-light/10 rounded-xl p-5">
         <h3 className="text-lol-gold font-semibold mb-3 flex items-center gap-2">
-          <span>📊</span> Metodoloji
+          <span>📊</span> {t('methodology')}
         </h3>
         <div className="text-sm text-lol-light/70 space-y-2">
           <p>{meta?.methodology}</p>
@@ -229,7 +230,7 @@ export default function TierList() {
           </div>
         </div>
         <p className="text-xs text-lol-light/40 mt-3">
-          Son güncelleme: {meta?.lastUpdated} | Kaynak: op.gg, u.gg, lolalytics.com topluluk verileri (Plat+)
+          {t('lastUpdate')}: {meta?.lastUpdated} | {t('source')}: op.gg, u.gg, lolalytics.com
         </p>
       </div>
     </div>

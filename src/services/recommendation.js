@@ -21,7 +21,7 @@ const WEIGHTS = {
  * @param {string} selectedRole     - Seçilen rol (top, jungle, mid, adc, support)
  * @returns {Array} - En iyi 5 şampiyon önerisi, puan detaylarıyla
  */
-export function getRecommendations(enemyChampions, allyChampions, selectedRole) {
+export function getRecommendations(enemyChampions, allyChampions, selectedRole, t) {
   const results = [];
 
   // Meta verisindeki tüm şampiyonları tara (_meta hariç)
@@ -43,7 +43,7 @@ export function getRecommendations(enemyChampions, allyChampions, selectedRole) 
       if (champData.counters && champData.counters[enemyId]) {
         const bonus = champData.counters[enemyId];
         counterScore += bonus;
-        counterReasons.push(`${enemyId}'e karşı güçlü (+${bonus})`);
+      counterReasons.push(`${enemyId} ${t ? t('reasonCounterStrong') : "'e karşı güçlü"} (+${bonus})`);
       }
     }
     // Rakip sayısına göre normalize et
@@ -58,7 +58,7 @@ export function getRecommendations(enemyChampions, allyChampions, selectedRole) 
       if (champData.synergies && champData.synergies[allyId]) {
         const bonus = champData.synergies[allyId];
         synergyScore += bonus;
-        synergyReasons.push(`${allyId} ile sinerji (+${bonus})`);
+        synergyReasons.push(`${allyId} ${t ? t('reasonSynergy') : 'ile sinerji'} (+${bonus})`);
       }
     }
 
@@ -84,7 +84,8 @@ export function getRecommendations(enemyChampions, allyChampions, selectedRole) 
       counterReasons,
       synergyReasons,
       enemyChampions,
-      allyChampions
+      allyChampions,
+      t
     );
 
     results.push({
@@ -114,34 +115,36 @@ export function getRecommendations(enemyChampions, allyChampions, selectedRole) 
 /**
  * Şampiyon için Türkçe öneri açıklaması oluşturur
  */
-function buildReasons(champId, champData, tier, counterReasons, synergyReasons, enemies, allies) {
+function buildReasons(champId, champData, tier, counterReasons, synergyReasons, enemies, allies, t) {
   const parts = [];
 
   // Tier bilgisi
-  const tierNames = { S: 'S-Tier (çok güçlü)', A: 'A-Tier (güçlü)', B: 'B-Tier (orta)', C: 'C-Tier (zayıf)' };
+  const tierNames = t
+    ? { S: t('tierNameS'), A: t('tierNameA'), B: t('tierNameB'), C: t('tierNameC') }
+    : { S: 'S-Tier (çok güçlü)', A: 'A-Tier (güçlü)', B: 'B-Tier (orta)', C: 'C-Tier (zayıf)' };
   parts.push(`📊 Meta: ${tierNames[tier] || tier}`);
 
   // Counter açıklamaları
   if (counterReasons.length > 0) {
     parts.push(`⚔️ Counter: ${counterReasons.join(', ')}`);
   } else if (enemies.length > 0) {
-    parts.push('⚔️ Rakiplere karşı nötr matchup');
+    parts.push(`⚔️ ${t ? t('reasonCounterNeutral') : 'Rakiplere karşı nötr matchup'}`);
   }
 
   // Sinerji açıklamaları
   if (synergyReasons.length > 0) {
-    parts.push(`🤝 Sinerji: ${synergyReasons.join(', ')}`);
+    parts.push(`🤝 ${t ? t('synergy') : 'Sinerji'}: ${synergyReasons.join(', ')}`);
   } else if (allies.length > 0) {
-    parts.push('🤝 Takımla standart uyum');
+    parts.push(`🤝 ${t ? t('reasonSynergyStandard') : 'Takımla standart uyum'}`);
   }
 
   // Blind pick güvenilirliği
   if (champData.blindPickSafety >= 8) {
-    parts.push('🛡️ Blind pick için çok güvenli');
+    parts.push(`🛡️ ${t ? t('reasonBlindSafe') : 'Blind pick için çok güvenli'}`);
   } else if (champData.blindPickSafety >= 6) {
-    parts.push('🛡️ Blind pick için güvenli');
+    parts.push(`🛡️ ${t ? t('reasonBlindOk') : 'Blind pick için güvenli'}`);
   } else {
-    parts.push('⚠️ Counter alınma riski var');
+    parts.push(`⚠️ ${t ? t('reasonBlindRisky') : 'Counter alınma riski var'}`);
   }
 
   return parts;

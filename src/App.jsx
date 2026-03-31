@@ -9,8 +9,12 @@ import SelectedChampions from './components/SelectedChampions';
 import ResultsPage from './components/ResultsPage';
 import TierList from './components/TierList';
 import WelcomeScreen from './components/WelcomeScreen';
+import LanguageSelector from './components/LanguageSelector';
+import { useLanguage } from './i18n/LanguageContext';
 
 export default function App() {
+  const { t } = useLanguage();
+
   // Data Dragon verisi
   const [champions, setChampions] = useState({});
   const [version, setVersion] = useState('');
@@ -44,7 +48,7 @@ export default function App() {
         setVersion(v);
         setChampions(champs);
       } catch (err) {
-        setError('Şampiyon verisi yüklenirken hata oluştu. Lütfen sayfayı yenileyin.');
+        setError('error');
         console.error('Data Dragon yükleme hatası:', err);
       } finally {
         setLoading(false);
@@ -85,7 +89,7 @@ export default function App() {
   function handleGetRecommendations() {
     const enemyIds = enemyChampions.map((c) => c.id);
     const allyIds = allyChampions.map((c) => c.id);
-    const results = getRecommendations(enemyIds, allyIds, selectedRole);
+    const results = getRecommendations(enemyIds, allyIds, selectedRole, t);
     setRecommendations(results);
     setShowResults(true);
   }
@@ -106,7 +110,7 @@ export default function App() {
         <div className="text-center space-y-4 animate-fadeIn">
           <div className="w-16 h-16 border-4 border-lol-blue/30 border-t-lol-blue rounded-full 
                           animate-spin mx-auto" />
-          <p className="text-lol-light/60">Şampiyon verisi yükleniyor...</p>
+          <p className="text-lol-light/60">{t('loading')}</p>
         </div>
       </div>
     );
@@ -117,14 +121,14 @@ export default function App() {
     return (
       <div className="min-h-screen flex items-center justify-center p-4">
         <div className="bg-lol-gray/60 border border-lol-red/30 rounded-xl p-8 text-center max-w-md">
-          <p className="text-lol-red text-lg mb-2">⚠️ Hata</p>
-          <p className="text-lol-light/60 text-sm">{error}</p>
+          <p className="text-lol-red text-lg mb-2">{t('errorTitle')}</p>
+          <p className="text-lol-light/60 text-sm">{t('errorMsg')}</p>
           <button
             onClick={() => window.location.reload()}
             className="mt-4 px-4 py-2 bg-lol-blue/20 text-lol-blue rounded-lg hover:bg-lol-blue/30 
                        transition-colors text-sm"
           >
-            Tekrar Dene
+            {t('errorRetry')}
           </button>
         </div>
       </div>
@@ -148,15 +152,18 @@ export default function App() {
                 DraftGap
               </h1>
               <p className="text-lol-light/40 text-xs">
-                Pro Play Draft Analizi • S16
+                {t('headerSubtitle')}
               </p>
             </div>
           </div>
 
           {/* Versiyon badge */}
-          <div className="hidden sm:flex items-center gap-2 text-xs text-lol-light/30">
-            <div className="w-2 h-2 rounded-full bg-green-500/60"></div>
-            Data Dragon bağlı
+          <div className="flex items-center gap-3">
+            <LanguageSelector />
+            <div className="hidden sm:flex items-center gap-2 text-xs text-lol-light/30">
+              <div className="w-2 h-2 rounded-full bg-green-500/60"></div>
+              {t('headerConnected')}
+            </div>
           </div>
         </div>
 
@@ -170,7 +177,7 @@ export default function App() {
                 : 'text-lol-light/40 hover:text-lol-light/60 hover:bg-lol-dark/40'
             }`}
           >
-            ⚔️ Pro Draft Analizi
+            {t('tabDraft')}
           </button>
           <button
             onClick={() => setActiveTab('tierlist')}
@@ -180,7 +187,7 @@ export default function App() {
                 : 'text-lol-light/40 hover:text-lol-light/60 hover:bg-lol-dark/40'
             }`}
           >
-            📊 Tier List
+            {t('tabTierList')}
           </button>
         </div>
       </header>
@@ -207,18 +214,17 @@ export default function App() {
             {/* Açıklama */}
             <div className="text-center space-y-2">
               <h2 className="text-2xl sm:text-3xl font-bold text-white">
-                Pro <span className="text-lol-blue">Draft</span> Analizi
+                {t('draftTitle1')}<span className="text-lol-blue">{t('draftTitle2')}</span>{t('draftTitle3')}
               </h2>
               <p className="text-lol-light/50 text-sm max-w-lg mx-auto">
-                Rakip pick'lere göre en iyi counter'ı, en güvenli blind pick'i
-                ve pro play'de en çok ban yiyen şampiyonları keşfet.
+                {t('draftDesc')}
               </p>
             </div>
 
             {/* Rol seçimi */}
             <section className="space-y-3">
               <label className="block text-sm font-medium text-lol-gold">
-                🎯 Rolünü Seç
+                {t('selectRole')}
               </label>
               <RoleSelector selectedRole={selectedRole} onSelect={setSelectedRole} />
             </section>
@@ -226,20 +232,20 @@ export default function App() {
             {/* Rakip takım */}
             <section className="space-y-3 bg-lol-dark/40 border border-lol-light/5 rounded-xl p-4 sm:p-6">
               <label className="block text-sm font-medium text-lol-red">
-                ⚔️ Rakip Takım
+                {t('enemyTeam')}
               </label>
               <ChampionSearch
                 champions={champions}
                 version={version}
                 onSelect={addEnemy}
-                placeholder="Rakip şampiyon ara... (1-5)"
+                placeholder={t('enemyPlaceholder')}
                 disabledIds={allSelectedIds}
               />
               <SelectedChampions
                 champions={enemyChampions}
                 version={version}
                 onRemove={removeEnemy}
-                label="Rakip Şampiyonlar"
+                label={t('enemyLabel')}
                 maxCount={5}
               />
             </section>
@@ -247,20 +253,20 @@ export default function App() {
             {/* Takım arkadaşları */}
             <section className="space-y-3 bg-lol-dark/40 border border-lol-light/5 rounded-xl p-4 sm:p-6">
               <label className="block text-sm font-medium text-lol-blue">
-                🤝 Takımın (Opsiyonel)
+                {t('allyTeam')}
               </label>
               <ChampionSearch
                 champions={champions}
                 version={version}
                 onSelect={addAlly}
-                placeholder="Takım şampiyonu ara... (0-4)"
+                placeholder={t('allyPlaceholder')}
                 disabledIds={allSelectedIds}
               />
               <SelectedChampions
                 champions={allyChampions}
                 version={version}
                 onRemove={removeAlly}
-                label="Takım Şampiyonları"
+                label={t('allyLabel')}
                 maxCount={4}
               />
             </section>
@@ -277,13 +283,13 @@ export default function App() {
                       : 'bg-lol-gray/40 text-lol-light/30 cursor-not-allowed'
                   }`}
               >
-                🔍 Şampiyon Öner
+                {t('recommend')}
               </button>
             </div>
 
             {/* Yardım notu */}
             <p className="text-center text-lol-light/25 text-xs">
-              En az bir rol seçerek öneri alabilirsiniz. Rakip ve takım bilgisi daha iyi sonuçlar verir.
+              {t('draftHelp')}
             </p>
           </div>
         )}
@@ -292,7 +298,7 @@ export default function App() {
       {/* Footer */}
       <footer className="border-t border-lol-light/5 mt-16">
         <div className="max-w-5xl mx-auto px-4 py-6 text-center text-lol-light/20 text-xs">
-          DraftGap — Pro play verileri gol.gg kaynaklıdır. Riot Games ile bağlantılı değildir.
+          {t('footer')}
         </div>
       </footer>
     </div>

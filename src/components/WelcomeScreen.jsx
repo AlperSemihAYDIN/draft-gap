@@ -1,8 +1,11 @@
 import { useState } from 'react';
+import { useLanguage } from '../i18n/LanguageContext';
+import LanguageSelector from './LanguageSelector';
 
 const CHOVY_IMAGE = 'https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/b/b3/GEN_Chovy_2026_Split_1.png';
 
 export default function WelcomeScreen({ onEnter }) {
+  const { t } = useLanguage();
   const [fadeOut, setFadeOut] = useState(false);
 
   function handleEnter() {
@@ -30,10 +33,15 @@ export default function WelcomeScreen({ onEnter }) {
       </div>
 
       <div className="relative max-w-3xl w-full mx-4 flex flex-col items-center text-center animate-fadeIn">
+        {/* Dil seçici - üst sağ köşe */}
+        <div className="absolute top-0 right-0">
+          <LanguageSelector />
+        </div>
+
         {/* Gen.G Logo / Üst badge */}
         <div className="mb-6 flex items-center gap-2 text-lol-light/40 text-xs tracking-[0.3em] uppercase">
           <div className="w-8 h-px bg-lol-gold/30" />
-          Gen.G · LCK 2026
+          {t('welcomeBadge')}
           <div className="w-8 h-px bg-lol-gold/30" />
         </div>
 
@@ -68,15 +76,15 @@ export default function WelcomeScreen({ onEnter }) {
           {/* Tırnak işareti */}
           <span className="absolute -top-4 -left-2 text-5xl text-lol-gold/20 font-serif leading-none select-none">"</span>
           <blockquote className="text-lg sm:text-xl md:text-2xl text-white/90 font-light leading-relaxed italic">
-            Batılı oyuncular aslında çok yetenekli. Ama{' '}
-            <span className="text-lol-gold font-medium not-italic">draft yapmayı bilmiyorlar</span>.
-            Oyun daha başlamadan kaybediyorlar.
+            {t('welcomeQuote1')}
+            <span className="text-lol-gold font-medium not-italic">{t('welcomeQuoteHighlight')}</span>
+            {t('welcomeQuote2')}
           </blockquote>
           <span className="absolute -bottom-4 -right-2 text-5xl text-lol-gold/20 font-serif leading-none select-none">"</span>
 
           {/* Kaynak */}
           <p className="mt-6 text-lol-light/30 text-xs tracking-wide">
-            — Jeong "Chovy" Ji-hoon, LCK röportajı
+            {t('welcomeSource')}
           </p>
         </div>
 
@@ -89,8 +97,7 @@ export default function WelcomeScreen({ onEnter }) {
             Draft<span className="text-lol-blue">Gap</span>
           </h1>
           <p className="text-lol-light/40 text-sm max-w-sm mx-auto">
-            Profesyonel maç verileriyle desteklenen akıllı draft analizi.
-            Oyunu daha sahaya çıkmadan kazan.
+            {t('welcomeDesc')}
           </p>
         </div>
 
@@ -106,7 +113,7 @@ export default function WelcomeScreen({ onEnter }) {
           {/* Parlak üst kenarlık */}
           <div className="absolute inset-0 border border-white/20 rounded-xl" />
           <span className="relative text-lol-dark flex items-center gap-3">
-            Draft'a Başla
+            {t('welcomeButton')}
             <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
@@ -115,7 +122,7 @@ export default function WelcomeScreen({ onEnter }) {
 
         {/* Alt bilgi */}
         <p className="mt-8 text-lol-light/20 text-xs">
-          Pro verileri gol.gg kaynaklıdır • Sezon 16 Winter Split
+          {t('welcomeFooter')}
         </p>
       </div>
     </div>
