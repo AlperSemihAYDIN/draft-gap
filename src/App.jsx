@@ -10,6 +10,7 @@ import ResultsPage from './components/ResultsPage';
 import TierList from './components/TierList';
 import WelcomeScreen from './components/WelcomeScreen';
 import LanguageSelector from './components/LanguageSelector';
+import AnalyticsPanel from './components/AnalyticsPanel';
 import { useLanguage } from './i18n/LanguageContext';
 
 export default function App() {
@@ -301,6 +302,9 @@ export default function App() {
           {t('footer')}
         </div>
       </footer>
+
+      {/* Analytics Panel */}
+      <AnalyticsPanel />
     </div>
   );
 }

@@ -88,7 +88,14 @@ const translations = {
     tierNameB: 'B-Tier (orta)',
     tierNameC: 'C-Tier (zayıf)',
     // Footer
-    footer: 'DraftGap — Pro play verileri gol.gg kaynaklıdır. Riot Games ile bağlantılı değildir.',
+    footer: 'DraftGap — Pro play verileri Leaguepedia kaynaklıdır. Riot Games ile bağlantılı değildir.',
+    // Analytics
+    analyticsTitle: 'İstatistikler',
+    analyticsToday: 'Bugünkü Görüntüleme',
+    analyticsTotal: 'Toplam Görüntüleme',
+    analyticsActiveDays: 'Aktif Gün',
+    analyticsFirstVisit: 'İlk Ziyaret',
+    analyticsNote: 'Veriler yalnızca tarayıcınızda yerel olarak saklanır.',
   },
 
   en: {
@@ -159,7 +166,14 @@ const translations = {
     tierNameA: 'A-Tier (strong)',
     tierNameB: 'B-Tier (average)',
     tierNameC: 'C-Tier (weak)',
-    footer: 'DraftGap — Pro play data sourced from gol.gg. Not affiliated with Riot Games.',
+    footer: 'DraftGap — Pro play data sourced from Leaguepedia. Not affiliated with Riot Games.',
+    // Analytics
+    analyticsTitle: 'Analytics',
+    analyticsToday: "Today's Views",
+    analyticsTotal: 'Total Views',
+    analyticsActiveDays: 'Active Days',
+    analyticsFirstVisit: 'First Visit',
+    analyticsNote: 'Data stored locally in your browser only.',
   },
 
   zh: {
@@ -170,7 +184,7 @@ const translations = {
     welcomeSource: '— 郑智薰 "Chovy"，LCK 采访',
     welcomeDesc: '基于职业比赛数据的智能BP分析。在踏上峡谷之前赢得比赛。',
     welcomeButton: '开始BP',
-    welcomeFooter: '职业数据来源于 gol.gg • 第16赛季冬季赛',
+    welcomeFooter: '职业数据来源于 Leaguepedia • 第16赛季',
     headerSubtitle: '职业赛BP分析 • S16',
     headerConnected: 'Data Dragon 已连接',
     tabDraft: '⚔️ 职业BP分析',
@@ -230,7 +244,13 @@ const translations = {
     tierNameA: 'A-Tier（强）',
     tierNameB: 'B-Tier（中等）',
     tierNameC: 'C-Tier（弱）',
-    footer: 'DraftGap — 职业数据来源于 gol.gg。与 Riot Games 无关。',
+    footer: 'DraftGap — 职业数据来源于 Leaguepedia。与 Riot Games 无关。',
+    analyticsTitle: '统计',
+    analyticsToday: '今日浏览',
+    analyticsTotal: '总浏览量',
+    analyticsActiveDays: '活跃天数',
+    analyticsFirstVisit: '首次访问',
+    analyticsNote: '数据仅存储在您的浏览器本地。',
   },
 
   hi: {
@@ -241,7 +261,7 @@ const translations = {
     welcomeSource: '— जियॉन्ग "Chovy" जी-हून, LCK इंटरव्यू',
     welcomeDesc: 'प्रोफेशनल मैच डेटा द्वारा संचालित स्मार्ट ड्राफ्ट विश्लेषण। रिफ्ट पर कदम रखने से पहले गेम जीतें।',
     welcomeButton: 'ड्राफ्ट शुरू करें',
-    welcomeFooter: 'प्रो डेटा gol.gg से • सीज़न 16 विंटर स्प्लिट',
+    welcomeFooter: 'प्रो डेटा Leaguepedia से • सीज़न 16',
     headerSubtitle: 'प्रो प्ले ड्राफ्ट विश्लेषण • S16',
     headerConnected: 'Data Dragon जुड़ा हुआ',
     tabDraft: '⚔️ प्रो ड्राफ्ट विश्लेषण',
@@ -301,7 +321,13 @@ const translations = {
     tierNameA: 'A-Tier (मजबूत)',
     tierNameB: 'B-Tier (औसत)',
     tierNameC: 'C-Tier (कमजोर)',
-    footer: 'DraftGap — प्रो प्ले डेटा gol.gg से। Riot Games से संबद्ध नहीं।',
+    footer: 'DraftGap — प्रो प्ले डेटा Leaguepedia से। Riot Games से संबद्ध नहीं।',
+    analyticsTitle: 'सांख्यिकी',
+    analyticsToday: 'आज के दृश्य',
+    analyticsTotal: 'कुल दृश्य',
+    analyticsActiveDays: 'सक्रिय दिन',
+    analyticsFirstVisit: 'पहली यात्रा',
+    analyticsNote: 'डेटा केवल आपके ब्राउज़र में स्थानीय रूप से संग्रहीत है।',
   },
 
   es: {
@@ -312,7 +338,7 @@ const translations = {
     welcomeSource: '— Jeong "Chovy" Ji-hoon, Entrevista LCK',
     welcomeDesc: 'Análisis inteligente de draft impulsado por datos de partidas profesionales. Gana el juego antes de pisar la Grieta.',
     welcomeButton: 'Iniciar Draft',
-    welcomeFooter: 'Datos pro de gol.gg • Temporada 16 Winter Split',
+    welcomeFooter: 'Datos pro de Leaguepedia • Temporada 16',
     headerSubtitle: 'Análisis de Draft Pro • S16',
     headerConnected: 'Data Dragon conectado',
     tabDraft: '⚔️ Análisis Draft Pro',
@@ -372,7 +398,13 @@ const translations = {
     tierNameA: 'A-Tier (fuerte)',
     tierNameB: 'B-Tier (medio)',
     tierNameC: 'C-Tier (débil)',
-    footer: 'DraftGap — Datos pro de gol.gg. No afiliado a Riot Games.',
+    footer: 'DraftGap — Datos pro de Leaguepedia. No afiliado a Riot Games.',
+    analyticsTitle: 'Estadísticas',
+    analyticsToday: 'Vistas de Hoy',
+    analyticsTotal: 'Vistas Totales',
+    analyticsActiveDays: 'Días Activos',
+    analyticsFirstVisit: 'Primera Visita',
+    analyticsNote: 'Los datos se almacenan solo localmente en su navegador.',
   },
 
   ar: {
@@ -383,7 +415,7 @@ const translations = {
     welcomeSource: '— جيونغ "تشوفي" جي-هون، مقابلة LCK',
     welcomeDesc: 'تحليل ذكي للدرافت مدعوم ببيانات المباريات الاحترافية. اربح قبل أن تبدأ.',
     welcomeButton: 'ابدأ الدرافت',
-    welcomeFooter: 'بيانات الاحتراف من gol.gg • الموسم 16 وينتر سبليت',
+    welcomeFooter: 'بيانات الاحتراف من Leaguepedia • الموسم 16',
     headerSubtitle: 'تحليل درافت الاحتراف • S16',
     headerConnected: 'Data Dragon متصل',
     tabDraft: '⚔️ تحليل الدرافت',
@@ -443,7 +475,13 @@ const translations = {
     tierNameA: 'A-Tier (قوي)',
     tierNameB: 'B-Tier (متوسط)',
     tierNameC: 'C-Tier (ضعيف)',
-    footer: 'DraftGap — بيانات الاحتراف من gol.gg. غير مرتبط بـ Riot Games.',
+    footer: 'DraftGap — بيانات الاحتراف من Leaguepedia. غير مرتبط بـ Riot Games.',
+    analyticsTitle: 'الإحصائيات',
+    analyticsToday: 'مشاهدات اليوم',
+    analyticsTotal: 'إجمالي المشاهدات',
+    analyticsActiveDays: 'الأيام النشطة',
+    analyticsFirstVisit: 'أول زيارة',
+    analyticsNote: 'البيانات مخزنة محلياً في متصفحك فقط.',
   },
 };
 

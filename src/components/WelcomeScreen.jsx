@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
 import LanguageSelector from './LanguageSelector';
 
-const CHOVY_IMAGE = 'https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/b/b3/GEN_Chovy_2026_Split_1.png';
+const CHOVY_IMAGE = 'https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/5/5f/GenG_Cup2026.jpg/revision/latest?cb=20260114084721';
+const CHOVY_FALLBACK = 'https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/3/36/GenG_Cup2025.jpg/revision/latest?cb=20250116164410';
 
 export default function WelcomeScreen({ onEnter }) {
   const { t } = useLanguage();
@@ -45,29 +46,34 @@ export default function WelcomeScreen({ onEnter }) {
           <div className="w-8 h-px bg-lol-gold/30" />
         </div>
 
-        {/* Chovy fotoğrafı */}
-        <div className="relative mb-8 group">
+        {/* Gen.G Takım Kutlama Fotoğrafı */}
+        <div className="relative mb-8 group w-full max-w-md">
           {/* Glow efekti */}
-          <div className="absolute -inset-4 bg-lol-gold/10 rounded-full blur-2xl opacity-60" />
-          <div className="absolute -inset-1 rounded-full bg-gradient-to-b from-lol-gold/40 via-lol-gold/20 to-transparent" />
-          <div className="relative w-36 h-36 sm:w-44 sm:h-44 rounded-full overflow-hidden border-2 border-lol-gold/50 shadow-2xl shadow-lol-gold/20">
+          <div className="absolute -inset-4 bg-lol-gold/10 rounded-2xl blur-2xl opacity-60" />
+          <div className="absolute -inset-1 rounded-2xl bg-gradient-to-b from-lol-gold/40 via-lol-gold/20 to-transparent" />
+          <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden border-2 border-lol-gold/50 shadow-2xl shadow-lol-gold/20">
             <img
               src={CHOVY_IMAGE}
-              alt="Chovy - Gen.G Mid Laner"
-              className="w-full h-full object-cover object-top scale-110"
+              alt="Gen.G — LCK Champions"
+              className="w-full h-full object-cover object-center"
               onError={(e) => {
-                e.target.style.display = 'none';
-                e.target.parentElement.innerHTML = `
-                  <div class="w-full h-full bg-lol-gray flex items-center justify-center">
-                    <span class="text-4xl font-bold text-lol-gold">C</span>
-                  </div>
-                `;
+                if (e.target.src !== CHOVY_FALLBACK) {
+                  e.target.src = CHOVY_FALLBACK;
+                } else {
+                  e.target.style.display = 'none';
+                  e.target.parentElement.innerHTML = `
+                    <div class="w-full h-full bg-lol-gray flex items-center justify-center">
+                      <span class="text-4xl font-bold text-lol-gold">GEN.G</span>
+                    </div>
+                  `;
+                }
               }}
+              loading="eager"
             />
           </div>
           {/* İsim plakası */}
-          <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-lol-dark border border-lol-gold/40 rounded-full px-4 py-1 shadow-lg">
-            <span className="text-lol-gold font-bold text-sm tracking-wider">CHOVY</span>
+          <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-lol-dark border border-lol-gold/40 rounded-full px-5 py-1 shadow-lg">
+            <span className="text-lol-gold font-bold text-sm tracking-wider">GEN.G · CHOVY</span>
           </div>
         </div>
 

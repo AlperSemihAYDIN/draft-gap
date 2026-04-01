@@ -1,1734 +1,5831 @@
 {
   "_meta": {
-    "description": "LoL Draft Asistanı - Şampiyon meta verisi. Patch 26.6 bazlı.",
-    "patch": "26.6",
-    "lastUpdated": "2026-03-26",
-    "methodology": "Tier listesi ve istatistikler op.gg, u.gg ve lolalytics.com gibi kaynaklardan derlenen Plat+ ranked solo/duo verilerine dayanır. Win rate, pick rate ve ban rate verileri bu kaynaklardaki genel eğilimleri yansıtır. Counter/sinerji puanları lane win rate farklarına göre 1-5 arası puanlanmıştır.",
-    "tierCriteria": {
-      "S": "Win rate >52% VE pick rate >5% — meta tanımlayan şampiyonlar",
-      "A": "Win rate >50.5% VEYA yüksek pick rate ile tutarlı performans",
-      "B": "Win rate %49-51 arası — durumsal olarak iyi, genel olarak orta",
-      "C": "Win rate <49% VEYA çok düşük pick rate — meta dışı"
-    }
-  },
-  "Aatrox": {
-    "name": "Aatrox",
-    "roles": ["top"],
-    "tier": { "top": "A" },
-    "winRate": { "top": 50.8 },
-    "pickRate": { "top": 7.2 },
-    "banRate": 8.5,
-    "blindPickSafety": 7,
-    "counters": {
-      "Yasuo": 3.5, "Yone": 3.0, "Irelia": 2.5, "Riven": 2.0, "Renekton": 1.5,
-      "Akali": 2.0, "Gnar": 1.5, "Sett": 1.0, "Vayne": 1.0, "Fiora": 1.0
-    },
-    "synergies": {
-      "Amumu": 2.5, "Sejuani": 2.0, "Orianna": 2.5, "Lulu": 2.0, "Jarvan IV": 2.0
-    },
-    "description": "Güçlü lane hakimiyeti, yüksek sustain ve teamfight etkisi"
-  },
-  "Ahri": {
-    "name": "Ahri",
-    "roles": ["mid"],
-    "tier": { "mid": "S" },
-    "winRate": { "mid": 52.3 },
-    "pickRate": { "mid": 9.8 },
-    "banRate": 5.2,
-    "blindPickSafety": 9,
-    "counters": {
-      "Veigar": 4.0, "Lux": 3.0, "Twisted Fate": 2.5, "Malzahar": 2.0,
-      "Viktor": 2.0, "Ziggs": 3.0, "Annie": 2.5, "Vex": 1.5
-    },
-    "synergies": {
-      "Jarvan IV": 2.0, "Amumu": 2.5, "Jinx": 2.0, "Leona": 2.0, "Miss Fortune": 1.5
-    },
-    "description": "Güvenli lane, yüksek pick potansiyeli ve mobilite"
-  },
-  "Akali": {
-    "name": "Akali",
-    "roles": ["mid", "top"],
-    "tier": { "mid": "A", "top": "B" },
-    "winRate": { "mid": 50.1, "top": 49.3 },
-    "pickRate": { "mid": 6.5, "top": 2.1 },
-    "banRate": 7.8,
-    "blindPickSafety": 5,
-    "counters": {
-      "Kassadin": 4.0, "Katarina": 3.0, "Sylas": 2.5, "Fizz": 2.0,
-      "Yasuo": 2.5, "Lux": 3.0, "Ziggs": 3.5
-    },
-    "synergies": {
-      "Sejuani": 2.0, "Leona": 2.5, "Nautilus": 2.0, "Jarvan IV": 2.5, "Thresh": 1.5
-    },
-    "description": "Yüksek burst hasarı, assassin oyun tarzı, teamfight'ta zayıf"
-  },
-  "Alistar": {
-    "name": "Alistar",
-    "roles": ["support"],
-    "tier": { "support": "A" },
-    "winRate": { "support": 51.2 },
-    "pickRate": { "support": 4.3 },
-    "banRate": 2.1,
-    "blindPickSafety": 7,
-    "counters": {
-      "Leona": 3.0, "Nautilus": 2.5, "Thresh": 2.0, "Pyke": 3.0,
-      "Blitzcrank": 2.5, "Rell": 2.0
-    },
-    "synergies": {
-      "Yasuo": 3.5, "Samira": 3.0, "Jinx": 2.0, "Kai'Sa": 2.5, "Vayne": 2.0
-    },
-    "description": "Güçlü engage ve peel, tankiness ile teamfight kontrolü"
-  },
-  "Ambessa": {
-    "name": "Ambessa",
-    "roles": ["top"],
-    "tier": { "top": "S" },
-    "winRate": { "top": 52.6 },
-    "pickRate": { "top": 8.1 },
-    "banRate": 18.5,
-    "blindPickSafety": 6,
-    "counters": {
-      "Malphite": 1.5, "Teemo": 2.5, "Garen": 2.0, "Sett": 2.5,
-      "Darius": 2.0, "Mordekaiser": 2.5, "Nasus": 3.0
-    },
-    "synergies": {
-      "Orianna": 2.5, "Lulu": 3.0, "Jarvan IV": 2.5, "Amumu": 2.0, "Nautilus": 2.0
-    },
-    "description": "Yüksek mobilite, güçlü trade, dash yoğun kit ile agresif oyun"
-  },
-  "Amumu": {
-    "name": "Amumu",
-    "roles": ["jungle", "support"],
-    "tier": { "jungle": "A", "support": "B" },
-    "winRate": { "jungle": 51.5, "support": 49.8 },
-    "pickRate": { "jungle": 4.2, "support": 1.8 },
-    "banRate": 2.5,
-    "blindPickSafety": 7,
-    "counters": {
-      "Master Yi": 3.0, "Shaco": 2.0, "Evelynn": 2.5, "Kha'Zix": 2.0, "Udyr": 1.5
-    },
-    "synergies": {
-      "Miss Fortune": 4.0, "Yasuo": 3.5, "Orianna": 3.0, "Jinx": 2.5, "Aatrox": 2.5
-    },
-    "description": "Oyun değiştiren AoE ult, kolay mekanikler, güçlü teamfight"
-  },
-  "Aphelios": {
-    "name": "Aphelios",
-    "roles": ["adc"],
-    "tier": { "adc": "A" },
-    "winRate": { "adc": 50.2 },
-    "pickRate": { "adc": 5.8 },
-    "banRate": 3.2,
-    "blindPickSafety": 4,
-    "counters": {
-      "Ezreal": 2.0, "Sivir": 2.5, "Varus": 2.0, "Kog'Maw": 3.0
-    },
-    "synergies": {
-      "Thresh": 3.0, "Lulu": 3.5, "Renata Glasc": 3.0, "Milio": 2.5, "Nautilus": 2.0
-    },
-    "description": "Yüksek hasar potansiyeli, çok silah mekaniği, takım korumasıyla parlıyor"
-  },
-  "Ashe": {
-    "name": "Ashe",
-    "roles": ["adc", "support"],
-    "tier": { "adc": "A", "support": "B" },
-    "winRate": { "adc": 51.1, "support": 49.5 },
-    "pickRate": { "adc": 6.5, "support": 2.3 },
-    "banRate": 1.5,
-    "blindPickSafety": 7,
-    "counters": {
-      "Sivir": 2.0, "Varus": 2.5, "Jhin": 2.0, "Miss Fortune": 2.0, "Kog'Maw": 2.5
-    },
-    "synergies": {
-      "Leona": 2.5, "Nautilus": 2.5, "Braum": 2.0, "Rell": 2.0, "Thresh": 2.0
-    },
-    "description": "Global ult ile oyun başlatıcı, yüksek utility ve kite potansiyeli"
-  },
-  "Aurora": {
-    "name": "Aurora",
-    "roles": ["mid", "top"],
-    "tier": { "mid": "A", "top": "B" },
-    "winRate": { "mid": 51.0, "top": 49.7 },
-    "pickRate": { "mid": 4.5, "top": 2.0 },
-    "banRate": 6.2,
-    "blindPickSafety": 6,
-    "counters": {
-      "Veigar": 3.0, "Malzahar": 2.5, "Lux": 2.5, "Viktor": 2.0, "Syndra": 2.0
-    },
-    "synergies": {
-      "Jarvan IV": 2.5, "Amumu": 2.0, "Leona": 2.0, "Nautilus": 2.0, "Miss Fortune": 2.5
-    },
-    "description": "Bunny hop mobilite, spirit realm ult ile zone control, AP bruiser"
-  },
-  "Azir": {
-    "name": "Azir",
-    "roles": ["mid"],
-    "tier": { "mid": "B" },
-    "winRate": { "mid": 48.9 },
-    "pickRate": { "mid": 3.2 },
-    "banRate": 1.8,
-    "blindPickSafety": 5,
-    "counters": {
-      "Kassadin": 3.5, "Twisted Fate": 3.0, "Malzahar": 2.0, "Veigar": 2.5, "Lux": 2.0
-    },
-    "synergies": {
-      "Jarvan IV": 3.0, "Sejuani": 2.0, "Leona": 2.0, "Alistar": 2.5, "Vi": 2.0
-    },
-    "description": "Geç oyun hypercarry, zor mekanikler ama yüksek ödül"
-  },
-  "Blitzcrank": {
-    "name": "Blitzcrank",
-    "roles": ["support"],
-    "tier": { "support": "A" },
-    "winRate": { "support": 51.8 },
-    "pickRate": { "support": 6.2 },
-    "banRate": 12.5,
-    "blindPickSafety": 6,
-    "counters": {
-      "Sona": 4.0, "Soraka": 3.5, "Yuumi": 3.0, "Kog'Maw": 3.0,
-      "Jinx": 2.5, "Lux": 2.0
-    },
-    "synergies": {
-      "Draven": 3.0, "Lucian": 2.5, "Samira": 2.5, "Tristana": 2.5, "Kai'Sa": 2.0
-    },
-    "description": "Hook ile pick potansiyeli, lane baskısı, oyun değiştiren yakalamalar"
-  },
-  "Brand": {
-    "name": "Brand",
-    "roles": ["support", "mid"],
-    "tier": { "support": "S", "mid": "B" },
-    "winRate": { "support": 52.5, "mid": 50.0 },
-    "pickRate": { "support": 7.1, "mid": 1.5 },
-    "banRate": 9.8,
-    "blindPickSafety": 6,
-    "counters": {
-      "Yuumi": 3.5, "Sona": 3.0, "Soraka": 2.5, "Janna": 2.0, "Nami": 2.5
-    },
-    "synergies": {
-      "Ashe": 2.0, "Jhin": 2.0, "Miss Fortune": 3.0, "Varus": 2.5, "Amumu": 3.0
-    },
-    "description": "Yüksek AoE hasar, pasifi ile tank öldürücü, teamfight canavarı"
-  },
-  "Briar": {
-    "name": "Briar",
-    "roles": ["jungle"],
-    "tier": { "jungle": "A" },
-    "winRate": { "jungle": 51.3 },
-    "pickRate": { "jungle": 5.5 },
-    "banRate": 7.2,
-    "blindPickSafety": 5,
-    "counters": {
-      "Amumu": 2.5, "Rammus": 3.0, "Sejuani": 2.0, "Udyr": 2.0
-    },
-    "synergies": {
-      "Orianna": 2.5, "Lulu": 2.0, "Thresh": 2.0, "Nautilus": 2.0, "Leona": 2.5
-    },
-    "description": "Kan çılgınlığı mekaniği, yüksek sustain, global ult ile gank"
-  },
-  "Caitlyn": {
-    "name": "Caitlyn",
-    "roles": ["adc"],
-    "tier": { "adc": "S" },
-    "winRate": { "adc": 52.1 },
-    "pickRate": { "adc": 12.5 },
-    "banRate": 6.8,
-    "blindPickSafety": 8,
-    "counters": {
-      "Vayne": 2.0, "Kai'Sa": 2.5, "Ezreal": 2.0, "Lucian": 1.5,
-      "Aphelios": 2.5, "Twitch": 3.0
-    },
-    "synergies": {
-      "Lux": 3.5, "Morgana": 3.0, "Zyra": 2.5, "Karma": 2.0, "Janna": 2.0
-    },
-    "description": "Lane hakimiyeti, trap kontrolü, güvenli menzil avantajı"
-  },
-  "Camille": {
-    "name": "Camille",
-    "roles": ["top"],
-    "tier": { "top": "A" },
-    "winRate": { "top": 50.9 },
-    "pickRate": { "top": 5.4 },
-    "banRate": 4.2,
-    "blindPickSafety": 6,
-    "counters": {
-      "Jax": 1.5, "Fiora": 1.0, "Nasus": 3.0, "Gangplank": 2.5,
-      "Gnar": 2.0, "Teemo": 2.0
-    },
-    "synergies": {
-      "Orianna": 2.5, "Lee Sin": 2.0, "Elise": 2.5, "Thresh": 2.0, "Jarvan IV": 2.0
-    },
-    "description": "Bölme baskısı, güçlü duello, Hextech ult ile hedef kilitleme"
-  },
-  "Darius": {
-    "name": "Darius",
-    "roles": ["top"],
-    "tier": { "top": "A" },
-    "winRate": { "top": 51.4 },
-    "pickRate": { "top": 6.8 },
-    "banRate": 10.2,
-    "blindPickSafety": 6,
-    "counters": {
-      "Nasus": 3.5, "Garen": 2.0, "Mordekaiser": 2.5, "Sett": 2.0,
-      "Volibear": 2.0, "Urgot": 1.5, "Malphite": 1.5
-    },
-    "synergies": {
-      "Yuumi": 3.5, "Lulu": 3.0, "Kayn": 2.0, "Morgana": 2.0, "Thresh": 2.0
-    },
-    "description": "Lane canavarı, Noxian Might stacking ile penta potansiyeli"
-  },
-  "Diana": {
-    "name": "Diana",
-    "roles": ["jungle", "mid"],
-    "tier": { "jungle": "S", "mid": "A" },
-    "winRate": { "jungle": 52.4, "mid": 51.0 },
-    "pickRate": { "jungle": 7.8, "mid": 2.5 },
-    "banRate": 5.5,
-    "blindPickSafety": 7,
-    "counters": {
-      "Master Yi": 3.0, "Evelynn": 2.5, "Karthus": 3.0, "Shaco": 2.0,
-      "Nidalee": 2.5, "Veigar": 2.5
-    },
-    "synergies": {
-      "Yasuo": 4.0, "Orianna": 3.5, "Malphite": 2.5, "Miss Fortune": 2.5, "Leona": 2.0
-    },
-    "description": "AoE burst, hızlı orman temizliği, güçlü teamfight engage"
-  },
-  "Draven": {
-    "name": "Draven",
-    "roles": ["adc"],
-    "tier": { "adc": "A" },
-    "winRate": { "adc": 51.0 },
-    "pickRate": { "adc": 4.8 },
-    "banRate": 5.5,
-    "blindPickSafety": 5,
-    "counters": {
-      "Ezreal": 3.0, "Sivir": 2.5, "Ashe": 2.5, "Jhin": 2.0, "Varus": 2.5
-    },
-    "synergies": {
-      "Nautilus": 3.0, "Leona": 3.0, "Thresh": 2.5, "Blitzcrank": 2.5, "Pyke": 3.0
-    },
-    "description": "Erken oyun hasar kralı, snowball potansiyeli, agresif lane"
-  },
-  "Elise": {
-    "name": "Elise",
-    "roles": ["jungle"],
-    "tier": { "jungle": "A" },
-    "winRate": { "jungle": 50.8 },
-    "pickRate": { "jungle": 3.5 },
-    "banRate": 1.5,
-    "blindPickSafety": 6,
-    "counters": {
-      "Nidalee": 2.0, "Lee Sin": 1.5, "Rek'Sai": 2.5, "Xin Zhao": 2.0
-    },
-    "synergies": {
-      "Camille": 2.5, "Yasuo": 2.0, "Twisted Fate": 2.5, "Renekton": 2.0, "Galio": 3.0
-    },
-    "description": "Güçlü erken gank, tower dive uzmanı, cocoon ile pick"
-  },
-  "Evelynn": {
-    "name": "Evelynn",
-    "roles": ["jungle"],
-    "tier": { "jungle": "A" },
-    "winRate": { "jungle": 51.2 },
-    "pickRate": { "jungle": 4.5 },
-    "banRate": 6.0,
-    "blindPickSafety": 5,
-    "counters": {
-      "Karthus": 3.0, "Master Yi": 2.5, "Shaco": 2.0, "Udyr": 2.0
-    },
-    "synergies": {
-      "Galio": 3.0, "Malphite": 2.0, "Orianna": 2.0, "Leona": 2.5, "Ahri": 2.0
-    },
-    "description": "Perma stealth ile assassin, burst mage, geç oyun pick uzmanı"
-  },
-  "Ezreal": {
-    "name": "Ezreal",
-    "roles": ["adc"],
-    "tier": { "adc": "A" },
-    "winRate": { "adc": 50.5 },
-    "pickRate": { "adc": 14.2 },
-    "banRate": 1.8,
-    "blindPickSafety": 9,
-    "counters": {
-      "Vayne": 1.5, "Kai'Sa": 2.0, "Kog'Maw": 2.5, "Twitch": 2.5
-    },
-    "synergies": {
-      "Karma": 3.0, "Yuumi": 2.5, "Nami": 2.5, "Braum": 2.0, "Taric": 2.5
-    },
-    "description": "En güvenli ADC, yüksek mobilite, poke ve kite uzmanı"
-  },
-  "Fiora": {
-    "name": "Fiora",
-    "roles": ["top"],
-    "tier": { "top": "S" },
-    "winRate": { "top": 52.0 },
-    "pickRate": { "top": 6.5 },
-    "banRate": 9.0,
-    "blindPickSafety": 6,
-    "counters": {
-      "Aatrox": 3.5, "Darius": 2.5, "Mordekaiser": 3.0, "Sett": 2.5,
-      "Garen": 2.0, "Malphite": 2.5, "Ornn": 3.0, "Sion": 3.0
-    },
-    "synergies": {
-      "Lulu": 2.0, "Janna": 2.0, "Orianna": 2.0, "Jarvan IV": 1.5
-    },
-    "description": "En iyi duelist, split push kralı, tank öldürücü Vital mekaniği"
-  },
-  "Fizz": {
-    "name": "Fizz",
-    "roles": ["mid"],
-    "tier": { "mid": "A" },
-    "winRate": { "mid": 51.5 },
-    "pickRate": { "mid": 4.8 },
-    "banRate": 5.8,
-    "blindPickSafety": 6,
-    "counters": {
-      "Lux": 3.5, "Veigar": 3.0, "Twisted Fate": 3.0, "Viktor": 2.5,
-      "Ziggs": 3.0, "Xerath": 3.0, "Syndra": 2.0
-    },
-    "synergies": {
-      "Leona": 2.5, "Nautilus": 2.0, "Amumu": 2.0, "Sejuani": 2.0, "Elise": 2.0
-    },
-    "description": "Burst assassin, Playful Trickster ile kaçış, squish avcısı"
-  },
-  "Galio": {
-    "name": "Galio",
-    "roles": ["mid", "support"],
-    "tier": { "mid": "A", "support": "B" },
-    "winRate": { "mid": 51.2, "support": 49.5 },
-    "pickRate": { "mid": 3.5, "support": 1.5 },
-    "banRate": 2.0,
-    "blindPickSafety": 8,
-    "counters": {
-      "Akali": 3.0, "Katarina": 3.5, "Fizz": 2.5, "LeBlanc": 2.5,
-      "Sylas": 2.0, "Diana": 2.5
-    },
-    "synergies": {
-      "Camille": 3.5, "Nocturne": 3.0, "Jarvan IV": 2.5, "Vi": 2.0, "Elise": 3.0
-    },
-    "description": "Anti-AP tank, global ult ile roam, takım koruyucu"
-  },
-  "Garen": {
-    "name": "Garen",
-    "roles": ["top"],
-    "tier": { "top": "B" },
-    "winRate": { "top": 50.5 },
-    "pickRate": { "top": 5.0 },
-    "banRate": 3.5,
-    "blindPickSafety": 8,
-    "counters": {
-      "Nasus": 2.0, "Mordekaiser": 1.5, "Sion": 2.0, "Malphite": 1.5
-    },
-    "synergies": {
-      "Yuumi": 3.0, "Lulu": 2.0, "Morgana": 2.0, "Jarvan IV": 1.5
-    },
-    "description": "Basit ama etkili, yüksek sustain, Demacian Justice ile finisher"
-  },
-  "Gnar": {
-    "name": "Gnar",
-    "roles": ["top"],
-    "tier": { "top": "A" },
-    "winRate": { "top": 50.7 },
-    "pickRate": { "top": 4.2 },
-    "banRate": 1.8,
-    "blindPickSafety": 7,
-    "counters": {
-      "Irelia": 2.5, "Riven": 2.0, "Jax": 2.0, "Yasuo": 2.5,
-      "Renekton": 1.5, "Yone": 2.0
-    },
-    "synergies": {
-      "Yasuo": 3.0, "Orianna": 2.5, "Miss Fortune": 2.0, "Amumu": 2.5, "Jarvan IV": 2.0
-    },
-    "description": "Ranged top laner, Mega Gnar ile AoE CC, güvenli lane"
-  },
-  "Graves": {
-    "name": "Graves",
-    "roles": ["jungle"],
-    "tier": { "jungle": "A" },
-    "winRate": { "jungle": 50.8 },
-    "pickRate": { "jungle": 4.5 },
-    "banRate": 2.0,
-    "blindPickSafety": 7,
-    "counters": {
-      "Nidalee": 2.5, "Lee Sin": 2.0, "Elise": 2.0, "Kha'Zix": 1.5
-    },
-    "synergies": {
-      "Orianna": 2.0, "Lulu": 2.5, "Nautilus": 2.0, "Leona": 2.0, "Thresh": 1.5
-    },
-    "description": "Tanky DPS jungler, hızlı farm, güçlü skirmish ve invade"
-  },
-  "Gwen": {
-    "name": "Gwen",
-    "roles": ["top"],
-    "tier": { "top": "B" },
-    "winRate": { "top": 49.5 },
-    "pickRate": { "top": 3.0 },
-    "banRate": 2.5,
-    "blindPickSafety": 5,
-    "counters": {
-      "Malphite": 3.5, "Ornn": 3.0, "Sion": 2.5, "Nasus": 2.0,
-      "Mordekaiser": 2.5, "Darius": 2.0
-    },
-    "synergies": {
-      "Lulu": 2.5, "Orianna": 2.0, "Jarvan IV": 2.0, "Thresh": 2.0
-    },
-    "description": "AP duelist, Hallowed Mist ile dayanıklılık, tank ergiticisi"
-  },
-  "Hecarim": {
-    "name": "Hecarim",
-    "roles": ["jungle"],
-    "tier": { "jungle": "A" },
-    "winRate": { "jungle": 51.2 },
-    "pickRate": { "jungle": 5.5 },
-    "banRate": 3.5,
-    "blindPickSafety": 7,
-    "counters": {
-      "Master Yi": 2.5, "Shaco": 2.0, "Udyr": 2.0, "Amumu": 2.0
-    },
-    "synergies": {
-      "Orianna": 3.0, "Karma": 2.5, "Lulu": 2.5, "Sivir": 2.0, "Yuumi": 3.0
-    },
-    "description": "Hızlı engage, AoE korku ult, güçlü erken-orta oyun skirmish"
-  },
-  "Hwei": {
-    "name": "Hwei",
-    "roles": ["mid", "support"],
-    "tier": { "mid": "S", "support": "A" },
-    "winRate": { "mid": 52.0, "support": 51.2 },
-    "pickRate": { "mid": 6.8, "support": 3.5 },
-    "banRate": 8.0,
-    "blindPickSafety": 7,
-    "counters": {
-      "Yasuo": 2.5, "Fizz": 2.0, "Akali": 2.5, "Zed": 2.0, "Katarina": 2.0
-    },
-    "synergies": {
-      "Amumu": 3.0, "Jarvan IV": 2.5, "Miss Fortune": 2.5, "Leona": 2.0, "Nautilus": 2.0
-    },
-    "description": "Çok yönlü mage, 3 farklı yetenek seti, AoE poke ve CC"
-  },
-  "Irelia": {
-    "name": "Irelia",
-    "roles": ["top", "mid"],
-    "tier": { "top": "A", "mid": "A" },
-    "winRate": { "top": 50.6, "mid": 50.3 },
-    "pickRate": { "top": 5.2, "mid": 3.8 },
-    "banRate": 7.5,
-    "blindPickSafety": 5,
-    "counters": {
-      "Sett": 2.0, "Volibear": 2.5, "Nasus": 3.0, "Malphite": 1.5,
-      "Trundle": 3.0, "Warwick": 2.5
-    },
-    "synergies": {
-      "Lulu": 3.0, "Orianna": 2.5, "Yuumi": 2.5, "Leona": 2.0, "Thresh": 2.0
-    },
-    "description": "Blade Surge ile yüksek mobilite, 1v5 potansiyeli, stack mekaniği"
-  },
-  "Janna": {
-    "name": "Janna",
-    "roles": ["support"],
-    "tier": { "support": "A" },
-    "winRate": { "support": 52.0 },
-    "pickRate": { "support": 4.5 },
-    "banRate": 1.5,
-    "blindPickSafety": 8,
-    "counters": {
-      "Leona": 3.0, "Nautilus": 3.0, "Alistar": 2.5, "Rell": 2.5,
-      "Thresh": 2.0, "Blitzcrank": 1.5
-    },
-    "synergies": {
-      "Kog'Maw": 3.0, "Jinx": 2.5, "Vayne": 2.5, "Caitlyn": 2.0, "Aphelios": 2.5
-    },
-    "description": "En iyi disengage support, shield ve haste ile ADC koruyucu"
-  },
-  "Jarvan IV": {
-    "name": "Jarvan IV",
-    "roles": ["jungle"],
-    "tier": { "jungle": "A" },
-    "winRate": { "jungle": 51.0 },
-    "pickRate": { "jungle": 4.8 },
-    "banRate": 2.5,
-    "blindPickSafety": 8,
-    "counters": {
-      "Evelynn": 2.5, "Karthus": 3.0, "Master Yi": 2.0, "Shaco": 2.0
-    },
-    "synergies": {
-      "Orianna": 4.0, "Aatrox": 2.0, "Camille": 2.0, "Yasuo": 2.5, "Miss Fortune": 2.5
-    },
-    "description": "Güçlü erken gank, Cataclysm ile wombo combo, çok yönlü build"
-  },
-  "Jax": {
-    "name": "Jax",
-    "roles": ["top", "jungle"],
-    "tier": { "top": "S", "jungle": "A" },
-    "winRate": { "top": 52.2, "jungle": 50.5 },
-    "pickRate": { "top": 7.5, "jungle": 2.8 },
-    "banRate": 11.0,
-    "blindPickSafety": 7,
-    "counters": {
-      "Irelia": 2.5, "Camille": 3.0, "Riven": 2.0, "Fiora": 1.5,
-      "Gwen": 2.5, "Yasuo": 3.0, "Yone": 2.5
-    },
-    "synergies": {
-      "Lulu": 2.5, "Orianna": 2.0, "Thresh": 2.0, "Karma": 2.0, "Yuumi": 2.5
-    },
-    "description": "Geç oyun canavar, Counter Strike ile AA counter, split push kralı"
-  },
-  "Jhin": {
-    "name": "Jhin",
-    "roles": ["adc"],
-    "tier": { "adc": "S" },
-    "winRate": { "adc": 52.3 },
-    "pickRate": { "adc": 11.5 },
-    "banRate": 4.0,
-    "blindPickSafety": 8,
-    "counters": {
-      "Sivir": 2.0, "Ashe": 2.0, "Miss Fortune": 2.5, "Varus": 2.0, "Kog'Maw": 2.5
-    },
-    "synergies": {
-      "Xerath": 3.0, "Zyra": 2.5, "Brand": 2.0, "Thresh": 2.5, "Leona": 2.5
-    },
-    "description": "Utility ADC, yüksek burst, trap ve ult ile global etki"
-  },
-  "Jinx": {
-    "name": "Jinx",
-    "roles": ["adc"],
-    "tier": { "adc": "S" },
-    "winRate": { "adc": 52.5 },
-    "pickRate": { "adc": 10.2 },
-    "banRate": 3.5,
-    "blindPickSafety": 6,
-    "counters": {
-      "Kog'Maw": 2.5, "Twitch": 2.0, "Sivir": 2.0, "Aphelios": 2.0, "Varus": 2.0
-    },
-    "synergies": {
-      "Lulu": 3.5, "Thresh": 2.5, "Nautilus": 2.5, "Janna": 2.5, "Amumu": 2.5
-    },
-    "description": "Hypercarry, Get Excited! pasifi ile reset makinesi, AoE hasar"
-  },
-  "Kai'Sa": {
-    "name": "Kai'Sa",
-    "roles": ["adc"],
-    "tier": { "adc": "S" },
-    "winRate": { "adc": 52.0 },
-    "pickRate": { "adc": 13.5 },
-    "banRate": 5.0,
-    "blindPickSafety": 7,
-    "counters": {
-      "Miss Fortune": 2.0, "Ashe": 2.5, "Jhin": 2.0, "Sivir": 2.0
-    },
-    "synergies": {
-      "Nautilus": 3.5, "Leona": 3.0, "Alistar": 2.5, "Thresh": 2.5, "Rell": 2.5
-    },
-    "description": "Hibrit hasar, Killer Instinct ile dalış, evrim mekaniği"
-  },
-  "Karma": {
-    "name": "Karma",
-    "roles": ["support", "mid"],
-    "tier": { "support": "A", "mid": "B" },
-    "winRate": { "support": 51.0, "mid": 49.2 },
-    "pickRate": { "support": 5.0, "mid": 1.2 },
-    "banRate": 1.5,
-    "blindPickSafety": 8,
-    "counters": {
-      "Yuumi": 3.0, "Sona": 2.0, "Soraka": 2.0, "Janna": 1.5
-    },
-    "synergies": {
-      "Ezreal": 3.0, "Caitlyn": 2.0, "Sivir": 2.5, "Hecarim": 2.5, "Jinx": 2.0
-    },
-    "description": "Çok yönlü support, poke + shield + haste, erken güç"
-  },
-  "Katarina": {
-    "name": "Katarina",
-    "roles": ["mid"],
-    "tier": { "mid": "A" },
-    "winRate": { "mid": 50.8 },
-    "pickRate": { "mid": 5.5 },
-    "banRate": 8.0,
-    "blindPickSafety": 4,
-    "counters": {
-      "Lux": 3.0, "Veigar": 2.5, "Ziggs": 3.0, "Twisted Fate": 2.5,
-      "Viktor": 2.0, "Xerath": 2.5
-    },
-    "synergies": {
-      "Amumu": 3.0, "Jarvan IV": 2.5, "Leona": 2.5, "Alistar": 2.5, "Sejuani": 2.5
-    },
-    "description": "Reset assassin, Shunpo ile mobilite, AoE ult ile teamfight"
-  },
-  "Kha'Zix": {
-    "name": "Kha'Zix",
-    "roles": ["jungle"],
-    "tier": { "jungle": "S" },
-    "winRate": { "jungle": 52.5 },
-    "pickRate": { "jungle": 8.2 },
-    "banRate": 9.5,
-    "blindPickSafety": 7,
-    "counters": {
-      "Evelynn": 2.5, "Karthus": 3.0, "Nidalee": 2.0, "Shaco": 2.0,
-      "Master Yi": 2.5
-    },
-    "synergies": {
-      "Orianna": 2.0, "Lulu": 2.0, "Thresh": 2.0, "Janna": 1.5, "Karma": 1.5
-    },
-    "description": "İzole hedef avcısı, evrimle güçlenen, yüksek burst ve stealth"
-  },
-  "Ksante": {
-    "name": "K'Sante",
-    "roles": ["top"],
-    "tier": { "top": "A" },
-    "winRate": { "top": 50.3 },
-    "pickRate": { "top": 5.0 },
-    "banRate": 6.5,
-    "blindPickSafety": 7,
-    "counters": {
-      "Fiora": 1.5, "Gwen": 2.5, "Vayne": 1.0, "Nasus": 2.5, "Mordekaiser": 2.0
-    },
-    "synergies": {
-      "Orianna": 2.5, "Yasuo": 2.5, "Amumu": 2.0, "Jarvan IV": 2.0, "Lulu": 2.0
-    },
-    "description": "Tank/bruiser dönüşümü, All Out ile yüksek hasar, duvar stunları"
-  },
-  "LeBlanc": {
-    "name": "LeBlanc",
-    "roles": ["mid"],
-    "tier": { "mid": "A" },
-    "winRate": { "mid": 50.5 },
-    "pickRate": { "mid": 5.2 },
-    "banRate": 6.0,
-    "blindPickSafety": 5,
-    "counters": {
-      "Lux": 3.0, "Veigar": 3.0, "Malzahar": 2.0, "Viktor": 2.5,
-      "Twisted Fate": 2.5, "Ziggs": 2.5
-    },
-    "synergies": {
-      "Jarvan IV": 2.5, "Lee Sin": 2.0, "Leona": 2.0, "Nautilus": 2.0, "Vi": 2.0
-    },
-    "description": "Burst mage assassin, yüksek mobilite, erken oyun baskısı"
-  },
-  "Lee Sin": {
-    "name": "Lee Sin",
-    "roles": ["jungle"],
-    "tier": { "jungle": "S" },
-    "winRate": { "jungle": 50.8 },
-    "pickRate": { "jungle": 12.5 },
-    "banRate": 8.0,
-    "blindPickSafety": 7,
-    "counters": {
-      "Amumu": 2.5, "Sejuani": 2.0, "Zac": 2.0, "Udyr": 2.0, "Warwick": 1.5
-    },
-    "synergies": {
-      "Yasuo": 3.0, "Orianna": 2.5, "LeBlanc": 2.0, "Camille": 2.0, "Akali": 2.0
-    },
-    "description": "Erken oyun kralı, Insec kick ile pick, yüksek skill ceiling"
-  },
-  "Leona": {
-    "name": "Leona",
-    "roles": ["support"],
-    "tier": { "support": "S" },
-    "winRate": { "support": 52.2 },
-    "pickRate": { "support": 8.5 },
-    "banRate": 5.5,
-    "blindPickSafety": 7,
-    "counters": {
-      "Yuumi": 3.5, "Sona": 3.0, "Soraka": 2.5, "Nami": 2.0,
-      "Lulu": 2.0, "Zyra": 2.0
-    },
-    "synergies": {
-      "Kai'Sa": 3.0, "Samira": 3.5, "Miss Fortune": 2.5, "Lucian": 2.5, "Draven": 3.0
-    },
-    "description": "En agresif engage support, çoklu CC, aftershock ile tank"
-  },
-  "Lissandra": {
-    "name": "Lissandra",
-    "roles": ["mid"],
-    "tier": { "mid": "B" },
-    "winRate": { "mid": 50.0 },
-    "pickRate": { "mid": 2.2 },
-    "banRate": 1.0,
-    "blindPickSafety": 8,
-    "counters": {
-      "Yasuo": 3.5, "Yone": 3.0, "Akali": 2.5, "Katarina": 2.5,
-      "Fizz": 2.0, "Irelia": 3.0
-    },
-    "synergies": {
-      "Jarvan IV": 2.5, "Amumu": 2.5, "Miss Fortune": 2.0, "Hecarim": 2.0, "Diana": 2.0
-    },
-    "description": "Anti-melee mid, güçlü CC, safe lane, teamfight disruptor"
-  },
-  "Lucian": {
-    "name": "Lucian",
-    "roles": ["adc", "mid"],
-    "tier": { "adc": "A", "mid": "B" },
-    "winRate": { "adc": 50.8, "mid": 49.5 },
-    "pickRate": { "adc": 6.0, "mid": 2.0 },
-    "banRate": 2.5,
-    "blindPickSafety": 6,
-    "counters": {
-      "Ezreal": 2.0, "Ashe": 2.5, "Jhin": 2.0, "Sivir": 2.0, "Varus": 2.0
-    },
-    "synergies": {
-      "Nami": 4.0, "Braum": 2.5, "Thresh": 2.5, "Leona": 2.5, "Alistar": 2.0
-    },
-    "description": "Agresif ADC, güçlü erken-orta oyun, double shot combo"
-  },
-  "Lulu": {
-    "name": "Lulu",
-    "roles": ["support"],
-    "tier": { "support": "S" },
-    "winRate": { "support": 52.5 },
-    "pickRate": { "support": 9.0 },
-    "banRate": 6.0,
-    "blindPickSafety": 9,
-    "counters": {
-      "Leona": 1.5, "Nautilus": 1.5, "Alistar": 2.0, "Rell": 2.0,
-      "Pyke": 2.5, "Thresh": 1.5
-    },
-    "synergies": {
-      "Kog'Maw": 4.0, "Jinx": 3.5, "Vayne": 3.0, "Twitch": 3.5, "Aphelios": 3.5
-    },
-    "description": "En iyi hypercarry enabler, polymorph ile peel, ult ile save"
-  },
-  "Lux": {
-    "name": "Lux",
-    "roles": ["support", "mid"],
-    "tier": { "support": "A", "mid": "A" },
-    "winRate": { "support": 51.5, "mid": 51.2 },
-    "pickRate": { "support": 7.5, "mid": 4.0 },
-    "banRate": 8.0,
-    "blindPickSafety": 7,
-    "counters": {
-      "Yuumi": 3.0, "Sona": 2.5, "Soraka": 2.0, "Nami": 2.0
-    },
-    "synergies": {
-      "Caitlyn": 3.5, "Jhin": 2.5, "Miss Fortune": 2.5, "Ashe": 2.0, "Jinx": 2.0
-    },
-    "description": "Poke + burst + shield, güçlü CC, menzilli hasar combo"
-  },
-  "Malphite": {
-    "name": "Malphite",
-    "roles": ["top", "support"],
-    "tier": { "top": "A", "support": "B" },
-    "winRate": { "top": 51.5, "support": 49.8 },
-    "pickRate": { "top": 5.5, "support": 2.0 },
-    "banRate": 5.0,
-    "blindPickSafety": 7,
-    "counters": {
-      "Irelia": 2.5, "Yasuo": 3.5, "Yone": 3.5, "Riven": 2.5,
-      "Tryndamere": 3.0, "Jax": 2.0
-    },
-    "synergies": {
-      "Yasuo": 4.0, "Miss Fortune": 3.0, "Orianna": 3.0, "Jinx": 2.0, "Samira": 2.5
-    },
-    "description": "Unstoppable Force ile engage, anti-AD tank, wombo combo master"
-  },
-  "Malzahar": {
-    "name": "Malzahar",
-    "roles": ["mid"],
-    "tier": { "mid": "A" },
-    "winRate": { "mid": 52.0 },
-    "pickRate": { "mid": 4.5 },
-    "banRate": 5.0,
-    "blindPickSafety": 8,
-    "counters": {
-      "Yasuo": 3.0, "Yone": 2.5, "Akali": 2.0, "Katarina": 2.5,
-      "Irelia": 2.5, "Zed": 2.5
-    },
-    "synergies": {
-      "Vi": 3.0, "Warwick": 2.5, "Leona": 2.5, "Nautilus": 2.0, "Jarvan IV": 2.0
-    },
-    "description": "Point-click suppress ult, güvenli wave clear, anti-assassin"
-  },
-  "Master Yi": {
-    "name": "Master Yi",
-    "roles": ["jungle"],
-    "tier": { "jungle": "B" },
-    "winRate": { "jungle": 50.0 },
-    "pickRate": { "jungle": 4.5 },
-    "banRate": 8.5,
-    "blindPickSafety": 4,
-    "counters": {
-      "Karthus": 3.0, "Shaco": 2.0, "Evelynn": 2.0
-    },
-    "synergies": {
-      "Lulu": 4.0, "Taric": 4.0, "Kayle": 3.0, "Morgana": 2.5, "Yuumi": 3.5
-    },
-    "description": "Hypercarry jungler, Alpha Strike ile dodge, reset mekaniği"
-  },
-  "Milio": {
-    "name": "Milio",
-    "roles": ["support"],
-    "tier": { "support": "S" },
-    "winRate": { "support": 52.8 },
-    "pickRate": { "support": 6.5 },
-    "banRate": 4.5,
-    "blindPickSafety": 8,
-    "counters": {
-      "Leona": 2.0, "Nautilus": 2.0, "Blitzcrank": 2.5, "Pyke": 2.5,
-      "Rell": 2.0
-    },
-    "synergies": {
-      "Aphelios": 3.0, "Jinx": 3.0, "Kog'Maw": 3.5, "Vayne": 2.5, "Twitch": 2.5
-    },
-    "description": "Menzil artırma bufı, cleanse ult, güçlü enchanter"
-  },
-  "Miss Fortune": {
-    "name": "Miss Fortune",
-    "roles": ["adc"],
-    "tier": { "adc": "S" },
-    "winRate": { "adc": 52.2 },
-    "pickRate": { "adc": 9.5 },
-    "banRate": 3.0,
-    "blindPickSafety": 8,
-    "counters": {
-      "Sivir": 2.0, "Ashe": 2.0, "Jhin": 1.5, "Varus": 2.5, "Twitch": 2.0
-    },
-    "synergies": {
-      "Amumu": 4.0, "Leona": 3.0, "Nautilus": 2.5, "Malphite": 3.0, "Jarvan IV": 2.5
-    },
-    "description": "Bullet Time ile AoE ult, güçlü lane, kolay ve etkili"
-  },
-  "Mordekaiser": {
-    "name": "Mordekaiser",
-    "roles": ["top"],
-    "tier": { "top": "A" },
-    "winRate": { "top": 51.0 },
-    "pickRate": { "top": 5.5 },
-    "banRate": 6.0,
-    "blindPickSafety": 7,
-    "counters": {
-      "Yasuo": 2.5, "Yone": 2.0, "Nasus": 3.0, "Sett": 2.0,
-      "Garen": 2.0, "Sion": 2.5
-    },
-    "synergies": {
-      "Amumu": 2.0, "Jarvan IV": 2.0, "Leona": 2.0, "Nautilus": 1.5
-    },
-    "description": "Death Realm ile 1v1, AP bruiser, iso potansiyeli"
-  },
-  "Morgana": {
-    "name": "Morgana",
-    "roles": ["support", "mid"],
-    "tier": { "support": "A", "mid": "B" },
-    "winRate": { "support": 51.5, "mid": 49.8 },
-    "pickRate": { "support": 6.0, "mid": 1.5 },
-    "banRate": 10.5,
-    "blindPickSafety": 8,
-    "counters": {
-      "Leona": 3.5, "Nautilus": 3.0, "Thresh": 2.5, "Blitzcrank": 3.0,
-      "Alistar": 2.5, "Pyke": 2.5
-    },
-    "synergies": {
-      "Caitlyn": 3.0, "Jhin": 2.5, "Jinx": 2.0, "Miss Fortune": 2.0, "Kai'Sa": 2.0
-    },
-    "description": "Black Shield ile CC bağışıklığı, Dark Binding ile uzun root"
-  },
-  "Nami": {
-    "name": "Nami",
-    "roles": ["support"],
-    "tier": { "support": "S" },
-    "winRate": { "support": 52.5 },
-    "pickRate": { "support": 7.8 },
-    "banRate": 2.5,
-    "blindPickSafety": 8,
-    "counters": {
-      "Yuumi": 2.5, "Sona": 2.5, "Soraka": 2.0, "Janna": 1.5
-    },
-    "synergies": {
-      "Lucian": 4.0, "Ezreal": 2.5, "Jhin": 2.5, "Draven": 2.5, "Kai'Sa": 2.0
-    },
-    "description": "Buff + heal + CC, Lucian ile güçlü sinerji, çok yönlü enchanter"
-  },
-  "Nasus": {
-    "name": "Nasus",
-    "roles": ["top"],
-    "tier": { "top": "B" },
-    "winRate": { "top": 50.5 },
-    "pickRate": { "top": 4.5 },
-    "banRate": 5.0,
-    "blindPickSafety": 4,
-    "counters": {
-      "Teemo": 1.0, "Vayne": 1.0, "Gwen": 1.0
-    },
-    "synergies": {
-      "Lulu": 2.5, "Yuumi": 3.0, "Karma": 2.0, "Morgana": 2.0
-    },
-    "description": "Sonsuz stack, geç oyun canavar, Wither ile ADC counter"
-  },
-  "Nautilus": {
-    "name": "Nautilus",
-    "roles": ["support"],
-    "tier": { "support": "S" },
-    "winRate": { "support": 52.0 },
-    "pickRate": { "support": 8.0 },
-    "banRate": 7.0,
-    "blindPickSafety": 7,
-    "counters": {
-      "Yuumi": 3.5, "Sona": 3.0, "Soraka": 2.5, "Zyra": 2.0,
-      "Lux": 1.5
-    },
-    "synergies": {
-      "Kai'Sa": 3.5, "Aphelios": 2.5, "Jinx": 2.5, "Draven": 2.5, "Samira": 3.0
-    },
-    "description": "En çok CC'ye sahip support, Depth Charge ile guaranteed engage"
-  },
-  "Nidalee": {
-    "name": "Nidalee",
-    "roles": ["jungle"],
-    "tier": { "jungle": "B" },
-    "winRate": { "jungle": 48.5 },
-    "pickRate": { "jungle": 3.0 },
-    "banRate": 1.0,
-    "blindPickSafety": 4,
-    "counters": {
-      "Karthus": 2.5, "Evelynn": 2.0, "Amumu": 2.0
-    },
-    "synergies": {
-      "Renekton": 2.0, "Camille": 2.5, "Lee Sin": 2.0, "Orianna": 2.0
-    },
-    "description": "Erken oyun baskısı, mızrak poke, cougar form burst"
-  },
-  "Nocturne": {
-    "name": "Nocturne",
-    "roles": ["jungle"],
-    "tier": { "jungle": "A" },
-    "winRate": { "jungle": 51.5 },
-    "pickRate": { "jungle": 4.2 },
-    "banRate": 3.0,
-    "blindPickSafety": 7,
-    "counters": {
-      "Evelynn": 2.5, "Karthus": 2.5, "Shaco": 2.0, "Master Yi": 2.0
-    },
-    "synergies": {
-      "Galio": 3.5, "Shen": 3.0, "Orianna": 2.0, "Renekton": 2.0, "Leona": 2.0
-    },
-    "description": "Global karanlık ult, dalış assassin, split push ve pick uzmanı"
+    "patch": "16.5-16.7",
+    "source": "Leaguepedia (lol.fandom.com)",
+    "tournaments": [
+      "LCK/2026 Season/Rounds 1-2",
+      "LPL/2026 Season/Split 1",
+      "LPL/2026 Season/Split 1 Playoffs",
+      "LEC/2026 Season/Spring Season",
+      "LEC/2026 Season/Versus Season",
+      "LEC/2026 Season/Versus Playoffs",
+      "VCS/2026 Season/Spring Season",
+      "VCS/2026 Season/Spring Playoffs",
+      "CBLOL/2026 Season/Split 1",
+      "CBLOL/2026 Season/Split 1 Playoffs",
+      "2026 Americas Cup",
+      "2026 First Stand",
+      "EMEA Masters/2026 Season/Winter",
+      "LCK CL/2026 Season/Rounds 1-2",
+      "LCP/2026 Season/Split 1 Playoffs"
+    ],
+    "totalGames": 1446,
+    "generatedAt": "2026-04-01T14:55:23.259Z"
   },
   "Orianna": {
     "name": "Orianna",
-    "roles": ["mid"],
-    "tier": { "mid": "S" },
-    "winRate": { "mid": 52.0 },
-    "pickRate": { "mid": 6.5 },
-    "banRate": 2.5,
-    "blindPickSafety": 9,
+    "roles": [
+      "mid"
+    ],
+    "tier": {
+      "mid": "A"
+    },
+    "winRate": {
+      "mid": 50.9
+    },
+    "pickRate": {
+      "mid": 7.3
+    },
+    "banRate": 29.9,
+    "presence": 37.3,
+    "proStats": {
+      "picks": 106,
+      "bans": 433,
+      "wins": 54,
+      "losses": 52
+    },
     "counters": {
-      "Veigar": 2.5, "Lux": 2.0, "Ziggs": 2.0, "Malzahar": 1.5,
-      "Viktor": 2.0, "Twisted Fate": 2.0
+      "Lulu": 2.4,
+      "Leona": 2.4,
+      "Braum": 2.4,
+      "Nautilus": 2.4,
+      "Ambessa": 3.7,
+      "Jhin": 3,
+      "Ornn": 2.7,
+      "Rell": 4,
+      "DrMundo": 2.7,
+      "Lucian": 4,
+      "KSante": 2.7,
+      "Karma": 2.7,
+      "Kaisa": 2.7,
+      "Galio": 2.8,
+      "Pyke": 2.7,
+      "Jax": 4,
+      "Volibear": 3,
+      "Nocturne": 2.7
     },
     "synergies": {
-      "Jarvan IV": 4.0, "Diana": 3.5, "Hecarim": 3.0, "Malphite": 3.0,
-      "Aatrox": 2.5, "Camille": 2.5
+      "Nautilus": 1.8,
+      "Zaahen": 2.1,
+      "MissFortune": 1.9,
+      "Renata": 2,
+      "XinZhao": 1.9,
+      "Kaisa": 1.9,
+      "Poppy": 2.1,
+      "Yunara": 1.9,
+      "Bard": 2,
+      "Rumble": 2,
+      "Neeko": 2.3,
+      "Ornn": 1.8,
+      "Kalista": 2,
+      "Caitlyn": 3,
+      "Aatrox": 2.5,
+      "Shen": 2.3,
+      "Rakan": 1.8,
+      "Ashe": 1.8,
+      "Seraphine": 2.4
     },
-    "description": "Shockwave ile teamfight kazanan, shield + haste utility, güvenli lane"
-  },
-  "Ornn": {
-    "name": "Ornn",
-    "roles": ["top"],
-    "tier": { "top": "A" },
-    "winRate": { "top": 51.5 },
-    "pickRate": { "top": 4.0 },
-    "banRate": 2.5,
-    "blindPickSafety": 8,
-    "counters": {
-      "Yasuo": 2.5, "Yone": 2.0, "Irelia": 2.0, "Gnar": 1.5
-    },
-    "synergies": {
-      "Jinx": 2.5, "Kai'Sa": 2.0, "Aphelios": 2.0, "Viktor": 2.0, "Orianna": 2.0
-    },
-    "description": "Masterwork eşyaları ile takım güçlendiren tank, Call of the Forge God engage"
-  },
-  "Pyke": {
-    "name": "Pyke",
-    "roles": ["support"],
-    "tier": { "support": "A" },
-    "winRate": { "support": 50.5 },
-    "pickRate": { "support": 5.5 },
-    "banRate": 8.0,
     "blindPickSafety": 5,
+    "description": "Durumsal pick"
+  },
+  "Rumble": {
+    "name": "Rumble",
+    "roles": [
+      "top"
+    ],
+    "tier": {
+      "top": "B"
+    },
+    "winRate": {
+      "top": 56.3
+    },
+    "pickRate": {
+      "top": 12.2
+    },
+    "banRate": 18,
+    "presence": 30.3,
+    "proStats": {
+      "picks": 177,
+      "bans": 261,
+      "wins": 100,
+      "losses": 77
+    },
     "counters": {
-      "Sona": 3.0, "Soraka": 2.5, "Yuumi": 2.5, "Zyra": 2.0
+      "Aurora": 2.4,
+      "Vi": 2.7,
+      "Yorick": 2.7,
+      "Leona": 2.9,
+      "Sylas": 3,
+      "Aphelios": 2.5,
+      "XinZhao": 2.5,
+      "Lulu": 3.1,
+      "Corki": 2.5,
+      "Azir": 2.7,
+      "Rakan": 2.9,
+      "Orianna": 2.6,
+      "Ashe": 2.8,
+      "Nocturne": 3.3,
+      "Anivia": 2.4,
+      "Galio": 3.2,
+      "Lucian": 4,
+      "Jhin": 2.9,
+      "Seraphine": 3.2,
+      "Caitlyn": 2.5,
+      "Thresh": 2.4,
+      "Naafiri": 2.7,
+      "Jinx": 2.7,
+      "Jayce": 2.7,
+      "Viktor": 3
     },
     "synergies": {
-      "Draven": 3.5, "Lucian": 2.5, "Samira": 2.5, "Tristana": 2.5, "Kalista": 2.5
+      "XinZhao": 2.1,
+      "Ryze": 2.2,
+      "JarvanIV": 2.1,
+      "MissFortune": 2.4,
+      "Alistar": 2.3,
+      "Aurora": 2,
+      "Neeko": 2.2,
+      "Ashe": 2.5,
+      "Seraphine": 2.4,
+      "Orianna": 2,
+      "Poppy": 2.4,
+      "Kaisa": 2.6,
+      "Varus": 1.8,
+      "Akali": 2.3,
+      "Azir": 2,
+      "Ezreal": 1.9,
+      "Caitlyn": 2,
+      "DrMundo": 3,
+      "Viktor": 3,
+      "Anivia": 2,
+      "Aatrox": 2.6,
+      "Thresh": 3
     },
-    "description": "Assassin support, Death from Below ile altın paylaşımı, roam"
-  },
-  "Rakan": {
-    "name": "Rakan",
-    "roles": ["support"],
-    "tier": { "support": "A" },
-    "winRate": { "support": 51.2 },
-    "pickRate": { "support": 5.0 },
-    "banRate": 3.5,
-    "blindPickSafety": 6,
-    "counters": {
-      "Lulu": 2.0, "Janna": 2.0, "Nami": 1.5, "Soraka": 2.0
-    },
-    "synergies": {
-      "Xayah": 4.0, "Samira": 3.0, "Kai'Sa": 2.5, "Yasuo": 2.5, "Miss Fortune": 2.5
-    },
-    "description": "En hızlı engage, Xayah sinerji, charm ile AoE CC"
-  },
-  "Rell": {
-    "name": "Rell",
-    "roles": ["support"],
-    "tier": { "support": "A" },
-    "winRate": { "support": 51.5 },
-    "pickRate": { "support": 4.5 },
-    "banRate": 3.0,
-    "blindPickSafety": 6,
-    "counters": {
-      "Sona": 3.0, "Yuumi": 3.0, "Soraka": 2.5, "Janna": 2.0, "Nami": 2.0
-    },
-    "synergies": {
-      "Samira": 3.5, "Yasuo": 3.0, "Kai'Sa": 2.5, "Miss Fortune": 2.5, "Jinx": 2.0
-    },
-    "description": "AoE engage tank, manyetik fırtına ile çekme, armor shred"
-  },
-  "Renata Glasc": {
-    "name": "Renata Glasc",
-    "roles": ["support"],
-    "tier": { "support": "A" },
-    "winRate": { "support": 51.0 },
-    "pickRate": { "support": 3.8 },
-    "banRate": 2.5,
-    "blindPickSafety": 7,
-    "counters": {
-      "Sona": 2.5, "Soraka": 2.0, "Yuumi": 2.0, "Janna": 1.5
-    },
-    "synergies": {
-      "Aphelios": 3.0, "Jinx": 2.5, "Kog'Maw": 3.0, "Twitch": 2.5, "Vayne": 2.0
-    },
-    "description": "Bailout ile revive, Hostile Takeover ile düşmanı çeviren ult"
-  },
-  "Renekton": {
-    "name": "Renekton",
-    "roles": ["top"],
-    "tier": { "top": "B" },
-    "winRate": { "top": 49.8 },
-    "pickRate": { "top": 3.5 },
-    "banRate": 2.0,
-    "blindPickSafety": 7,
-    "counters": {
-      "Nasus": 3.0, "Riven": 2.0, "Yasuo": 2.5, "Gwen": 2.0, "Yone": 2.0
-    },
-    "synergies": {
-      "Elise": 2.0, "Lee Sin": 2.0, "Jarvan IV": 2.0, "Nidalee": 2.0, "Orianna": 1.5
-    },
-    "description": "Erken oyun lane bully, fury mekaniği, güçlü dive setup"
-  },
-  "Riven": {
-    "name": "Riven",
-    "roles": ["top"],
-    "tier": { "top": "A" },
-    "winRate": { "top": 51.0 },
-    "pickRate": { "top": 5.0 },
-    "banRate": 4.5,
     "blindPickSafety": 5,
-    "counters": {
-      "Yasuo": 2.5, "Yone": 2.0, "Irelia": 1.5, "Sett": 2.0, "Nasus": 2.5
-    },
-    "synergies": {
-      "Lulu": 2.5, "Orianna": 2.0, "Yuumi": 2.5, "Jarvan IV": 2.0, "Lee Sin": 2.0
-    },
-    "description": "Yüksek skill ceiling, animation cancel ile burst, mobilite"
-  },
-  "Samira": {
-    "name": "Samira",
-    "roles": ["adc"],
-    "tier": { "adc": "A" },
-    "winRate": { "adc": 50.5 },
-    "pickRate": { "adc": 5.5 },
-    "banRate": 4.5,
-    "blindPickSafety": 4,
-    "counters": {
-      "Ezreal": 2.0, "Ashe": 2.0, "Jhin": 1.5
-    },
-    "synergies": {
-      "Nautilus": 3.5, "Leona": 3.5, "Alistar": 3.0, "Rell": 3.5, "Rakan": 3.0
-    },
-    "description": "Combo ADC, S rank ult ile AoE burst, agresif all-in"
-  },
-  "Sejuani": {
-    "name": "Sejuani",
-    "roles": ["jungle"],
-    "tier": { "jungle": "A" },
-    "winRate": { "jungle": 51.5 },
-    "pickRate": { "jungle": 3.8 },
-    "banRate": 1.5,
-    "blindPickSafety": 7,
-    "counters": {
-      "Master Yi": 2.5, "Shaco": 2.0, "Evelynn": 2.0, "Karthus": 2.0
-    },
-    "synergies": {
-      "Yasuo": 3.0, "Orianna": 2.5, "Miss Fortune": 2.5, "Aatrox": 2.0, "Diana": 2.0
-    },
-    "description": "Tank jungler, çoklu CC, Glacial Prison ile teamfight engage"
-  },
-  "Senna": {
-    "name": "Senna",
-    "roles": ["support", "adc"],
-    "tier": { "support": "A", "adc": "B" },
-    "winRate": { "support": 51.0, "adc": 49.5 },
-    "pickRate": { "support": 6.0, "adc": 2.0 },
-    "banRate": 4.0,
-    "blindPickSafety": 7,
-    "counters": {
-      "Yuumi": 2.5, "Sona": 2.0, "Soraka": 2.0, "Janna": 1.5
-    },
-    "synergies": {
-      "Tahm Kench": 3.5, "Seraphine": 2.0, "Ashe": 2.0, "Jhin": 2.5
-    },
-    "description": "Sonsuz scaling, ADC-support hibrit, global ult ile shield"
-  },
-  "Seraphine": {
-    "name": "Seraphine",
-    "roles": ["support", "mid", "adc"],
-    "tier": { "support": "A", "mid": "B", "adc": "B" },
-    "winRate": { "support": 51.5, "mid": 49.5, "adc": 49.0 },
-    "pickRate": { "support": 4.5, "mid": 1.5, "adc": 1.0 },
-    "banRate": 2.0,
-    "blindPickSafety": 7,
-    "counters": {
-      "Yuumi": 2.5, "Sona": 2.5, "Soraka": 2.0
-    },
-    "synergies": {
-      "Senna": 2.5, "Miss Fortune": 2.5, "Amumu": 2.5, "Jinx": 2.0, "Aphelios": 2.0
-    },
-    "description": "Çok yönlü AP support, AoE CC ve heal, teamfight utility"
-  },
-  "Sett": {
-    "name": "Sett",
-    "roles": ["top", "support"],
-    "tier": { "top": "A", "support": "B" },
-    "winRate": { "top": 51.2, "support": 49.5 },
-    "pickRate": { "top": 5.0, "support": 1.8 },
-    "banRate": 3.5,
-    "blindPickSafety": 7,
-    "counters": {
-      "Nasus": 2.5, "Garen": 2.0, "Mordekaiser": 1.5, "Sion": 2.0, "Ornn": 1.5
-    },
-    "synergies": {
-      "Orianna": 2.5, "Yasuo": 2.0, "Lulu": 2.0, "Jarvan IV": 2.0
-    },
-    "description": "Haymaker ile büyük hasar, The Show Stopper ile engage, lane bully"
-  },
-  "Shen": {
-    "name": "Shen",
-    "roles": ["top", "support"],
-    "tier": { "top": "A", "support": "B" },
-    "winRate": { "top": 51.8, "support": 49.5 },
-    "pickRate": { "top": 4.5, "support": 1.5 },
-    "banRate": 3.0,
-    "blindPickSafety": 8,
-    "counters": {
-      "Yasuo": 2.5, "Irelia": 2.0, "Riven": 2.0, "Yone": 2.0
-    },
-    "synergies": {
-      "Nocturne": 3.0, "Draven": 2.5, "Jinx": 2.0, "Kai'Sa": 2.5, "Vayne": 2.0
-    },
-    "description": "Global shield ult, Spirit Blade ile taunt, split push + teamfight"
-  },
-  "Sivir": {
-    "name": "Sivir",
-    "roles": ["adc"],
-    "tier": { "adc": "B" },
-    "winRate": { "adc": 49.8 },
-    "pickRate": { "adc": 3.0 },
-    "banRate": 0.5,
-    "blindPickSafety": 7,
-    "counters": {
-      "Vayne": 1.5, "Kai'Sa": 1.5, "Twitch": 2.0
-    },
-    "synergies": {
-      "Karma": 2.5, "Lulu": 2.5, "Yuumi": 2.0, "Thresh": 2.0, "Janna": 2.0
-    },
-    "description": "Wave clear uzmanı, Spell Shield ile utility, On The Hunt ile haste"
-  },
-  "Smolder": {
-    "name": "Smolder",
-    "roles": ["adc", "mid"],
-    "tier": { "adc": "S", "mid": "A" },
-    "winRate": { "adc": 52.5, "mid": 50.8 },
-    "pickRate": { "adc": 8.5, "mid": 2.5 },
-    "banRate": 14.0,
-    "blindPickSafety": 7,
-    "counters": {
-      "Vayne": 2.0, "Lucian": 2.5, "Draven": 3.0, "Kalista": 2.5
-    },
-    "synergies": {
-      "Lulu": 3.0, "Janna": 2.5, "Nami": 2.5, "Thresh": 2.0, "Karma": 2.5
-    },
-    "description": "Stack scaling ADC, güçlü geç oyun, güvenli lane, AoE hasar"
-  },
-  "Sona": {
-    "name": "Sona",
-    "roles": ["support"],
-    "tier": { "support": "B" },
-    "winRate": { "support": 50.5 },
-    "pickRate": { "support": 2.5 },
-    "banRate": 0.5,
-    "blindPickSafety": 5,
-    "counters": {
-      "Yuumi": 2.0, "Janna": 1.5
-    },
-    "synergies": {
-      "Jinx": 2.5, "Kog'Maw": 3.0, "Vayne": 2.5, "Aphelios": 2.0
-    },
-    "description": "Geç oyun scaling enchanter, AoE ult, çoklu aura buffları"
-  },
-  "Soraka": {
-    "name": "Soraka",
-    "roles": ["support"],
-    "tier": { "support": "A" },
-    "winRate": { "support": 51.8 },
-    "pickRate": { "support": 4.0 },
-    "banRate": 5.5,
-    "blindPickSafety": 6,
-    "counters": {
-      "Yuumi": 2.0, "Janna": 1.5, "Sona": 2.0
-    },
-    "synergies": {
-      "Kog'Maw": 3.0, "Jinx": 2.5, "Vayne": 2.5, "Aphelios": 2.5, "Twitch": 2.5
-    },
-    "description": "En iyi healbot, global ult ile takım kurtarıcı, Silence alanı"
-  },
-  "Sylas": {
-    "name": "Sylas",
-    "roles": ["mid", "top"],
-    "tier": { "mid": "A", "top": "B" },
-    "winRate": { "mid": 50.8, "top": 49.5 },
-    "pickRate": { "mid": 5.5, "top": 2.0 },
-    "banRate": 5.0,
-    "blindPickSafety": 6,
-    "counters": {
-      "Lux": 3.0, "Ziggs": 2.5, "Xerath": 2.5, "Viktor": 2.0, "Malzahar": 1.5
-    },
-    "synergies": {
-      "Amumu": 3.0, "Sejuani": 2.5, "Malphite": 2.5, "Orianna": 2.0, "Jarvan IV": 2.0
-    },
-    "description": "Ult çalan mage bruiser, düşman comp'a göre güçlenen, AP bruiser"
-  },
-  "Syndra": {
-    "name": "Syndra",
-    "roles": ["mid"],
-    "tier": { "mid": "A" },
-    "winRate": { "mid": 51.0 },
-    "pickRate": { "mid": 4.5 },
-    "banRate": 3.0,
-    "blindPickSafety": 7,
-    "counters": {
-      "Lux": 2.5, "Veigar": 2.0, "Viktor": 2.0, "Twisted Fate": 2.5, "Ziggs": 2.0
-    },
-    "synergies": {
-      "Jarvan IV": 2.0, "Lee Sin": 2.0, "Leona": 2.0, "Thresh": 2.0
-    },
-    "description": "Burst mage, Scatter the Weak ile CC, ult ile tek atma"
-  },
-  "Talon": {
-    "name": "Talon",
-    "roles": ["mid", "jungle"],
-    "tier": { "mid": "B", "jungle": "B" },
-    "winRate": { "mid": 49.5, "jungle": 49.8 },
-    "pickRate": { "mid": 2.5, "jungle": 2.0 },
-    "banRate": 1.5,
-    "blindPickSafety": 5,
-    "counters": {
-      "Lux": 3.0, "Twisted Fate": 3.0, "Veigar": 2.5, "Ziggs": 3.0,
-      "Viktor": 2.0, "Xerath": 2.5
-    },
-    "synergies": {
-      "Leona": 2.0, "Nautilus": 2.0, "Amumu": 2.0, "Alistar": 1.5
-    },
-    "description": "Roam assassin, duvar atlama ile hızlı rotasyon, erken güçlü"
-  },
-  "Teemo": {
-    "name": "Teemo",
-    "roles": ["top"],
-    "tier": { "top": "B" },
-    "winRate": { "top": 50.2 },
-    "pickRate": { "top": 3.5 },
-    "banRate": 6.0,
-    "blindPickSafety": 4,
-    "counters": {
-      "Nasus": 4.0, "Garen": 2.5, "Darius": 2.0, "Sett": 2.0,
-      "Mordekaiser": 2.0, "Tryndamere": 3.0
-    },
-    "synergies": {
-      "Amumu": 2.0, "Leona": 1.5, "Nautilus": 1.5
-    },
-    "description": "Ranged bully, kör mantar tuzakları, lane'de sinir bozucu"
-  },
-  "Thresh": {
-    "name": "Thresh",
-    "roles": ["support"],
-    "tier": { "support": "S" },
-    "winRate": { "support": 51.5 },
-    "pickRate": { "support": 10.5 },
-    "banRate": 4.5,
-    "blindPickSafety": 9,
-    "counters": {
-      "Yuumi": 3.0, "Sona": 2.5, "Soraka": 2.0, "Zyra": 2.0, "Lux": 1.5
-    },
-    "synergies": {
-      "Draven": 3.0, "Lucian": 2.5, "Kai'Sa": 2.5, "Jinx": 2.5,
-      "Aphelios": 3.0, "Samira": 2.5
-    },
-    "description": "En çok yönlü support, hook + flay + lantern, sonsuz ruh toplama"
-  },
-  "Tristana": {
-    "name": "Tristana",
-    "roles": ["adc", "mid"],
-    "tier": { "adc": "A", "mid": "B" },
-    "winRate": { "adc": 50.8, "mid": 49.2 },
-    "pickRate": { "adc": 4.5, "mid": 1.5 },
-    "banRate": 2.0,
-    "blindPickSafety": 7,
-    "counters": {
-      "Ashe": 2.0, "Jhin": 2.0, "Sivir": 2.0, "Varus": 2.0
-    },
-    "synergies": {
-      "Leona": 2.5, "Nautilus": 2.5, "Alistar": 2.5, "Thresh": 2.0, "Blitzcrank": 2.5
-    },
-    "description": "Reset assassin ADC, Rocket Jump ile mobilite, tower alıcı"
-  },
-  "Twisted Fate": {
-    "name": "Twisted Fate",
-    "roles": ["mid"],
-    "tier": { "mid": "A" },
-    "winRate": { "mid": 50.8 },
-    "pickRate": { "mid": 3.5 },
-    "banRate": 2.0,
-    "blindPickSafety": 6,
-    "counters": {
-      "Malzahar": 2.0, "Veigar": 2.0, "Lux": 2.0, "Ziggs": 2.0
-    },
-    "synergies": {
-      "Elise": 2.5, "Lee Sin": 2.0, "Nocturne": 3.0, "Shen": 2.5, "Camille": 2.5
-    },
-    "description": "Destiny ile global roam, Gold Card CC, macro oyun ustası"
-  },
-  "Twitch": {
-    "name": "Twitch",
-    "roles": ["adc"],
-    "tier": { "adc": "A" },
-    "winRate": { "adc": 51.5 },
-    "pickRate": { "adc": 4.0 },
-    "banRate": 3.0,
-    "blindPickSafety": 4,
-    "counters": {
-      "Kog'Maw": 2.5, "Sivir": 2.0, "Ashe": 2.0
-    },
-    "synergies": {
-      "Lulu": 4.0, "Yuumi": 3.5, "Rakan": 2.5, "Thresh": 2.0, "Karma": 2.5
-    },
-    "description": "Stealth assassin ADC, Spray and Pray ile AoE, late game monster"
-  },
-  "Urgot": {
-    "name": "Urgot",
-    "roles": ["top"],
-    "tier": { "top": "A" },
-    "winRate": { "top": 51.5 },
-    "pickRate": { "top": 3.5 },
-    "banRate": 2.0,
-    "blindPickSafety": 7,
-    "counters": {
-      "Nasus": 2.5, "Garen": 2.0, "Sion": 2.5, "Ornn": 2.0, "Malphite": 2.0
-    },
-    "synergies": {
-      "Orianna": 2.0, "Jarvan IV": 2.0, "Thresh": 1.5, "Lulu": 2.0
-    },
-    "description": "Ranged bruiser, execute ult, sürekli DPS bacak pasifi"
+    "description": "Yüksek WR · Durumsal pick"
   },
   "Varus": {
     "name": "Varus",
-    "roles": ["adc"],
-    "tier": { "adc": "A" },
-    "winRate": { "adc": 50.5 },
-    "pickRate": { "adc": 5.0 },
-    "banRate": 2.0,
-    "blindPickSafety": 6,
+    "roles": [
+      "adc",
+      "top"
+    ],
+    "tier": {
+      "adc": "B",
+      "top": "C"
+    },
+    "winRate": {
+      "adc": 50.7,
+      "top": 40
+    },
+    "pickRate": {
+      "adc": 9.3,
+      "top": 0.7
+    },
+    "banRate": 19.4,
+    "presence": 29.4,
+    "proStats": {
+      "picks": 144,
+      "bans": 281,
+      "wins": 72,
+      "losses": 72
+    },
     "counters": {
-      "Kog'Maw": 2.5, "Sivir": 2.0, "Twitch": 2.0, "Aphelios": 2.0
+      "Malphite": 3,
+      "Nautilus": 2.8,
+      "Aurora": 2.4,
+      "Taliyah": 2.8,
+      "Rakan": 3,
+      "Naafiri": 2.7,
+      "Orianna": 2.8,
+      "Nocturne": 2.9,
+      "Jhin": 2.7,
+      "Gwen": 2.7,
+      "KSante": 2.4,
+      "Rell": 2.8,
+      "RekSai": 2.7,
+      "Aatrox": 2.9,
+      "Viktor": 2.4,
+      "Renekton": 2.9,
+      "Vi": 3.5,
+      "Galio": 4,
+      "Seraphine": 2.4,
+      "Jayce": 2.4,
+      "Mel": 2.7
     },
     "synergies": {
-      "Thresh": 2.5, "Braum": 2.5, "Leona": 2.0, "Nautilus": 2.0, "Brand": 2.5
+      "Trundle": 2,
+      "Braum": 2.1,
+      "Yorick": 2.6,
+      "Ahri": 2.2,
+      "Akali": 1.9,
+      "Lulu": 2,
+      "Zaahen": 1.9,
+      "Azir": 1.9,
+      "RekSai": 3,
+      "Poppy": 2.3,
+      "Rumble": 1.8,
+      "JarvanIV": 1.8,
+      "Ornn": 3,
+      "DrMundo": 1.8,
+      "Yone": 1.8,
+      "Naafiri": 2,
+      "Annie": 1.8
     },
-    "description": "Poke + engage ult, on-hit veya lethality build, çok yönlü"
-  },
-  "Vayne": {
-    "name": "Vayne",
-    "roles": ["adc", "top"],
-    "tier": { "adc": "A", "top": "B" },
-    "winRate": { "adc": 51.0, "top": 49.5 },
-    "pickRate": { "adc": 6.5, "top": 2.5 },
-    "banRate": 7.0,
     "blindPickSafety": 5,
+    "description": "Durumsal pick"
+  },
+  "JarvanIV": {
+    "name": "Jarvan IV",
+    "roles": [
+      "jungle"
+    ],
+    "tier": {
+      "jungle": "B"
+    },
+    "winRate": {
+      "jungle": 54.2
+    },
+    "pickRate": {
+      "jungle": 11.6
+    },
+    "banRate": 16.7,
+    "presence": 28.4,
+    "proStats": {
+      "picks": 168,
+      "bans": 242,
+      "wins": 91,
+      "losses": 77
+    },
     "counters": {
-      "Caitlyn": 1.5, "Miss Fortune": 1.5, "Jinx": 1.5, "Aphelios": 2.0
+      "Jayce": 2.7,
+      "Varus": 2.6,
+      "Leona": 2.4,
+      "Rell": 2.8,
+      "Orianna": 2.6,
+      "XinZhao": 2.4,
+      "Aphelios": 2.5,
+      "Zaahen": 2.7,
+      "Ambessa": 2.4,
+      "Nocturne": 2.7,
+      "Lulu": 2.5,
+      "KSante": 2.4,
+      "Karma": 2.4,
+      "Viktor": 3,
+      "Sivir": 4,
+      "Sion": 2.4,
+      "Malphite": 4,
+      "Rakan": 2.6,
+      "Kaisa": 2.5,
+      "LeeSin": 3,
+      "Jhin": 2.9,
+      "Ornn": 2.4,
+      "Naafiri": 2.7,
+      "Annie": 4,
+      "Mel": 2.7
     },
     "synergies": {
-      "Lulu": 3.5, "Janna": 3.0, "Thresh": 2.5, "Nami": 2.5, "Soraka": 2.5
+      "Neeko": 2.1,
+      "Ambessa": 2,
+      "Rumble": 2.1,
+      "MissFortune": 2.3,
+      "Alistar": 1.9,
+      "Aurora": 2.1,
+      "Rakan": 1.8,
+      "Zaahen": 2.1,
+      "Ryze": 1.8,
+      "Kaisa": 1.9,
+      "Azir": 2,
+      "Yunara": 2,
+      "Varus": 1.8,
+      "Bard": 1.9,
+      "Taliyah": 1.9,
+      "Akali": 2.1,
+      "Renekton": 1.9,
+      "Sivir": 2,
+      "Caitlyn": 2,
+      "Xayah": 2,
+      "Aatrox": 2.4
     },
-    "description": "Tank öldürücü, Silver Bolts ile %HP hasar, stealth tumble"
+    "blindPickSafety": 5,
+    "description": "Durumsal pick"
   },
-  "Veigar": {
-    "name": "Veigar",
-    "roles": ["mid", "support"],
-    "tier": { "mid": "A", "support": "B" },
-    "winRate": { "mid": 51.5, "support": 49.5 },
-    "pickRate": { "mid": 4.0, "support": 1.5 },
-    "banRate": 3.5,
+  "Neeko": {
+    "name": "Neeko",
+    "roles": [
+      "support"
+    ],
+    "tier": {
+      "support": "B"
+    },
+    "winRate": {
+      "support": 52.9
+    },
+    "pickRate": {
+      "support": 8.2
+    },
+    "banRate": 17.6,
+    "presence": 25.8,
+    "proStats": {
+      "picks": 119,
+      "bans": 254,
+      "wins": 63,
+      "losses": 56
+    },
+    "counters": {
+      "Jayce": 3,
+      "Azir": 2.8,
+      "Gwen": 3.3,
+      "Aurora": 2.4,
+      "MonkeyKing": 2.4,
+      "Varus": 2.4,
+      "Taliyah": 2.4,
+      "KSante": 2.4,
+      "Zoe": 2.7,
+      "Ornn": 4,
+      "Ambessa": 2.5,
+      "Vi": 2.5,
+      "Nami": 2.4,
+      "Rell": 4,
+      "Jhin": 3.6,
+      "Kaisa": 4,
+      "Swain": 2.7,
+      "Ahri": 2.7,
+      "MissFortune": 4,
+      "LeBlanc": 3,
+      "Lucian": 2.7,
+      "Yone": 2.7
+    },
+    "synergies": {
+      "JarvanIV": 2.1,
+      "KSante": 2,
+      "Rumble": 2.2,
+      "MissFortune": 2.3,
+      "Corki": 2.3,
+      "Azir": 1.9,
+      "XinZhao": 1.8,
+      "Sivir": 1.9,
+      "MonkeyKing": 1.9,
+      "TwistedFate": 2,
+      "LeBlanc": 2.3,
+      "Orianna": 2.3,
+      "Zaahen": 3,
+      "Naafiri": 1.8,
+      "Poppy": 2.3,
+      "Sylas": 3,
+      "Gnar": 1.9,
+      "Anivia": 2.5,
+      "Mel": 1.8
+    },
+    "blindPickSafety": 5,
+    "description": "Durumsal pick"
+  },
+  "Ryze": {
+    "name": "Ryze",
+    "roles": [
+      "mid"
+    ],
+    "tier": {
+      "mid": "B"
+    },
+    "winRate": {
+      "mid": 54.9
+    },
+    "pickRate": {
+      "mid": 12
+    },
+    "banRate": 13.1,
+    "presence": 25.1,
+    "proStats": {
+      "picks": 174,
+      "bans": 189,
+      "wins": 95,
+      "losses": 79
+    },
+    "counters": {
+      "Jhin": 2.8,
+      "Ambessa": 2.5,
+      "Aurora": 2.5,
+      "Rell": 2.7,
+      "Nocturne": 2.4,
+      "Galio": 2.4,
+      "Yone": 4,
+      "Corki": 2.6,
+      "Sivir": 2.8,
+      "Braum": 3,
+      "MissFortune": 2.7,
+      "Lucian": 3,
+      "RekSai": 3,
+      "DrMundo": 2.7,
+      "Kalista": 3,
+      "Renata": 3,
+      "Malphite": 2.4,
+      "Karma": 2.5,
+      "Caitlyn": 4,
+      "Aatrox": 2.9,
+      "Nami": 3.2,
+      "Vayne": 2.7
+    },
+    "synergies": {
+      "Ashe": 2.1,
+      "MonkeyKing": 1.8,
+      "Sion": 2,
+      "Rumble": 2.2,
+      "Jax": 2.3,
+      "Karma": 2.1,
+      "Gnar": 1.9,
+      "Aphelios": 1.9,
+      "Thresh": 1.9,
+      "Ambessa": 2,
+      "JarvanIV": 1.8,
+      "Kaisa": 1.9,
+      "Alistar": 2,
+      "Rakan": 1.8,
+      "Lulu": 2.2,
+      "Nocturne": 2,
+      "Yorick": 2,
+      "Braum": 2,
+      "Malphite": 2,
+      "LeeSin": 2.3
+    },
+    "blindPickSafety": 5,
+    "description": "Durumsal pick"
+  },
+  "Yunara": {
+    "name": "Yunara",
+    "roles": [
+      "adc"
+    ],
+    "tier": {
+      "adc": "B"
+    },
+    "winRate": {
+      "adc": 51.7
+    },
+    "pickRate": {
+      "adc": 14
+    },
+    "banRate": 10.7,
+    "presence": 24.7,
+    "proStats": {
+      "picks": 203,
+      "bans": 154,
+      "wins": 105,
+      "losses": 98
+    },
+    "counters": {
+      "MonkeyKing": 2.5,
+      "Neeko": 2.5,
+      "Syndra": 2.5,
+      "Aatrox": 2.5,
+      "Rell": 3.4,
+      "Poppy": 2.5,
+      "Ambessa": 2.7,
+      "Azir": 2.4,
+      "Sivir": 2.7,
+      "Jhin": 2.7,
+      "Cassiopeia": 3.3,
+      "Galio": 3.5,
+      "Shen": 2.7,
+      "Jinx": 2.7,
+      "Jayce": 4,
+      "Caitlyn": 3,
+      "Leona": 4
+    },
+    "synergies": {
+      "Azir": 1.9,
+      "Pantheon": 1.9,
+      "Yorick": 2,
+      "Braum": 2.6,
+      "Bard": 1.8,
+      "Orianna": 1.9,
+      "Aatrox": 1.8,
+      "JarvanIV": 2,
+      "Zoe": 2,
+      "Ornn": 1.9,
+      "Ahri": 2,
+      "Leona": 2.3,
+      "Shen": 3,
+      "Nami": 3,
+      "Akali": 3,
+      "Mel": 1.8
+    },
     "blindPickSafety": 6,
-    "counters": {
-      "Malzahar": 2.0, "Lux": 2.0, "Viktor": 2.0
-    },
-    "synergies": {
-      "Jarvan IV": 2.5, "Amumu": 2.5, "Leona": 2.0, "Vi": 2.0
-    },
-    "description": "Sonsuz AP scaling, Event Horizon cage, tek atma potansiyeli"
-  },
-  "Vex": {
-    "name": "Vex",
-    "roles": ["mid"],
-    "tier": { "mid": "A" },
-    "winRate": { "mid": 51.5 },
-    "pickRate": { "mid": 4.0 },
-    "banRate": 3.0,
-    "blindPickSafety": 7,
-    "counters": {
-      "Yasuo": 3.5, "Yone": 3.0, "Akali": 2.5, "Katarina": 2.5,
-      "Irelia": 3.0, "LeBlanc": 2.0, "Zed": 2.5
-    },
-    "synergies": {
-      "Amumu": 2.0, "Jarvan IV": 2.0, "Leona": 2.0, "Miss Fortune": 2.0
-    },
-    "description": "Anti-dash mage, Fear ile dash counter, uzun menzil ult engage"
+    "description": "Durumsal pick"
   },
   "Vi": {
     "name": "Vi",
-    "roles": ["jungle"],
-    "tier": { "jungle": "A" },
-    "winRate": { "jungle": 51.5 },
-    "pickRate": { "jungle": 4.5 },
-    "banRate": 2.5,
-    "blindPickSafety": 7,
+    "roles": [
+      "jungle"
+    ],
+    "tier": {
+      "jungle": "B"
+    },
+    "winRate": {
+      "jungle": 46.6
+    },
+    "pickRate": {
+      "jungle": 10.2
+    },
+    "banRate": 13.9,
+    "presence": 24.2,
+    "proStats": {
+      "picks": 149,
+      "bans": 201,
+      "wins": 69,
+      "losses": 80
+    },
     "counters": {
-      "Evelynn": 2.5, "Karthus": 2.5, "Master Yi": 2.0, "Shaco": 2.0
+      "Nocturne": 2.9,
+      "Aphelios": 3,
+      "Thresh": 4,
+      "MonkeyKing": 2.4,
+      "Corki": 2.4,
+      "Aurora": 2.5,
+      "Renekton": 3.1,
+      "Zaahen": 2.8,
+      "Sylas": 2.4,
+      "Qiyana": 3,
+      "Rell": 2.7,
+      "Nautilus": 2.8,
+      "Taliyah": 2.4,
+      "Renata": 4,
+      "Leona": 2.9,
+      "Yorick": 2.7,
+      "Jayce": 2.7,
+      "Ornn": 4
     },
     "synergies": {
-      "Malzahar": 3.0, "Yasuo": 2.5, "Orianna": 2.0, "Lux": 2.0, "Caitlyn": 2.0
+      "Zaahen": 3,
+      "Sylas": 2,
+      "Rell": 1.8,
+      "MissFortune": 2,
+      "Braum": 1.8,
+      "Gwen": 1.8,
+      "Cassiopeia": 2,
+      "Viktor": 2,
+      "Sion": 2.5,
+      "Galio": 2.3,
+      "Akali": 1.8,
+      "Xayah": 2.6,
+      "Caitlyn": 2
     },
-    "description": "Point-click ult ile guaranteed engage, armor shred, güçlü gank"
+    "blindPickSafety": 5,
+    "description": "Durumsal pick"
   },
-  "Viego": {
-    "name": "Viego",
-    "roles": ["jungle"],
-    "tier": { "jungle": "S" },
-    "winRate": { "jungle": 52.0 },
-    "pickRate": { "jungle": 8.0 },
-    "banRate": 10.0,
-    "blindPickSafety": 7,
+  "Ambessa": {
+    "name": "Ambessa",
+    "roles": [
+      "top",
+      "jungle"
+    ],
+    "tier": {
+      "top": "B",
+      "jungle": "C"
+    },
+    "winRate": {
+      "top": 52.4,
+      "jungle": 29
+    },
+    "pickRate": {
+      "top": 8.7,
+      "jungle": 2.1
+    },
+    "banRate": 13,
+    "presence": 23.9,
+    "proStats": {
+      "picks": 157,
+      "bans": 188,
+      "wins": 75,
+      "losses": 82
+    },
     "counters": {
-      "Master Yi": 2.5, "Shaco": 2.0, "Evelynn": 2.0, "Amumu": 2.0, "Karthus": 2.0
+      "Jayce": 2.5,
+      "Taliyah": 2.4,
+      "Yone": 3,
+      "Rell": 4,
+      "Vi": 2.5,
+      "Azir": 2.5,
+      "Alistar": 2.5,
+      "Qiyana": 2.4,
+      "Nautilus": 2.4,
+      "Jhin": 2.4,
+      "Kaisa": 2.4,
+      "Ezreal": 2.9,
+      "Lucian": 4,
+      "Renata": 2.7,
+      "KSante": 2.5,
+      "Maokai": 3.2,
+      "Leona": 4,
+      "LeeSin": 2.4,
+      "Annie": 4,
+      "KogMaw": 2.7
     },
     "synergies": {
-      "Orianna": 2.0, "Lulu": 2.0, "Nautilus": 2.0, "Leona": 2.0, "Thresh": 2.0
+      "JarvanIV": 2,
+      "MissFortune": 1.9,
+      "Sivir": 1.9,
+      "XinZhao": 2.1,
+      "Ryze": 2,
+      "Pantheon": 1.8,
+      "Poppy": 2,
+      "Lulu": 2,
+      "Leona": 2.1,
+      "Ashe": 2,
+      "Karma": 1.9,
+      "Naafiri": 2,
+      "Cassiopeia": 3,
+      "Qiyana": 2,
+      "Ziggs": 2
     },
-    "description": "Possession mekaniği, teamfight'ta reset, hybrid build çeşitliliği"
+    "blindPickSafety": 5,
+    "description": "Durumsal pick"
+  },
+  "Nautilus": {
+    "name": "Nautilus",
+    "roles": [
+      "support"
+    ],
+    "tier": {
+      "support": "B"
+    },
+    "winRate": {
+      "support": 42.9
+    },
+    "pickRate": {
+      "support": 9.7
+    },
+    "banRate": 13.1,
+    "presence": 22.8,
+    "proStats": {
+      "picks": 140,
+      "bans": 189,
+      "wins": 60,
+      "losses": 80
+    },
+    "counters": {
+      "Sylas": 3.3,
+      "Jhin": 2.7,
+      "Ezreal": 2.5,
+      "Qiyana": 2.4,
+      "Karma": 2.9,
+      "Jayce": 3.2,
+      "Lulu": 3.4,
+      "Sejuani": 2.7,
+      "Renekton": 2.4,
+      "LeeSin": 2.7
+    },
+    "synergies": {
+      "Orianna": 1.8,
+      "Ornn": 2.5,
+      "Ashe": 2.3,
+      "Yone": 2,
+      "Maokai": 2.3,
+      "Akali": 1.9
+    },
+    "blindPickSafety": 4,
+    "description": "Durumsal pick"
+  },
+  "Azir": {
+    "name": "Azir",
+    "roles": [
+      "mid"
+    ],
+    "tier": {
+      "mid": "B"
+    },
+    "winRate": {
+      "mid": 51.5
+    },
+    "pickRate": {
+      "mid": 11.5
+    },
+    "banRate": 10.3,
+    "presence": 21.9,
+    "proStats": {
+      "picks": 167,
+      "bans": 149,
+      "wins": 86,
+      "losses": 81
+    },
+    "counters": {
+      "Ashe": 2.5,
+      "Trundle": 2.5,
+      "Sylas": 2.7,
+      "Nocturne": 2.8,
+      "Jhin": 2.5,
+      "Leona": 3,
+      "Renekton": 2.8,
+      "Aphelios": 3,
+      "Thresh": 2.9,
+      "Viktor": 4,
+      "Pantheon": 2.8,
+      "Corki": 2.6,
+      "Gwen": 2.8,
+      "Nautilus": 2.7,
+      "Jax": 3.3,
+      "Nami": 2.9,
+      "Malphite": 2.4,
+      "Ornn": 4,
+      "Jinx": 2.4,
+      "Ahri": 2.5,
+      "Aatrox": 2.4
+    },
+    "synergies": {
+      "Yunara": 1.9,
+      "Poppy": 2,
+      "Varus": 1.9,
+      "RekSai": 2.4,
+      "Bard": 1.8,
+      "Neeko": 1.9,
+      "JarvanIV": 2,
+      "Leona": 1.9,
+      "Renata": 2,
+      "Ornn": 2,
+      "Sivir": 1.8,
+      "Rumble": 2,
+      "Qiyana": 2,
+      "Gnar": 2,
+      "Jayce": 2,
+      "Skarner": 2.4,
+      "Xayah": 1.8
+    },
+    "blindPickSafety": 6,
+    "description": "Durumsal pick"
+  },
+  "Pantheon": {
+    "name": "Pantheon",
+    "roles": [
+      "jungle"
+    ],
+    "tier": {
+      "jungle": "B"
+    },
+    "winRate": {
+      "jungle": 49
+    },
+    "pickRate": {
+      "jungle": 10.6
+    },
+    "banRate": 11.2,
+    "presence": 21.9,
+    "proStats": {
+      "picks": 154,
+      "bans": 162,
+      "wins": 76,
+      "losses": 78
+    },
+    "counters": {
+      "Trundle": 2.4,
+      "Nocturne": 2.5,
+      "MissFortune": 3,
+      "Leona": 2.7,
+      "Thresh": 2.4,
+      "Vi": 2.9,
+      "Kaisa": 2.4,
+      "Taliyah": 2.4,
+      "Aurora": 2.5,
+      "Galio": 3.2,
+      "Corki": 2.8,
+      "Gwen": 2.7,
+      "Syndra": 3,
+      "Akali": 2.7,
+      "Ornn": 3,
+      "Poppy": 2.5,
+      "Rakan": 2.4,
+      "Viktor": 2.7,
+      "Yone": 2.7,
+      "Mel": 2.4,
+      "Jayce": 3.2,
+      "Lucian": 4,
+      "DrMundo": 2.4,
+      "Hwei": 2.7
+    },
+    "synergies": {
+      "Jayce": 3,
+      "Yunara": 1.9,
+      "Alistar": 1.9,
+      "Anivia": 1.9,
+      "Lulu": 1.8,
+      "Yone": 2.3,
+      "Ambessa": 1.8,
+      "MissFortune": 1.8,
+      "Viktor": 2.3,
+      "Braum": 2.3,
+      "Akali": 2.6,
+      "Sivir": 1.8,
+      "Zoe": 1.8
+    },
+    "blindPickSafety": 5,
+    "description": "Durumsal pick"
+  },
+  "XinZhao": {
+    "name": "Xin Zhao",
+    "roles": [
+      "jungle"
+    ],
+    "tier": {
+      "jungle": "B"
+    },
+    "winRate": {
+      "jungle": 54.3
+    },
+    "pickRate": {
+      "jungle": 12.7
+    },
+    "banRate": 5.5,
+    "presence": 18.3,
+    "proStats": {
+      "picks": 184,
+      "bans": 80,
+      "wins": 100,
+      "losses": 84
+    },
+    "counters": {
+      "Trundle": 3.7,
+      "Renekton": 2.4,
+      "Pyke": 4,
+      "Vi": 2.8,
+      "KSante": 2.7,
+      "Aurora": 2.5,
+      "Syndra": 3.2,
+      "Varus": 2.5,
+      "Rell": 2.4,
+      "Anivia": 2.7,
+      "Ezreal": 2.5,
+      "Leona": 2.9,
+      "Karma": 2.7,
+      "Cassiopeia": 2.7,
+      "RekSai": 4,
+      "Galio": 2.7,
+      "Lucian": 2.7,
+      "Nami": 2.6,
+      "Gwen": 2.5,
+      "Jhin": 2.7,
+      "Gragas": 2.7,
+      "Ornn": 2.7,
+      "Jayce": 4,
+      "Aatrox": 2.4,
+      "Zeri": 2.7
+    },
+    "synergies": {
+      "Ashe": 2.1,
+      "Seraphine": 2,
+      "Ziggs": 2,
+      "Gnar": 2.1,
+      "LeBlanc": 2.1,
+      "Sion": 2,
+      "Rumble": 2.1,
+      "Bard": 2.1,
+      "Poppy": 3,
+      "Neeko": 1.8,
+      "Ambessa": 2.1,
+      "Sivir": 2.1,
+      "Orianna": 1.9,
+      "Alistar": 2,
+      "Sylas": 2,
+      "Renata": 2,
+      "RekSai": 2,
+      "MissFortune": 2.1,
+      "Cassiopeia": 3,
+      "Lucian": 2,
+      "Yorick": 2.4,
+      "Annie": 2,
+      "Viktor": 2.3
+    },
+    "blindPickSafety": 7,
+    "description": "Durumsal pick"
+  },
+  "Bard": {
+    "name": "Bard",
+    "roles": [
+      "support"
+    ],
+    "tier": {
+      "support": "B"
+    },
+    "winRate": {
+      "support": 55.1
+    },
+    "pickRate": {
+      "support": 8.2
+    },
+    "banRate": 9.8,
+    "presence": 18,
+    "proStats": {
+      "picks": 118,
+      "bans": 142,
+      "wins": 65,
+      "losses": 53
+    },
+    "counters": {
+      "JarvanIV": 2.6,
+      "Jhin": 2.7,
+      "Yunara": 2.4,
+      "Aurora": 2.9,
+      "Nautilus": 2.9,
+      "Orianna": 2.6,
+      "Nocturne": 3,
+      "MissFortune": 3.3,
+      "Leona": 4,
+      "Ambessa": 2.9,
+      "Viktor": 2.5,
+      "Poppy": 3,
+      "Varus": 2.5,
+      "Vi": 2.5,
+      "Corki": 3,
+      "Kennen": 2.7,
+      "Rakan": 3,
+      "Renekton": 2.5,
+      "MonkeyKing": 2.4,
+      "Ornn": 4,
+      "Xayah": 2.7,
+      "Pyke": 2.7,
+      "Aatrox": 2.7,
+      "Caitlyn": 2.4
+    },
+    "synergies": {
+      "Jayce": 1.8,
+      "XinZhao": 2.1,
+      "Azir": 1.8,
+      "RekSai": 3,
+      "Sion": 1.9,
+      "Yunara": 1.8,
+      "Sivir": 2.2,
+      "Orianna": 2,
+      "JarvanIV": 1.9,
+      "Viktor": 3,
+      "MonkeyKing": 1.8,
+      "Aatrox": 2.3,
+      "Caitlyn": 2.2,
+      "Gnar": 2.1
+    },
+    "blindPickSafety": 5,
+    "description": "Yüksek WR · Durumsal pick"
+  },
+  "Jayce": {
+    "name": "Jayce",
+    "roles": [
+      "top",
+      "jungle",
+      "mid"
+    ],
+    "tier": {
+      "top": "C",
+      "jungle": "C",
+      "mid": "C"
+    },
+    "winRate": {
+      "top": 34.8,
+      "jungle": 47.6,
+      "mid": 0
+    },
+    "pickRate": {
+      "top": 1.6,
+      "jungle": 1.5,
+      "mid": 0.1
+    },
+    "banRate": 14,
+    "presence": 17.2,
+    "proStats": {
+      "picks": 46,
+      "bans": 202,
+      "wins": 18,
+      "losses": 28
+    },
+    "counters": {
+      "Cassiopeia": 3,
+      "Jhin": 2.4,
+      "Orianna": 3,
+      "Malphite": 4,
+      "Nocturne": 2.7,
+      "Corki": 2.7,
+      "Rakan": 3,
+      "Sivir": 2.7,
+      "Bard": 4
+    },
+    "synergies": {
+      "Bard": 1.8,
+      "Pantheon": 3,
+      "Alistar": 2.3,
+      "Anivia": 2,
+      "Azir": 2
+    },
+    "blindPickSafety": 4,
+    "description": "Durumsal pick"
+  },
+  "Karma": {
+    "name": "Karma",
+    "roles": [
+      "support"
+    ],
+    "tier": {
+      "support": "B"
+    },
+    "winRate": {
+      "support": 46.3
+    },
+    "pickRate": {
+      "support": 6.6
+    },
+    "banRate": 10.2,
+    "presence": 16.9,
+    "proStats": {
+      "picks": 97,
+      "bans": 147,
+      "wins": 44,
+      "losses": 53
+    },
+    "counters": {
+      "Anivia": 2.7,
+      "Sivir": 2.7,
+      "Gwen": 3.6,
+      "Neeko": 2.8,
+      "Vi": 3.5,
+      "Aurora": 2.6,
+      "Kaisa": 3.2,
+      "Ornn": 2.7,
+      "Yone": 3,
+      "Varus": 2.5
+    },
+    "synergies": {
+      "Ryze": 2.1,
+      "Gnar": 2,
+      "Sion": 1.9,
+      "Ambessa": 1.9,
+      "Naafiri": 1.8,
+      "Galio": 2.5,
+      "Taliyah": 1.8,
+      "Sivir": 1.8,
+      "Annie": 1.8,
+      "Corki": 2.3,
+      "Jinx": 2,
+      "Volibear": 3
+    },
+    "blindPickSafety": 5,
+    "description": "Durumsal pick"
+  },
+  "Renekton": {
+    "name": "Renekton",
+    "roles": [
+      "top"
+    ],
+    "tier": {
+      "top": "B"
+    },
+    "winRate": {
+      "top": 47.4
+    },
+    "pickRate": {
+      "top": 9.5
+    },
+    "banRate": 6.8,
+    "presence": 16.3,
+    "proStats": {
+      "picks": 137,
+      "bans": 98,
+      "wins": 65,
+      "losses": 72
+    },
+    "counters": {
+      "Aatrox": 3.2,
+      "Zoe": 4,
+      "Jhin": 3.4,
+      "Rell": 3,
+      "Galio": 3,
+      "Akali": 2.7,
+      "Jayce": 2.4,
+      "Lulu": 2.7,
+      "Sylas": 4,
+      "Braum": 2.7,
+      "Trundle": 4
+    },
+    "synergies": {
+      "Anivia": 2,
+      "TwistedFate": 2.3,
+      "Poppy": 3,
+      "JarvanIV": 1.9,
+      "Akali": 2.1,
+      "Rakan": 2.4,
+      "Thresh": 1.8,
+      "Qiyana": 1.9,
+      "Ashe": 2.3,
+      "Ahri": 2.6,
+      "Maokai": 2,
+      "Aatrox": 3,
+      "Xayah": 2,
+      "Annie": 3,
+      "Seraphine": 2.1
+    },
+    "blindPickSafety": 6,
+    "description": "Durumsal pick"
+  },
+  "Sion": {
+    "name": "Sion",
+    "roles": [
+      "top",
+      "mid"
+    ],
+    "tier": {
+      "top": "B",
+      "mid": "C"
+    },
+    "winRate": {
+      "top": 51.8,
+      "mid": 100
+    },
+    "pickRate": {
+      "top": 9.6,
+      "mid": 0.3
+    },
+    "banRate": 6.1,
+    "presence": 16.1,
+    "proStats": {
+      "picks": 145,
+      "bans": 88,
+      "wins": 78,
+      "losses": 67
+    },
+    "counters": {
+      "Nautilus": 2.7,
+      "Taliyah": 3,
+      "Alistar": 2.4,
+      "Renekton": 2.5,
+      "Gwen": 2.5,
+      "MissFortune": 2.7,
+      "Trundle": 3.1,
+      "MonkeyKing": 3.3,
+      "Rell": 3,
+      "Pantheon": 2.5,
+      "Jhin": 3.4,
+      "Aurora": 2.8,
+      "Galio": 2.7,
+      "Akali": 2.5,
+      "Aphelios": 3.4,
+      "Cassiopeia": 4,
+      "Ezreal": 3,
+      "Xayah": 2.7,
+      "Jayce": 2.7,
+      "KSante": 2.7,
+      "Caitlyn": 2.9,
+      "Mel": 2.4,
+      "Sett": 2.7
+    },
+    "synergies": {
+      "XinZhao": 2,
+      "Ryze": 2,
+      "MonkeyKing": 1.8,
+      "Akali": 2.5,
+      "Lulu": 1.8,
+      "Qiyana": 1.9,
+      "Alistar": 2.3,
+      "Sivir": 2.1,
+      "Poppy": 2.5,
+      "Bard": 1.9,
+      "Karma": 1.9,
+      "Naafiri": 2,
+      "Mel": 2.3,
+      "Vi": 2.5,
+      "Ahri": 2.3,
+      "Jinx": 2,
+      "Caitlyn": 2,
+      "Zaahen": 1.8,
+      "Jax": 2,
+      "Renata": 2
+    },
+    "blindPickSafety": 7,
+    "description": "Durumsal pick"
+  },
+  "KSante": {
+    "name": "K'Sante",
+    "roles": [
+      "top"
+    ],
+    "tier": {
+      "top": "B"
+    },
+    "winRate": {
+      "top": 43.3
+    },
+    "pickRate": {
+      "top": 11.8
+    },
+    "banRate": 4.2,
+    "presence": 16,
+    "proStats": {
+      "picks": 171,
+      "bans": 61,
+      "wins": 74,
+      "losses": 97
+    },
+    "counters": {
+      "Jax": 2.7,
+      "Taliyah": 2.4,
+      "Nautilus": 2.7,
+      "Vi": 2.5,
+      "Trundle": 3,
+      "Rell": 2.5,
+      "Jayce": 2.4,
+      "Viktor": 4,
+      "Gwen": 2.4,
+      "Anivia": 2.7,
+      "Mel": 3
+    },
+    "synergies": {
+      "Neeko": 2,
+      "Alistar": 2.3,
+      "Jinx": 2,
+      "Zoe": 2.4,
+      "Braum": 1.8,
+      "LeBlanc": 2,
+      "Anivia": 1.9,
+      "Malphite": 1.8,
+      "Elise": 2,
+      "Thresh": 2,
+      "Zaahen": 3,
+      "Mel": 1.8
+    },
+    "blindPickSafety": 4,
+    "description": "Durumsal pick"
+  },
+  "Corki": {
+    "name": "Corki",
+    "roles": [
+      "adc",
+      "mid"
+    ],
+    "tier": {
+      "adc": "B",
+      "mid": "C"
+    },
+    "winRate": {
+      "adc": 48.2,
+      "mid": 33.3
+    },
+    "pickRate": {
+      "adc": 11.8,
+      "mid": 0.2
+    },
+    "banRate": 3.9,
+    "presence": 15.9,
+    "proStats": {
+      "picks": 173,
+      "bans": 57,
+      "wins": 83,
+      "losses": 90
+    },
+    "counters": {
+      "Annie": 3.2,
+      "Trundle": 3.2,
+      "Aurora": 2.8,
+      "Syndra": 2.7,
+      "Karma": 2.9,
+      "Zoe": 2.4,
+      "Ornn": 3,
+      "Galio": 2.9,
+      "Jhin": 2.5,
+      "Neeko": 2.4,
+      "Aphelios": 2.5,
+      "Thresh": 3,
+      "LeBlanc": 2.7,
+      "Mel": 2.4,
+      "Yone": 2.7,
+      "Viktor": 3.2,
+      "Rakan": 2.5,
+      "Lucian": 3.3,
+      "Nami": 2.7,
+      "LeeSin": 2.7,
+      "Sett": 2.7,
+      "Viego": 4
+    },
+    "synergies": {
+      "Poppy": 2.3,
+      "Neeko": 2.3,
+      "TwistedFate": 2.4,
+      "Viktor": 3,
+      "LeBlanc": 1.8,
+      "Gwen": 2.4,
+      "Jax": 2,
+      "Akali": 2.4,
+      "Malphite": 1.8,
+      "Anivia": 1.8,
+      "Galio": 1.9,
+      "Mel": 2.3,
+      "Zaahen": 2,
+      "Naafiri": 2,
+      "Aatrox": 2.3,
+      "Karma": 2.3
+    },
+    "blindPickSafety": 8,
+    "description": "Güvenli blind pick · Durumsal pick"
+  },
+  "Poppy": {
+    "name": "Poppy",
+    "roles": [
+      "support",
+      "jungle",
+      "top"
+    ],
+    "tier": {
+      "support": "C",
+      "jungle": "C",
+      "top": "C"
+    },
+    "winRate": {
+      "support": 68.8,
+      "jungle": 76,
+      "top": 36.4
+    },
+    "pickRate": {
+      "support": 1.1,
+      "jungle": 1.7,
+      "top": 0.8
+    },
+    "banRate": 11.1,
+    "presence": 14.7,
+    "proStats": {
+      "picks": 52,
+      "bans": 161,
+      "wins": 34,
+      "losses": 18
+    },
+    "counters": {
+      "Sion": 2.7,
+      "MonkeyKing": 4,
+      "Taliyah": 3.5,
+      "Rell": 4,
+      "Zaahen": 2.4,
+      "Vi": 2.8,
+      "Azir": 2.9,
+      "XinZhao": 3,
+      "Gwen": 2.7,
+      "Ashe": 2.7,
+      "Jhin": 3,
+      "Syndra": 3,
+      "KSante": 3.2,
+      "Renekton": 2.4,
+      "Rakan": 3.4,
+      "Corki": 2.4,
+      "Renata": 4,
+      "Nami": 2.4,
+      "Nautilus": 3.2,
+      "Kaisa": 2.7,
+      "Ambessa": 2.7,
+      "Galio": 2.7,
+      "Gnar": 2.7,
+      "Ahri": 3.3,
+      "Xayah": 2.7
+    },
+    "synergies": {
+      "Azir": 2,
+      "MissFortune": 2.4,
+      "XinZhao": 3,
+      "Sion": 2.5,
+      "Corki": 2.3,
+      "Ahri": 2.3,
+      "Varus": 2.3,
+      "Ambessa": 2,
+      "Orianna": 2.1,
+      "Rumble": 2.4,
+      "Alistar": 2.4,
+      "Renekton": 3,
+      "Caitlyn": 2.3,
+      "Sivir": 2,
+      "Gnar": 2,
+      "Taliyah": 2.3,
+      "Neeko": 2.3,
+      "Nami": 2.4,
+      "Zaahen": 2.4,
+      "Ezreal": 3
+    },
+    "blindPickSafety": 5,
+    "description": "Yüksek WR · Niş pick"
+  },
+  "Alistar": {
+    "name": "Alistar",
+    "roles": [
+      "support"
+    ],
+    "tier": {
+      "support": "C"
+    },
+    "winRate": {
+      "support": 59.1
+    },
+    "pickRate": {
+      "support": 9.5
+    },
+    "banRate": 5.2,
+    "presence": 14.7,
+    "proStats": {
+      "picks": 137,
+      "bans": 75,
+      "wins": 81,
+      "losses": 56
+    },
+    "counters": {
+      "Corki": 2.9,
+      "Vi": 2.8,
+      "Varus": 2.4,
+      "Leona": 3.2,
+      "Sylas": 2.7,
+      "Ahri": 2.5,
+      "Renekton": 2.9,
+      "Trundle": 4,
+      "Azir": 2.7,
+      "Jhin": 3.1,
+      "Gwen": 2.9,
+      "Rumble": 2.5,
+      "Pantheon": 2.8,
+      "Yone": 3.4,
+      "Rell": 3.4,
+      "Qiyana": 4,
+      "Aurora": 3,
+      "Syndra": 4,
+      "Kaisa": 2.4,
+      "XinZhao": 2.7,
+      "Braum": 2.5,
+      "Galio": 3.3,
+      "Rakan": 2.6,
+      "Aphelios": 3.3,
+      "Gnar": 2.8,
+      "Kalista": 2.7,
+      "Anivia": 2.7,
+      "Akali": 3,
+      "Maokai": 4,
+      "Seraphine": 2.4,
+      "Nocturne": 2.9
+    },
+    "synergies": {
+      "Rumble": 2.3,
+      "JarvanIV": 1.9,
+      "MissFortune": 2.4,
+      "Pantheon": 1.9,
+      "KSante": 2.3,
+      "Sion": 2.3,
+      "Ziggs": 2.3,
+      "Sivir": 1.9,
+      "Yorick": 3,
+      "Ryze": 2,
+      "Kaisa": 1.9,
+      "XinZhao": 2,
+      "Jayce": 2.3,
+      "Poppy": 2.4,
+      "Yone": 2.4,
+      "MonkeyKing": 2.1,
+      "Gwen": 1.9,
+      "Galio": 2.4,
+      "Syndra": 1.8,
+      "Ahri": 2,
+      "DrMundo": 1.8,
+      "Cassiopeia": 2.4,
+      "Aatrox": 2,
+      "Xayah": 3
+    },
+    "blindPickSafety": 7,
+    "description": "Yüksek WR · Niş pick"
+  },
+  "Aurora": {
+    "name": "Aurora",
+    "roles": [
+      "mid",
+      "top"
+    ],
+    "tier": {
+      "mid": "C",
+      "top": "C"
+    },
+    "winRate": {
+      "mid": 46.4,
+      "top": 44.4
+    },
+    "pickRate": {
+      "mid": 6.7,
+      "top": 1.9
+    },
+    "banRate": 5.9,
+    "presence": 14.5,
+    "proStats": {
+      "picks": 124,
+      "bans": 85,
+      "wins": 57,
+      "losses": 67
+    },
+    "counters": {
+      "Leona": 3,
+      "Sylas": 3,
+      "Nocturne": 2.4,
+      "Nautilus": 2.7,
+      "Ornn": 3,
+      "Seraphine": 2.5,
+      "Mel": 2.7,
+      "Thresh": 2.4,
+      "Rell": 2.4,
+      "KSante": 2.5,
+      "Gwen": 3,
+      "Aatrox": 2.4,
+      "Sivir": 3,
+      "Poppy": 2.7,
+      "Gragas": 4,
+      "Hwei": 4,
+      "Jhin": 4
+    },
+    "synergies": {
+      "Rumble": 2,
+      "JarvanIV": 2.1,
+      "MissFortune": 2.1,
+      "Aphelios": 2,
+      "Malphite": 3,
+      "Ashe": 2,
+      "Gnar": 2.1,
+      "Thresh": 3,
+      "Cassiopeia": 2,
+      "Yone": 2,
+      "Xayah": 2,
+      "Caitlyn": 2,
+      "Aatrox": 2.1,
+      "RekSai": 2,
+      "Yorick": 2
+    },
+    "blindPickSafety": 6,
+    "description": "Niş pick"
+  },
+  "Akali": {
+    "name": "Akali",
+    "roles": [
+      "mid",
+      "top"
+    ],
+    "tier": {
+      "mid": "C",
+      "top": "C"
+    },
+    "winRate": {
+      "mid": 58,
+      "top": 66.7
+    },
+    "pickRate": {
+      "mid": 3.5,
+      "top": 0.2
+    },
+    "banRate": 10.8,
+    "presence": 14.5,
+    "proStats": {
+      "picks": 53,
+      "bans": 156,
+      "wins": 31,
+      "losses": 22
+    },
+    "counters": {
+      "Orianna": 2.6,
+      "Zaahen": 4,
+      "Neeko": 2.9,
+      "Nocturne": 2.7,
+      "Syndra": 3.2,
+      "Jhin": 2.7,
+      "Varus": 3.4,
+      "Ryze": 3,
+      "Kaisa": 3,
+      "MonkeyKing": 2.4,
+      "Taliyah": 2.7,
+      "Vi": 4,
+      "Corki": 3,
+      "KSante": 3.6,
+      "Viktor": 2.7,
+      "Jayce": 2.7,
+      "Bard": 2.7,
+      "Rell": 3,
+      "Aurora": 2.7,
+      "Gnar": 4,
+      "LeeSin": 2.7
+    },
+    "synergies": {
+      "Varus": 1.9,
+      "MonkeyKing": 2.6,
+      "Sion": 2.5,
+      "Lulu": 2.6,
+      "Rumble": 2.3,
+      "Rell": 2.3,
+      "Pantheon": 2.6,
+      "Sivir": 2,
+      "Aatrox": 2.3,
+      "JarvanIV": 2.1,
+      "Renekton": 2.1,
+      "Rakan": 1.8,
+      "Gwen": 2.3,
+      "Corki": 2.4,
+      "Vi": 1.8,
+      "Nautilus": 1.9,
+      "Yunara": 3
+    },
+    "blindPickSafety": 5,
+    "description": "Yüksek WR · Niş pick"
+  },
+  "Ahri": {
+    "name": "Ahri",
+    "roles": [
+      "mid"
+    ],
+    "tier": {
+      "mid": "C"
+    },
+    "winRate": {
+      "mid": 52.4
+    },
+    "pickRate": {
+      "mid": 8.6
+    },
+    "banRate": 5.5,
+    "presence": 14.1,
+    "proStats": {
+      "picks": 124,
+      "bans": 80,
+      "wins": 65,
+      "losses": 59
+    },
+    "counters": {
+      "Pantheon": 2.7,
+      "Taliyah": 2.7,
+      "Rakan": 2.4,
+      "Rell": 3.3,
+      "Sylas": 3.3,
+      "KSante": 2.5,
+      "Corki": 2.8,
+      "Nami": 2.5,
+      "MonkeyKing": 2.6,
+      "Leona": 2.5,
+      "Jhin": 4,
+      "Xayah": 3,
+      "Akali": 2.7,
+      "Zeri": 2.7,
+      "Nautilus": 2.6,
+      "Jayce": 4,
+      "Lulu": 2.5,
+      "Annie": 2.4,
+      "Veigar": 4,
+      "Maokai": 4
+    },
+    "synergies": {
+      "Varus": 2.2,
+      "Poppy": 2.3,
+      "Sivir": 1.8,
+      "Renata": 2,
+      "MissFortune": 2.5,
+      "Yunara": 2,
+      "Rell": 1.8,
+      "Leona": 2.3,
+      "Alistar": 2,
+      "Renekton": 2.6,
+      "Sion": 2.3,
+      "Xayah": 2.6,
+      "Qiyana": 2,
+      "Lulu": 2.5,
+      "Zaahen": 2.6,
+      "Nocturne": 1.8,
+      "Naafiri": 2,
+      "LeeSin": 2,
+      "DrMundo": 1.8
+    },
+    "blindPickSafety": 7,
+    "description": "Niş pick"
+  },
+  "Gnar": {
+    "name": "Gnar",
+    "roles": [
+      "top"
+    ],
+    "tier": {
+      "top": "C"
+    },
+    "winRate": {
+      "top": 57.8
+    },
+    "pickRate": {
+      "top": 8
+    },
+    "banRate": 5.9,
+    "presence": 14,
+    "proStats": {
+      "picks": 117,
+      "bans": 86,
+      "wins": 67,
+      "losses": 50
+    },
+    "counters": {
+      "Trundle": 2.7,
+      "Mel": 3.3,
+      "Pantheon": 2.4,
+      "Neeko": 2.4,
+      "DrMundo": 2.8,
+      "Ambessa": 2.7,
+      "Syndra": 4,
+      "Jax": 2.7,
+      "Nami": 2.6,
+      "Corki": 2.6,
+      "Thresh": 2.4,
+      "Aurora": 2.7,
+      "Nautilus": 2.5,
+      "Orianna": 3,
+      "Rell": 3,
+      "Varus": 2.9,
+      "Nocturne": 4,
+      "Jhin": 3,
+      "Ahri": 2.4,
+      "Lucian": 2.4,
+      "Braum": 3,
+      "Viktor": 3.3,
+      "Karma": 3.5,
+      "Annie": 2.7,
+      "Gwen": 4,
+      "Aatrox": 3.3,
+      "Kennen": 2.7,
+      "MissFortune": 2.4,
+      "Cassiopeia": 4,
+      "Ezreal": 2.9,
+      "LeeSin": 2.4,
+      "Jinx": 2.7
+    },
+    "synergies": {
+      "Ashe": 2.2,
+      "XinZhao": 2.1,
+      "Seraphine": 2.3,
+      "Ryze": 1.9,
+      "Ezreal": 2.1,
+      "Karma": 2,
+      "Trundle": 2,
+      "Malphite": 2.3,
+      "Aurora": 2.1,
+      "Lucian": 2,
+      "Aphelios": 2.3,
+      "Thresh": 2.1,
+      "Azir": 2,
+      "MonkeyKing": 1.8,
+      "Sylas": 1.8,
+      "Syndra": 2.1,
+      "Kaisa": 1.8,
+      "Leona": 2.4,
+      "Poppy": 2,
+      "Yone": 2,
+      "Lulu": 1.9,
+      "LeBlanc": 2.4,
+      "Shen": 3,
+      "Neeko": 1.9,
+      "Mel": 2.4,
+      "Jhin": 2.3,
+      "Viktor": 3,
+      "Bard": 2.1
+    },
+    "blindPickSafety": 6,
+    "description": "Yüksek WR · Niş pick"
+  },
+  "Ezreal": {
+    "name": "Ezreal",
+    "roles": [
+      "adc"
+    ],
+    "tier": {
+      "adc": "C"
+    },
+    "winRate": {
+      "adc": 47.8
+    },
+    "pickRate": {
+      "adc": 9.4
+    },
+    "banRate": 4.6,
+    "presence": 14,
+    "proStats": {
+      "picks": 136,
+      "bans": 67,
+      "wins": 65,
+      "losses": 71
+    },
+    "counters": {
+      "Neeko": 2.4,
+      "Jhin": 2.8,
+      "Yorick": 3,
+      "Pantheon": 2.4,
+      "Leona": 2.7,
+      "Aurora": 2.8,
+      "Jax": 3.2,
+      "Gwen": 2.9,
+      "Yone": 4,
+      "Zoe": 2.4,
+      "Kennen": 4,
+      "LeBlanc": 3,
+      "Pyke": 2.7,
+      "Nocturne": 2.4
+    },
+    "synergies": {
+      "Anivia": 1.9,
+      "Gnar": 2.1,
+      "Galio": 2.3,
+      "Rumble": 1.9,
+      "Naafiri": 2,
+      "Cassiopeia": 2.3,
+      "DrMundo": 1.8,
+      "Kennen": 3,
+      "Poppy": 3,
+      "Jax": 2,
+      "Volibear": 2
+    },
+    "blindPickSafety": 7,
+    "description": "Niş pick"
+  },
+  "Taliyah": {
+    "name": "Taliyah",
+    "roles": [
+      "mid"
+    ],
+    "tier": {
+      "mid": "C"
+    },
+    "winRate": {
+      "mid": 46.2
+    },
+    "pickRate": {
+      "mid": 8.2
+    },
+    "banRate": 5.5,
+    "presence": 13.8,
+    "proStats": {
+      "picks": 119,
+      "bans": 80,
+      "wins": 55,
+      "losses": 64
+    },
+    "counters": {
+      "Lulu": 2.9,
+      "MonkeyKing": 2.5,
+      "Qiyana": 2.4,
+      "Gwen": 3.2,
+      "Rumble": 3.4,
+      "Ezreal": 2.5,
+      "Renekton": 2.6,
+      "Syndra": 3,
+      "Rakan": 3.2,
+      "Kennen": 2.7,
+      "Trundle": 3.2,
+      "Jayce": 4,
+      "Blitzcrank": 4,
+      "Galio": 2.7,
+      "Caitlyn": 2.4,
+      "Xayah": 2.7,
+      "Hwei": 2.7
+    },
+    "synergies": {
+      "Yorick": 1.8,
+      "Aphelios": 1.8,
+      "JarvanIV": 1.9,
+      "Lulu": 2.1,
+      "Gwen": 2,
+      "Ornn": 2.3,
+      "MissFortune": 1.8,
+      "RekSai": 2,
+      "DrMundo": 1.8,
+      "Ashe": 2.3,
+      "Poppy": 2.3,
+      "Seraphine": 2.4,
+      "Karma": 1.8,
+      "Kennen": 2
+    },
+    "blindPickSafety": 6,
+    "description": "Niş pick"
+  },
+  "MonkeyKing": {
+    "name": "Wukong",
+    "roles": [
+      "jungle"
+    ],
+    "tier": {
+      "jungle": "C"
+    },
+    "winRate": {
+      "jungle": 49.2
+    },
+    "pickRate": {
+      "jungle": 8.9
+    },
+    "banRate": 4.8,
+    "presence": 13.7,
+    "proStats": {
+      "picks": 128,
+      "bans": 70,
+      "wins": 63,
+      "losses": 65
+    },
+    "counters": {
+      "Rumble": 2.7,
+      "Pantheon": 2.7,
+      "DrMundo": 2.8,
+      "JarvanIV": 2.4,
+      "Cassiopeia": 3,
+      "Zoe": 2.7,
+      "Jhin": 3.3,
+      "Jax": 2.7,
+      "Aphelios": 2.4,
+      "Seraphine": 2.9,
+      "Yone": 3.4,
+      "Sylas": 4,
+      "TwistedFate": 2.7,
+      "Maokai": 4
+    },
+    "synergies": {
+      "Ryze": 1.8,
+      "Sion": 1.8,
+      "Akali": 2.6,
+      "Ashe": 1.9,
+      "Seraphine": 2.1,
+      "Rakan": 1.9,
+      "Kaisa": 2.3,
+      "Alistar": 2.1,
+      "Neeko": 1.9,
+      "TwistedFate": 2,
+      "LeBlanc": 1.8,
+      "MissFortune": 2,
+      "Ornn": 2,
+      "Sivir": 2,
+      "Aatrox": 1.8,
+      "Gnar": 1.8,
+      "Yorick": 3,
+      "Annie": 2,
+      "Bard": 1.8,
+      "Xayah": 3
+    },
+    "blindPickSafety": 7,
+    "description": "Niş pick"
+  },
+  "Ashe": {
+    "name": "Ashe",
+    "roles": [
+      "adc"
+    ],
+    "tier": {
+      "adc": "C"
+    },
+    "winRate": {
+      "adc": 61.7
+    },
+    "pickRate": {
+      "adc": 6.5
+    },
+    "banRate": 6.8,
+    "presence": 13.3,
+    "proStats": {
+      "picks": 95,
+      "bans": 98,
+      "wins": 59,
+      "losses": 36
+    },
+    "counters": {
+      "Mel": 3.2,
+      "Anivia": 4,
+      "Ambessa": 3.3,
+      "Ryze": 2.7,
+      "Yunara": 2.8,
+      "Neeko": 2.4,
+      "Sion": 2.8,
+      "DrMundo": 4,
+      "Corki": 2.5,
+      "Vi": 2.9,
+      "Ahri": 3.6,
+      "MissFortune": 2.5,
+      "Bard": 2.5,
+      "Lucian": 4,
+      "Nami": 3.1,
+      "Taliyah": 3.2,
+      "Naafiri": 2.4,
+      "Qiyana": 2.7,
+      "Sylas": 3.4,
+      "Viktor": 2.4,
+      "Seraphine": 2.9,
+      "Jayce": 4,
+      "Zaahen": 4,
+      "Jax": 2.7,
+      "KSante": 3,
+      "Pantheon": 2.6,
+      "Caitlyn": 3,
+      "Ornn": 2.7,
+      "Milio": 4,
+      "Akali": 3,
+      "Hwei": 2.7
+    },
+    "synergies": {
+      "XinZhao": 2.1,
+      "Seraphine": 1.8,
+      "Gnar": 2.2,
+      "Ryze": 2.1,
+      "Nocturne": 2,
+      "Gwen": 1.8,
+      "Aurora": 2,
+      "Rumble": 2.5,
+      "MonkeyKing": 1.9,
+      "Zaahen": 2.4,
+      "Sylas": 2,
+      "Ambessa": 2,
+      "Renekton": 2.3,
+      "Nautilus": 2.3,
+      "Taliyah": 2.3,
+      "Jax": 2,
+      "Ornn": 2,
+      "Cassiopeia": 2,
+      "Viktor": 2.4,
+      "LeBlanc": 2.4,
+      "Yorick": 2.3,
+      "Mel": 2.4,
+      "Anivia": 2,
+      "Orianna": 1.8,
+      "Volibear": 3,
+      "Skarner": 2,
+      "Aatrox": 2.4
+    },
+    "blindPickSafety": 5,
+    "description": "Yüksek WR · Niş pick"
+  },
+  "Lulu": {
+    "name": "Lulu",
+    "roles": [
+      "support"
+    ],
+    "tier": {
+      "support": "C"
+    },
+    "winRate": {
+      "support": 50.4
+    },
+    "pickRate": {
+      "support": 8.1
+    },
+    "banRate": 5,
+    "presence": 13.1,
+    "proStats": {
+      "picks": 117,
+      "bans": 72,
+      "wins": 59,
+      "losses": 58
+    },
+    "counters": {
+      "Syndra": 2.7,
+      "Ezreal": 2.4,
+      "Trundle": 3,
+      "Aatrox": 2.7,
+      "Viktor": 2.7,
+      "Pantheon": 2.5,
+      "Cassiopeia": 4,
+      "Ambessa": 2.5,
+      "Galio": 3.3,
+      "Yorick": 3,
+      "Malphite": 2.5,
+      "Alistar": 2.7,
+      "Naafiri": 2.7,
+      "Aurora": 2.4,
+      "Mel": 2.4,
+      "Jhin": 2.4,
+      "Gwen": 2.4,
+      "Sylas": 4,
+      "Jayce": 3,
+      "Caitlyn": 2.4
+    },
+    "synergies": {
+      "Pantheon": 1.8,
+      "Yorick": 2.3,
+      "Varus": 2,
+      "Akali": 2.6,
+      "Sion": 1.8,
+      "Aphelios": 1.9,
+      "Taliyah": 2.1,
+      "Ryze": 2.2,
+      "Ambessa": 2,
+      "DrMundo": 2.1,
+      "Gwen": 1.8,
+      "Jax": 2,
+      "Ahri": 2.5,
+      "Gnar": 1.9
+    },
+    "blindPickSafety": 7,
+    "description": "Niş pick"
+  },
+  "Nocturne": {
+    "name": "Nocturne",
+    "roles": [
+      "jungle"
+    ],
+    "tier": {
+      "jungle": "C"
+    },
+    "winRate": {
+      "jungle": 47.9
+    },
+    "pickRate": {
+      "jungle": 5
+    },
+    "banRate": 7.9,
+    "presence": 12.9,
+    "proStats": {
+      "picks": 73,
+      "bans": 114,
+      "wins": 35,
+      "losses": 38
+    },
+    "counters": {
+      "KSante": 2.5,
+      "Taliyah": 2.7,
+      "Neeko": 3,
+      "MissFortune": 2.7,
+      "Lulu": 3.3,
+      "Syndra": 3.2,
+      "Jhin": 3.3,
+      "Zaahen": 2.4,
+      "DrMundo": 4,
+      "Kaisa": 2.7,
+      "Aatrox": 2.4,
+      "Galio": 3.3,
+      "Ahri": 3.2,
+      "Ambessa": 3.4,
+      "Kennen": 4,
+      "Sylas": 2.7,
+      "Cassiopeia": 2.7,
+      "Viktor": 2.7
+    },
+    "synergies": {
+      "Ashe": 2,
+      "Seraphine": 2,
+      "Syndra": 3,
+      "Gwen": 2.4,
+      "MissFortune": 1.8,
+      "Ryze": 2,
+      "Aphelios": 2,
+      "Ahri": 1.8
+    },
+    "blindPickSafety": 5,
+    "description": "Niş pick"
+  },
+  "DrMundo": {
+    "name": "Dr. Mundo",
+    "roles": [
+      "jungle",
+      "top"
+    ],
+    "tier": {
+      "jungle": "C",
+      "top": "C"
+    },
+    "winRate": {
+      "jungle": 47.6,
+      "top": 100
+    },
+    "pickRate": {
+      "jungle": 5.7,
+      "top": 0.1
+    },
+    "banRate": 7,
+    "presence": 12.8,
+    "proStats": {
+      "picks": 84,
+      "bans": 101,
+      "wins": 41,
+      "losses": 43
+    },
+    "counters": {
+      "Aurora": 2.7,
+      "Ambessa": 2.7,
+      "MissFortune": 2.7,
+      "Taliyah": 3.1,
+      "Bard": 3,
+      "Vi": 2.7,
+      "Braum": 2.7,
+      "Jinx": 2.7,
+      "KSante": 2.8,
+      "Kalista": 2.7,
+      "Renata": 2.7,
+      "XinZhao": 2.7,
+      "Jax": 3,
+      "Nautilus": 2.5,
+      "Ahri": 2.4,
+      "Jayce": 4,
+      "Karma": 3.5,
+      "Sivir": 3,
+      "Maokai": 2.7,
+      "Viktor": 2.7
+    },
+    "synergies": {
+      "Lulu": 2.1,
+      "Yorick": 2.4,
+      "Varus": 1.8,
+      "Jax": 2.3,
+      "Taliyah": 1.8,
+      "Rumble": 3,
+      "Ezreal": 1.8,
+      "Alistar": 1.8,
+      "Jinx": 3,
+      "Nami": 2.3,
+      "Anivia": 2.1,
+      "Caitlyn": 3,
+      "Ahri": 1.8,
+      "Aatrox": 2
+    },
+    "blindPickSafety": 5,
+    "description": "Niş pick"
+  },
+  "Malphite": {
+    "name": "Malphite",
+    "roles": [
+      "jungle",
+      "top"
+    ],
+    "tier": {
+      "jungle": "C",
+      "top": "C"
+    },
+    "winRate": {
+      "jungle": 52.2,
+      "top": 0
+    },
+    "pickRate": {
+      "jungle": 1.6,
+      "top": 0.2
+    },
+    "banRate": 10.4,
+    "presence": 12.2,
+    "proStats": {
+      "picks": 26,
+      "bans": 151,
+      "wins": 12,
+      "losses": 14
+    },
+    "counters": {
+      "Yunara": 2.5,
+      "Ambessa": 2.7,
+      "Renekton": 2.5,
+      "Alistar": 2.7,
+      "MonkeyKing": 4
+    },
+    "synergies": {
+      "Gnar": 2.3,
+      "Aurora": 3,
+      "Thresh": 3,
+      "Ryze": 2,
+      "Rakan": 1.8,
+      "Corki": 1.8,
+      "KSante": 1.8,
+      "Nami": 2.3
+    },
+    "blindPickSafety": 5,
+    "description": "Niş pick"
+  },
+  "Rakan": {
+    "name": "Rakan",
+    "roles": [
+      "support"
+    ],
+    "tier": {
+      "support": "C"
+    },
+    "winRate": {
+      "support": 50.9
+    },
+    "pickRate": {
+      "support": 7.6
+    },
+    "banRate": 4.2,
+    "presence": 11.8,
+    "proStats": {
+      "picks": 110,
+      "bans": 61,
+      "wins": 56,
+      "losses": 54
+    },
+    "counters": {
+      "Nocturne": 2.7,
+      "Akali": 2.5,
+      "Leona": 3,
+      "Renata": 4,
+      "Nautilus": 2.7,
+      "Yunara": 2.4,
+      "Aurora": 2.4,
+      "Zaahen": 2.7,
+      "KSante": 2.8,
+      "Orianna": 4,
+      "Lulu": 2.7,
+      "Kaisa": 2.7,
+      "Renekton": 2.7,
+      "DrMundo": 3.4,
+      "Aphelios": 4,
+      "Viego": 4,
+      "Gnar": 2.7,
+      "Sylas": 4,
+      "Ashe": 2.7,
+      "Karma": 2.4,
+      "Volibear": 2.7
+    },
+    "synergies": {
+      "MissFortune": 2.1,
+      "JarvanIV": 1.8,
+      "Zaahen": 2.3,
+      "MonkeyKing": 1.9,
+      "Ryze": 1.8,
+      "Kennen": 2.3,
+      "Akali": 1.8,
+      "Renekton": 2.4,
+      "Gwen": 2.4,
+      "Malphite": 1.8,
+      "Cassiopeia": 2,
+      "Qiyana": 3,
+      "Orianna": 1.8
+    },
+    "blindPickSafety": 7,
+    "description": "Niş pick"
+  },
+  "Kaisa": {
+    "name": "Kai'Sa",
+    "roles": [
+      "adc"
+    ],
+    "tier": {
+      "adc": "C"
+    },
+    "winRate": {
+      "adc": 52.5
+    },
+    "pickRate": {
+      "adc": 5.5
+    },
+    "banRate": 6,
+    "presence": 11.5,
+    "proStats": {
+      "picks": 80,
+      "bans": 87,
+      "wins": 42,
+      "losses": 38
+    },
+    "counters": {
+      "Renekton": 3,
+      "Azir": 2.6,
+      "Yone": 4,
+      "Rell": 3.3,
+      "Braum": 3,
+      "KSante": 2.7,
+      "Vi": 3,
+      "Nami": 3.2,
+      "Gwen": 2.4,
+      "Nautilus": 2.7,
+      "DrMundo": 3,
+      "Jhin": 4,
+      "Ahri": 2.7,
+      "Maokai": 4,
+      "Bard": 3.3,
+      "MissFortune": 3.2,
+      "Zoe": 4,
+      "Aurora": 3,
+      "Ornn": 2.7
+    },
+    "synergies": {
+      "Syndra": 2,
+      "JarvanIV": 1.9,
+      "Ryze": 1.9,
+      "Alistar": 1.9,
+      "Viego": 2,
+      "Orianna": 1.9,
+      "Rumble": 2.6,
+      "Yone": 2,
+      "MonkeyKing": 2.3,
+      "Qiyana": 2.3,
+      "Gnar": 1.8,
+      "Cassiopeia": 2,
+      "LeeSin": 2.4,
+      "Zoe": 2,
+      "Leona": 2,
+      "TwistedFate": 3,
+      "Naafiri": 2.3
+    },
+    "blindPickSafety": 5,
+    "description": "Niş pick"
+  },
+  "Sivir": {
+    "name": "Sivir",
+    "roles": [
+      "adc"
+    ],
+    "tier": {
+      "adc": "C"
+    },
+    "winRate": {
+      "adc": 55.1
+    },
+    "pickRate": {
+      "adc": 6.8
+    },
+    "banRate": 4.7,
+    "presence": 11.5,
+    "proStats": {
+      "picks": 98,
+      "bans": 68,
+      "wins": 54,
+      "losses": 44
+    },
+    "counters": {
+      "Aphelios": 3.3,
+      "Thresh": 3.2,
+      "Taliyah": 3,
+      "Pantheon": 2.7,
+      "Kaisa": 2.8,
+      "Rell": 3.2,
+      "Trundle": 4,
+      "Azir": 3,
+      "MissFortune": 2.7,
+      "Rakan": 2.4,
+      "Ahri": 2.4,
+      "Corki": 2.4,
+      "Galio": 2.7,
+      "Lulu": 2.7,
+      "Gnar": 3.3,
+      "Syndra": 3.4,
+      "Vi": 2.5,
+      "Malphite": 3.2,
+      "Jax": 2.9,
+      "Nautilus": 2.4,
+      "Sylas": 2.7,
+      "Akali": 3,
+      "Yone": 4,
+      "Gwen": 2.4
+    },
+    "synergies": {
+      "Qiyana": 2.3,
+      "Jax": 3,
+      "Sion": 2.1,
+      "Alistar": 1.9,
+      "Neeko": 1.9,
+      "Ambessa": 1.9,
+      "XinZhao": 2.1,
+      "Ahri": 1.8,
+      "Bard": 2.2,
+      "Pantheon": 1.8,
+      "Azir": 1.8,
+      "Akali": 2,
+      "MonkeyKing": 2,
+      "Aatrox": 3,
+      "Yone": 2.3,
+      "Yorick": 3,
+      "JarvanIV": 2,
+      "Leona": 2.3,
+      "Poppy": 2,
+      "Maokai": 2,
+      "Karma": 1.8,
+      "Annie": 2
+    },
+    "blindPickSafety": 6,
+    "description": "Yüksek WR · Niş pick"
+  },
+  "Nami": {
+    "name": "Nami",
+    "roles": [
+      "support"
+    ],
+    "tier": {
+      "support": "C"
+    },
+    "winRate": {
+      "support": 48.2
+    },
+    "pickRate": {
+      "support": 7.6
+    },
+    "banRate": 3.7,
+    "presence": 11.3,
+    "proStats": {
+      "picks": 110,
+      "bans": 54,
+      "wins": 53,
+      "losses": 57
+    },
+    "counters": {
+      "Annie": 2.5,
+      "Taliyah": 3,
+      "KSante": 2.4,
+      "Sion": 2.7,
+      "Cassiopeia": 2.7,
+      "Anivia": 2.9,
+      "Karma": 2.8,
+      "Ezreal": 2.7,
+      "LeBlanc": 3,
+      "DrMundo": 3.2,
+      "Aphelios": 4,
+      "Syndra": 2.5,
+      "Jhin": 3.2,
+      "Sivir": 2.7,
+      "Zoe": 2.7,
+      "Galio": 2.4,
+      "Bard": 2.4,
+      "Rakan": 3,
+      "Varus": 3
+    },
+    "synergies": {
+      "Jax": 2,
+      "Anivia": 1.8,
+      "Galio": 2.3,
+      "Malphite": 2.3,
+      "DrMundo": 2.3,
+      "Mel": 2,
+      "Poppy": 2.4,
+      "Zaahen": 2,
+      "Gragas": 2,
+      "Yunara": 3,
+      "Trundle": 3
+    },
+    "blindPickSafety": 7,
+    "description": "Niş pick"
+  },
+  "Gwen": {
+    "name": "Gwen",
+    "roles": [
+      "top"
+    ],
+    "tier": {
+      "top": "C"
+    },
+    "winRate": {
+      "top": 46.7
+    },
+    "pickRate": {
+      "top": 4.1
+    },
+    "banRate": 6.7,
+    "presence": 10.9,
+    "proStats": {
+      "picks": 61,
+      "bans": 97,
+      "wins": 28,
+      "losses": 33
+    },
+    "counters": {
+      "Ryze": 3,
+      "Ambessa": 2.8,
+      "Aphelios": 3,
+      "Orianna": 2.7,
+      "Rell": 3.3,
+      "Vi": 3,
+      "Ahri": 2.4,
+      "Cassiopeia": 2.7,
+      "Yone": 2.7,
+      "Kalista": 2.7,
+      "Anivia": 2.4,
+      "Zaahen": 4,
+      "LeBlanc": 2.7,
+      "Rakan": 2.7,
+      "Corki": 4,
+      "Nami": 4
+    },
+    "synergies": {
+      "Ashe": 1.8,
+      "Nocturne": 2.4,
+      "Alistar": 1.9,
+      "Taliyah": 2,
+      "Vi": 1.8,
+      "Corki": 2.4,
+      "Akali": 2.3,
+      "Lulu": 1.8,
+      "Rakan": 2.4,
+      "Aphelios": 1.8,
+      "Xayah": 2.3,
+      "Zaahen": 2,
+      "Braum": 2
+    },
+    "blindPickSafety": 5,
+    "description": "Niş pick"
+  },
+  "Aphelios": {
+    "name": "Aphelios",
+    "roles": [
+      "adc"
+    ],
+    "tier": {
+      "adc": "C"
+    },
+    "winRate": {
+      "adc": 47
+    },
+    "pickRate": {
+      "adc": 5.7
+    },
+    "banRate": 5,
+    "presence": 10.8,
+    "proStats": {
+      "picks": 83,
+      "bans": 73,
+      "wins": 39,
+      "losses": 44
+    },
+    "counters": {
+      "Zaahen": 2.7,
+      "Neeko": 3.3,
+      "Nocturne": 2.7,
+      "Pantheon": 2.5,
+      "Bard": 2.5,
+      "KSante": 3.3,
+      "Blitzcrank": 4,
+      "Ryze": 3.1,
+      "Ziggs": 2.7,
+      "Cassiopeia": 2.7,
+      "Trundle": 2.7,
+      "Ambessa": 3.2,
+      "Jhin": 4,
+      "Ezreal": 4,
+      "Naafiri": 2.7
+    },
+    "synergies": {
+      "Lulu": 1.9,
+      "Aurora": 2,
+      "Ryze": 1.9,
+      "Taliyah": 1.8,
+      "Gnar": 2.3,
+      "Qiyana": 3,
+      "Gwen": 1.8,
+      "Nocturne": 2,
+      "Zaahen": 3
+    },
+    "blindPickSafety": 6,
+    "description": "Niş pick"
+  },
+  "Caitlyn": {
+    "name": "Caitlyn",
+    "roles": [
+      "adc"
+    ],
+    "tier": {
+      "adc": "C"
+    },
+    "winRate": {
+      "adc": 53.5
+    },
+    "pickRate": {
+      "adc": 3
+    },
+    "banRate": 6.6,
+    "presence": 9.5,
+    "proStats": {
+      "picks": 43,
+      "bans": 95,
+      "wins": 23,
+      "losses": 20
+    },
+    "counters": {
+      "Vi": 2.4,
+      "KSante": 3.2,
+      "Anivia": 2.7,
+      "Lucian": 3.2,
+      "Jinx": 4,
+      "Seraphine": 2.7,
+      "Aurora": 2.7,
+      "Azir": 2.7,
+      "Nautilus": 2.7,
+      "Ezreal": 2.4,
+      "Karma": 3,
+      "Ambessa": 2.4,
+      "Rakan": 2.7,
+      "MonkeyKing": 2.7,
+      "Nocturne": 2.7
+    },
+    "synergies": {
+      "Poppy": 2.3,
+      "Viktor": 2.3,
+      "Rumble": 2,
+      "Cassiopeia": 2,
+      "JarvanIV": 2,
+      "Aurora": 2,
+      "Bard": 2.2,
+      "Orianna": 3,
+      "Aatrox": 2,
+      "Sion": 2,
+      "Vi": 2,
+      "DrMundo": 3,
+      "Braum": 3
+    },
+    "blindPickSafety": 5,
+    "description": "Niş pick"
+  },
+  "Zaahen": {
+    "name": "Zaahen",
+    "roles": [
+      "top",
+      "jungle"
+    ],
+    "tier": {
+      "top": "C",
+      "jungle": "C"
+    },
+    "winRate": {
+      "top": 55.1,
+      "jungle": 55.6
+    },
+    "pickRate": {
+      "top": 3.4,
+      "jungle": 1.9
+    },
+    "banRate": 3.8,
+    "presence": 9.1,
+    "proStats": {
+      "picks": 76,
+      "bans": 55,
+      "wins": 42,
+      "losses": 34
+    },
+    "counters": {
+      "Thresh": 2.4,
+      "XinZhao": 2.5,
+      "MonkeyKing": 2.5,
+      "Corki": 2.7,
+      "Kalista": 2.7,
+      "Renata": 2.7,
+      "Viktor": 2.4,
+      "Bard": 3,
+      "Yunara": 3.4,
+      "Kaisa": 2.7,
+      "Syndra": 4,
+      "Sivir": 2.4,
+      "Nautilus": 3.1,
+      "KSante": 2.7,
+      "Orianna": 3,
+      "Galio": 2.9,
+      "Renekton": 2.7,
+      "Pantheon": 2.7,
+      "Gnar": 3,
+      "Nami": 2.7,
+      "Viego": 4,
+      "Aurora": 2.7
+    },
+    "synergies": {
+      "Orianna": 2.1,
+      "Vi": 3,
+      "Varus": 1.9,
+      "JarvanIV": 2.1,
+      "Rakan": 2.3,
+      "Ashe": 2.4,
+      "Seraphine": 3,
+      "Galio": 2.5,
+      "Neeko": 3,
+      "Ahri": 2.6,
+      "Poppy": 2.4,
+      "Corki": 2,
+      "Nami": 2,
+      "Gwen": 2,
+      "Aphelios": 3,
+      "Sion": 1.8,
+      "KSante": 3,
+      "Xayah": 2,
+      "Aatrox": 3
+    },
+    "blindPickSafety": 6,
+    "description": "Yüksek WR · Niş pick"
+  },
+  "Seraphine": {
+    "name": "Seraphine",
+    "roles": [
+      "support"
+    ],
+    "tier": {
+      "support": "C"
+    },
+    "winRate": {
+      "support": 55.8
+    },
+    "pickRate": {
+      "support": 5.9
+    },
+    "banRate": 2.6,
+    "presence": 8.6,
+    "proStats": {
+      "picks": 87,
+      "bans": 37,
+      "wins": 48,
+      "losses": 39
+    },
+    "counters": {
+      "Trundle": 2.4,
+      "Mel": 2.7,
+      "Orianna": 2.5,
+      "Anivia": 2.4,
+      "Ambessa": 2.7,
+      "Yunara": 2.6,
+      "Sion": 2.7,
+      "DrMundo": 4,
+      "Corki": 2.8,
+      "Vi": 2.8,
+      "Ahri": 3.3,
+      "Lucian": 4,
+      "Nami": 3.1,
+      "Qiyana": 2.7,
+      "Viktor": 2.4,
+      "Sylas": 3.4,
+      "Jax": 2.7,
+      "Jayce": 4,
+      "Zaahen": 4,
+      "Pantheon": 2.4,
+      "Gragas": 2.7,
+      "Milio": 4,
+      "KSante": 3.2
+    },
+    "synergies": {
+      "Ashe": 1.8,
+      "XinZhao": 2,
+      "Gnar": 2.3,
+      "Nocturne": 2,
+      "Syndra": 2,
+      "Rumble": 2.4,
+      "MonkeyKing": 2.1,
+      "Zaahen": 3,
+      "Mel": 2,
+      "Taliyah": 2.4,
+      "Viktor": 2.4,
+      "Yorick": 2,
+      "LeBlanc": 2,
+      "Orianna": 2.4,
+      "Skarner": 2,
+      "Renekton": 2.1,
+      "Aatrox": 2.3
+    },
+    "blindPickSafety": 7,
+    "description": "Yüksek WR · Niş pick"
+  },
+  "Jhin": {
+    "name": "Jhin",
+    "roles": [
+      "adc"
+    ],
+    "tier": {
+      "adc": "C"
+    },
+    "winRate": {
+      "adc": 34.5
+    },
+    "pickRate": {
+      "adc": 5.8
+    },
+    "banRate": 2.1,
+    "presence": 8,
+    "proStats": {
+      "picks": 84,
+      "bans": 31,
+      "wins": 29,
+      "losses": 55
+    },
+    "counters": {
+      "Rell": 2.4,
+      "Karma": 3,
+      "Viktor": 2.7,
+      "Ornn": 3,
+      "Annie": 3
+    },
+    "synergies": {
+      "Gnar": 2.3
+    },
+    "blindPickSafety": 4,
+    "description": "Niş pick"
+  },
+  "Aatrox": {
+    "name": "Aatrox",
+    "roles": [
+      "top",
+      "jungle"
+    ],
+    "tier": {
+      "top": "C",
+      "jungle": "C"
+    },
+    "winRate": {
+      "top": 42.9,
+      "jungle": 61.2
+    },
+    "pickRate": {
+      "top": 2.4,
+      "jungle": 3.4
+    },
+    "banRate": 2,
+    "presence": 7.8,
+    "proStats": {
+      "picks": 84,
+      "bans": 29,
+      "wins": 45,
+      "losses": 39
+    },
+    "counters": {
+      "Galio": 2.4,
+      "Rumble": 2.5,
+      "JarvanIV": 3.1,
+      "Aphelios": 2.7,
+      "Viktor": 4,
+      "KSante": 2.7,
+      "Rell": 2.7,
+      "Syndra": 4,
+      "Ezreal": 3,
+      "Ahri": 2.9,
+      "Seraphine": 2.7,
+      "Ashe": 2.7,
+      "Jhin": 4,
+      "Gwen": 2.4,
+      "Nautilus": 3,
+      "Vi": 2.7,
+      "Taliyah": 2.7,
+      "Jax": 3,
+      "Sylas": 4,
+      "Zoe": 4,
+      "Karma": 2.9
+    },
+    "synergies": {
+      "Yunara": 1.8,
+      "Sivir": 3,
+      "Akali": 2.3,
+      "MonkeyKing": 1.8,
+      "Leona": 1.8,
+      "Bard": 2.3,
+      "Aurora": 2.1,
+      "Orianna": 2.5,
+      "Caitlyn": 2,
+      "Renekton": 3,
+      "Alistar": 2,
+      "Rumble": 2.6,
+      "JarvanIV": 2.4,
+      "Corki": 2.3,
+      "Ashe": 2.4,
+      "Galio": 2.4,
+      "Zaahen": 3,
+      "Seraphine": 2.3,
+      "LeBlanc": 2,
+      "DrMundo": 2
+    },
+    "blindPickSafety": 7,
+    "description": "Niş pick"
+  },
+  "Galio": {
+    "name": "Galio",
+    "roles": [
+      "mid",
+      "top",
+      "support"
+    ],
+    "tier": {
+      "mid": "C",
+      "top": "C",
+      "support": "C"
+    },
+    "winRate": {
+      "mid": 49.2,
+      "top": 0,
+      "support": 0
+    },
+    "pickRate": {
+      "mid": 4.4,
+      "top": 0.3,
+      "support": 0.1
+    },
+    "banRate": 2.9,
+    "presence": 7.7,
+    "proStats": {
+      "picks": 70,
+      "bans": 42,
+      "wins": 31,
+      "losses": 39
+    },
+    "counters": {
+      "Gnar": 3,
+      "Aphelios": 2.7,
+      "Akali": 3,
+      "Kaisa": 2.9,
+      "KSante": 3.3,
+      "Jax": 2.7,
+      "Ezreal": 2.4,
+      "Karma": 3.3,
+      "JarvanIV": 2.4,
+      "Lucian": 2.7,
+      "Jhin": 4,
+      "Azir": 2.7
+    },
+    "synergies": {
+      "Alistar": 2.4,
+      "Zaahen": 2.5,
+      "Ezreal": 2.3,
+      "MissFortune": 1.8,
+      "Karma": 2.5,
+      "Vi": 2.3,
+      "Nami": 2.3,
+      "Corki": 1.9,
+      "Yorick": 2,
+      "Aatrox": 2.4
+    },
+    "blindPickSafety": 4,
+    "description": "Niş pick"
+  },
+  "MissFortune": {
+    "name": "Miss Fortune",
+    "roles": [
+      "adc"
+    ],
+    "tier": {
+      "adc": "C"
+    },
+    "winRate": {
+      "adc": 54.2
+    },
+    "pickRate": {
+      "adc": 5
+    },
+    "banRate": 2.4,
+    "presence": 7.3,
+    "proStats": {
+      "picks": 72,
+      "bans": 34,
+      "wins": 39,
+      "losses": 33
+    },
+    "counters": {
+      "Trundle": 2.9,
+      "Braum": 2.5,
+      "Vi": 3.2,
+      "Leona": 3.2,
+      "MonkeyKing": 3,
+      "XinZhao": 2.5,
+      "Azir": 2.4,
+      "Ahri": 2.4,
+      "Ezreal": 2.8,
+      "Renekton": 2.8,
+      "Zaahen": 2.7,
+      "Taliyah": 3.5,
+      "Rell": 2.7,
+      "Yunara": 2.7,
+      "Corki": 2.9,
+      "Rakan": 2.9,
+      "Karma": 2.7,
+      "Xayah": 3
+    },
+    "synergies": {
+      "Ambessa": 1.9,
+      "Rumble": 2.4,
+      "JarvanIV": 2.3,
+      "Alistar": 2.4,
+      "Aurora": 2.1,
+      "Rakan": 2.1,
+      "Orianna": 1.9,
+      "Neeko": 2.3,
+      "Nocturne": 1.8,
+      "Poppy": 2.4,
+      "Pantheon": 1.8,
+      "Ahri": 2.5,
+      "Vi": 2,
+      "Rell": 1.8,
+      "MonkeyKing": 2,
+      "Taliyah": 1.8,
+      "XinZhao": 2.1,
+      "Galio": 1.8,
+      "Olaf": 2.3
+    },
+    "blindPickSafety": 6,
+    "description": "Niş pick"
+  },
+  "Sylas": {
+    "name": "Sylas",
+    "roles": [
+      "mid",
+      "jungle",
+      "top"
+    ],
+    "tier": {
+      "mid": "C",
+      "jungle": "C",
+      "top": "C"
+    },
+    "winRate": {
+      "mid": 34.5,
+      "jungle": 25,
+      "top": 50
+    },
+    "pickRate": {
+      "mid": 2,
+      "jungle": 0.3,
+      "top": 0.1
+    },
+    "banRate": 4.6,
+    "presence": 7.1,
+    "proStats": {
+      "picks": 36,
+      "bans": 66,
+      "wins": 13,
+      "losses": 23
+    },
+    "counters": {
+      "Viktor": 2.7,
+      "Karma": 2.7,
+      "Galio": 2.7
+    },
+    "synergies": {
+      "Yorick": 2,
+      "Vi": 2,
+      "XinZhao": 2,
+      "Ashe": 2,
+      "Gnar": 1.8,
+      "Neeko": 3
+    },
+    "blindPickSafety": 4,
+    "description": "Niş pick"
+  },
+  "LeBlanc": {
+    "name": "LeBlanc",
+    "roles": [
+      "mid"
+    ],
+    "tier": {
+      "mid": "C"
+    },
+    "winRate": {
+      "mid": 58.6
+    },
+    "pickRate": {
+      "mid": 2
+    },
+    "banRate": 4.4,
+    "presence": 6.4,
+    "proStats": {
+      "picks": 30,
+      "bans": 63,
+      "wins": 18,
+      "losses": 12
+    },
+    "counters": {
+      "Sivir": 2.4,
+      "Vi": 2.7,
+      "Nautilus": 2.4,
+      "Azir": 2.8,
+      "Renekton": 2.7,
+      "Jhin": 2.7,
+      "MonkeyKing": 2.7,
+      "Gnar": 3,
+      "Yunara": 3,
+      "Taliyah": 3,
+      "Ahri": 2.7
+    },
+    "synergies": {
+      "XinZhao": 2.1,
+      "KSante": 2,
+      "MonkeyKing": 1.8,
+      "Corki": 1.8,
+      "Neeko": 2.3,
+      "Gnar": 2.4,
+      "Ashe": 2.4,
+      "Seraphine": 2,
+      "Aatrox": 2
+    },
+    "blindPickSafety": 5,
+    "description": "Yüksek WR · Niş pick"
+  },
+  "Jax": {
+    "name": "Jax",
+    "roles": [
+      "top",
+      "jungle"
+    ],
+    "tier": {
+      "top": "C",
+      "jungle": "C"
+    },
+    "winRate": {
+      "top": 54.1,
+      "jungle": 20
+    },
+    "pickRate": {
+      "top": 2.6,
+      "jungle": 0.3
+    },
+    "banRate": 3.4,
+    "presence": 6.3,
+    "proStats": {
+      "picks": 42,
+      "bans": 49,
+      "wins": 21,
+      "losses": 21
+    },
+    "counters": {
+      "Taliyah": 3.2,
+      "Kaisa": 3,
+      "Rell": 2.7,
+      "Renekton": 3.2,
+      "Aurora": 2.4,
+      "Varus": 4,
+      "Zaahen": 3,
+      "Neeko": 2.7,
+      "Sion": 3.2,
+      "Mel": 4,
+      "Karma": 3,
+      "Caitlyn": 2.7
+    },
+    "synergies": {
+      "Ryze": 2.3,
+      "Sivir": 3,
+      "Nami": 2,
+      "Corki": 2,
+      "DrMundo": 2.3,
+      "Lulu": 2,
+      "Ashe": 2,
+      "Ezreal": 2,
+      "Sion": 2
+    },
+    "blindPickSafety": 5,
+    "description": "Niş pick"
+  },
+  "Syndra": {
+    "name": "Syndra",
+    "roles": [
+      "mid"
+    ],
+    "tier": {
+      "mid": "C"
+    },
+    "winRate": {
+      "mid": 35.3
+    },
+    "pickRate": {
+      "mid": 3.5
+    },
+    "banRate": 2.8,
+    "presence": 6.3,
+    "proStats": {
+      "picks": 51,
+      "bans": 40,
+      "wins": 18,
+      "losses": 33
+    },
+    "counters": {
+      "KSante": 2.7,
+      "Viktor": 2.7,
+      "Caitlyn": 2.7,
+      "Karma": 2.7,
+      "Vi": 2.7
+    },
+    "synergies": {
+      "Kaisa": 2,
+      "Nocturne": 3,
+      "Seraphine": 2,
+      "Alistar": 1.8,
+      "Gnar": 2.1
+    },
+    "blindPickSafety": 4,
+    "description": "Niş pick"
+  },
+  "Anivia": {
+    "name": "Anivia",
+    "roles": [
+      "support",
+      "mid",
+      "top"
+    ],
+    "tier": {
+      "support": "C",
+      "mid": "C",
+      "top": "C"
+    },
+    "winRate": {
+      "support": 80,
+      "mid": 51.1,
+      "top": 0
+    },
+    "pickRate": {
+      "support": 0.3,
+      "mid": 3.3,
+      "top": 0.2
+    },
+    "banRate": 2.3,
+    "presence": 6.1,
+    "proStats": {
+      "picks": 55,
+      "bans": 33,
+      "wins": 28,
+      "losses": 27
+    },
+    "counters": {
+      "Pantheon": 2.4,
+      "Ezreal": 3,
+      "Gnar": 2.7,
+      "Trundle": 2.7,
+      "Leona": 2.7,
+      "Aurora": 4,
+      "Sivir": 2.4,
+      "Nautilus": 2.4,
+      "Viktor": 2.7,
+      "Rakan": 2.7,
+      "Aatrox": 3.3,
+      "Yunara": 2.4,
+      "Azir": 4,
+      "Zaahen": 4
+    },
+    "synergies": {
+      "Ezreal": 1.9,
+      "Pantheon": 1.9,
+      "Yorick": 2.3,
+      "Jayce": 2,
+      "Renekton": 2,
+      "KSante": 1.9,
+      "Nami": 1.8,
+      "Corki": 1.8,
+      "Rumble": 2,
+      "DrMundo": 2.1,
+      "Neeko": 2.5,
+      "Ashe": 2
+    },
+    "blindPickSafety": 6,
+    "description": "Niş pick"
+  },
+  "Braum": {
+    "name": "Braum",
+    "roles": [
+      "support"
+    ],
+    "tier": {
+      "support": "C"
+    },
+    "winRate": {
+      "support": 57.5
+    },
+    "pickRate": {
+      "support": 2.8
+    },
+    "banRate": 3.3,
+    "presence": 6.1,
+    "proStats": {
+      "picks": 40,
+      "bans": 48,
+      "wins": 23,
+      "losses": 17
+    },
+    "counters": {
+      "Nautilus": 3.1,
+      "Ambessa": 3.3,
+      "Azir": 3,
+      "KSante": 3,
+      "Corki": 2.7,
+      "Aphelios": 3.2,
+      "Taliyah": 2.4,
+      "MonkeyKing": 2.7,
+      "Trundle": 2.7,
+      "Jhin": 2.7,
+      "Akali": 2.4,
+      "Sivir": 2.7,
+      "JarvanIV": 3,
+      "Varus": 2.7,
+      "Ahri": 2.7,
+      "Aurora": 2.7,
+      "Cassiopeia": 4,
+      "Jinx": 2.7
+    },
+    "synergies": {
+      "Varus": 2.1,
+      "Yorick": 3,
+      "Yunara": 2.6,
+      "KSante": 1.8,
+      "Pantheon": 2.3,
+      "Vi": 1.8,
+      "Ryze": 2,
+      "Kled": 2,
+      "Volibear": 2,
+      "Caitlyn": 3,
+      "Gwen": 2
+    },
+    "blindPickSafety": 5,
+    "description": "Yüksek WR · Niş pick"
+  },
+  "Rell": {
+    "name": "Rell",
+    "roles": [
+      "support"
+    ],
+    "tier": {
+      "support": "C"
+    },
+    "winRate": {
+      "support": 34.9
+    },
+    "pickRate": {
+      "support": 4.4
+    },
+    "banRate": 1.7,
+    "presence": 6,
+    "proStats": {
+      "picks": 63,
+      "bans": 24,
+      "wins": 22,
+      "losses": 41
+    },
+    "counters": {
+      "Rumble": 2.9,
+      "Syndra": 2.7,
+      "Lucian": 2.7,
+      "Xayah": 2.7
+    },
+    "synergies": {
+      "Vi": 1.8,
+      "MissFortune": 1.8,
+      "Akali": 2.3,
+      "Qiyana": 2.3,
+      "RekSai": 3,
+      "Ahri": 1.8
+    },
+    "blindPickSafety": 4,
+    "description": "Niş pick"
+  },
+  "Leona": {
+    "name": "Leona",
+    "roles": [
+      "support"
+    ],
+    "tier": {
+      "support": "C"
+    },
+    "winRate": {
+      "support": 45.6
+    },
+    "pickRate": {
+      "support": 3.9
+    },
+    "banRate": 1.7,
+    "presence": 5.7,
+    "proStats": {
+      "picks": 57,
+      "bans": 25,
+      "wins": 26,
+      "losses": 31
+    },
+    "counters": {
+      "Jayce": 3,
+      "Ornn": 2.7,
+      "Jhin": 3,
+      "Corki": 3,
+      "Jax": 2.7,
+      "KSante": 2.4,
+      "Taliyah": 2.7,
+      "Thresh": 3,
+      "Aatrox": 4,
+      "Karma": 2.4,
+      "Gnar": 3,
+      "Maokai": 4,
+      "Nami": 4,
+      "DrMundo": 2.7
+    },
+    "synergies": {
+      "Azir": 1.9,
+      "Qiyana": 2.3,
+      "Ambessa": 2.1,
+      "Sivir": 2.3,
+      "Ahri": 2.3,
+      "Gnar": 2.4,
+      "Ziggs": 2,
+      "Yunara": 2.3,
+      "Aatrox": 1.8,
+      "Kaisa": 2
+    },
+    "blindPickSafety": 6,
+    "description": "Niş pick"
+  },
+  "Mel": {
+    "name": "Mel",
+    "roles": [
+      "adc",
+      "mid"
+    ],
+    "tier": {
+      "adc": "C",
+      "mid": "C"
+    },
+    "winRate": {
+      "adc": 0,
+      "mid": 56.3
+    },
+    "pickRate": {
+      "adc": 0.1,
+      "mid": 2.2
+    },
+    "banRate": 2.8,
+    "presence": 5.3,
+    "proStats": {
+      "picks": 35,
+      "bans": 41,
+      "wins": 18,
+      "losses": 17
+    },
+    "counters": {
+      "Nami": 2.7,
+      "Ahri": 2.5,
+      "Nocturne": 4,
+      "Lucian": 2.7,
+      "Renekton": 3,
+      "Neeko": 4,
+      "MonkeyKing": 3,
+      "Nautilus": 2.7,
+      "Rumble": 2.7
+    },
+    "synergies": {
+      "Seraphine": 2,
+      "Sion": 2.3,
+      "Ashe": 2.4,
+      "Corki": 2.3,
+      "Nami": 2,
+      "Gnar": 2.4,
+      "Neeko": 1.8,
+      "KSante": 1.8,
+      "Yunara": 1.8
+    },
+    "blindPickSafety": 5,
+    "description": "Niş pick"
+  },
+  "Qiyana": {
+    "name": "Qiyana",
+    "roles": [
+      "jungle"
+    ],
+    "tier": {
+      "jungle": "C"
+    },
+    "winRate": {
+      "jungle": 52.4
+    },
+    "pickRate": {
+      "jungle": 2.9
+    },
+    "banRate": 2.4,
+    "presence": 5.3,
+    "proStats": {
+      "picks": 42,
+      "bans": 34,
+      "wins": 22,
+      "losses": 20
+    },
+    "counters": {
+      "Pantheon": 2.7,
+      "Rell": 4,
+      "KSante": 2.4,
+      "Poppy": 2.7,
+      "MonkeyKing": 2.9,
+      "Ahri": 2.7,
+      "Gwen": 3,
+      "Ezreal": 2.7,
+      "Sion": 2.7,
+      "Nocturne": 2.5,
+      "Rakan": 3,
+      "Syndra": 2.4,
+      "JarvanIV": 2.4,
+      "Rumble": 2.7,
+      "Varus": 3
+    },
+    "synergies": {
+      "Sivir": 2.3,
+      "Sion": 1.9,
+      "Leona": 2.3,
+      "Rell": 2.3,
+      "Kaisa": 2.3,
+      "Azir": 2,
+      "Renekton": 1.9,
+      "Thresh": 3,
+      "Aphelios": 3,
+      "Ambessa": 2,
+      "Rakan": 3,
+      "Ahri": 2
+    },
+    "blindPickSafety": 6,
+    "description": "Niş pick"
   },
   "Viktor": {
     "name": "Viktor",
-    "roles": ["mid"],
-    "tier": { "mid": "S" },
-    "winRate": { "mid": 52.2 },
-    "pickRate": { "mid": 5.5 },
-    "banRate": 4.0,
-    "blindPickSafety": 7,
+    "roles": [
+      "mid"
+    ],
+    "tier": {
+      "mid": "C"
+    },
+    "winRate": {
+      "mid": 49
+    },
+    "pickRate": {
+      "mid": 3.5
+    },
+    "banRate": 1.2,
+    "presence": 4.8,
+    "proStats": {
+      "picks": 51,
+      "bans": 18,
+      "wins": 25,
+      "losses": 26
+    },
     "counters": {
-      "Lux": 2.0, "Veigar": 2.0, "Malzahar": 1.5, "Twisted Fate": 2.0, "Ziggs": 2.0
+      "MonkeyKing": 2.7,
+      "Ahri": 4,
+      "Kalista": 2.7,
+      "Renata": 2.7,
+      "Sivir": 2.7,
+      "Aurora": 2.5,
+      "Galio": 3.2,
+      "Aphelios": 2.4,
+      "Hwei": 3,
+      "Sion": 2.7,
+      "Ambessa": 3.3,
+      "Renekton": 3.2,
+      "Neeko": 3,
+      "Orianna": 2.7,
+      "Karma": 2.7,
+      "Alistar": 3
     },
     "synergies": {
-      "Jarvan IV": 2.5, "Ornn": 2.0, "Amumu": 2.0, "Sejuani": 2.0, "Diana": 2.0
+      "Corki": 3,
+      "Pantheon": 2.3,
+      "Caitlyn": 2.3,
+      "Bard": 3,
+      "Vi": 2,
+      "Ashe": 2.4,
+      "Seraphine": 2.4,
+      "Rumble": 3,
+      "Gnar": 3,
+      "XinZhao": 2.3
     },
-    "description": "Zone control mage, Gravity Field ile CC, yüksek AoE hasar"
-  },
-  "Vladimir": {
-    "name": "Vladimir",
-    "roles": ["mid", "top"],
-    "tier": { "mid": "A", "top": "B" },
-    "winRate": { "mid": 51.0, "top": 49.5 },
-    "pickRate": { "mid": 3.5, "top": 1.5 },
-    "banRate": 3.0,
-    "blindPickSafety": 7,
-    "counters": {
-      "Malzahar": 2.0, "Lux": 2.5, "Ziggs": 2.0, "Viktor": 1.5
-    },
-    "synergies": {
-      "Orianna": 2.5, "Jarvan IV": 2.5, "Amumu": 2.5, "Diana": 2.0, "Yasuo": 2.0
-    },
-    "description": "Geç oyun scaling, W ile sanguine pool escape, AoE burst teamfight"
-  },
-  "Volibear": {
-    "name": "Volibear",
-    "roles": ["top", "jungle"],
-    "tier": { "top": "A", "jungle": "B" },
-    "winRate": { "top": 51.0, "jungle": 49.5 },
-    "pickRate": { "top": 4.0, "jungle": 2.0 },
-    "banRate": 3.0,
-    "blindPickSafety": 7,
-    "counters": {
-      "Irelia": 3.0, "Riven": 2.0, "Yone": 2.0, "Yasuo": 2.0, "Nasus": 2.0
-    },
-    "synergies": {
-      "Orianna": 2.0, "Amumu": 2.0, "Jarvan IV": 1.5, "Leona": 1.5
-    },
-    "description": "Tower dive uzmanı, güçlü erken lane, tanky all-in"
-  },
-  "Warwick": {
-    "name": "Warwick",
-    "roles": ["jungle", "top"],
-    "tier": { "jungle": "A", "top": "B" },
-    "winRate": { "jungle": 51.5, "top": 50.0 },
-    "pickRate": { "jungle": 4.0, "top": 1.5 },
-    "banRate": 2.5,
-    "blindPickSafety": 7,
-    "counters": {
-      "Master Yi": 2.5, "Shaco": 2.0, "Evelynn": 2.0, "Karthus": 2.0
-    },
-    "synergies": {
-      "Malzahar": 2.5, "Leona": 2.0, "Orianna": 2.0, "Amumu": 2.0
-    },
-    "description": "Kan koku takibi, güçlü duello ve sustain, kolay jungler"
-  },
-  "Xayah": {
-    "name": "Xayah",
-    "roles": ["adc"],
-    "tier": { "adc": "A" },
-    "winRate": { "adc": 50.8 },
-    "pickRate": { "adc": 4.5 },
-    "banRate": 2.0,
     "blindPickSafety": 6,
+    "description": "Niş pick"
+  },
+  "Cassiopeia": {
+    "name": "Cassiopeia",
+    "roles": [
+      "mid",
+      "top"
+    ],
+    "tier": {
+      "mid": "C",
+      "top": "C"
+    },
+    "winRate": {
+      "mid": 48.5,
+      "top": 66.7
+    },
+    "pickRate": {
+      "mid": 2.3,
+      "top": 0.2
+    },
+    "banRate": 2.2,
+    "presence": 4.7,
+    "proStats": {
+      "picks": 36,
+      "bans": 32,
+      "wins": 18,
+      "losses": 18
+    },
     "counters": {
-      "Sivir": 2.0, "Ashe": 2.0, "Jhin": 2.0, "Varus": 2.0
+      "Bard": 2.7,
+      "Pantheon": 2.4,
+      "Rakan": 3,
+      "Sivir": 2.9,
+      "Vi": 4,
+      "DrMundo": 2.7,
+      "Nautilus": 3,
+      "JarvanIV": 2.7,
+      "Karma": 3.3,
+      "Caitlyn": 3,
+      "Rumble": 3.2,
+      "Ahri": 2.7
     },
     "synergies": {
-      "Rakan": 4.0, "Leona": 2.5, "Nautilus": 2.0, "Thresh": 2.5, "Alistar": 2.0
+      "Vi": 2,
+      "Ezreal": 2.3,
+      "XinZhao": 3,
+      "Caitlyn": 2,
+      "Ambessa": 3,
+      "Kaisa": 2,
+      "Rakan": 2,
+      "Aurora": 2,
+      "Alistar": 2.4,
+      "Ashe": 2
     },
-    "description": "Feather recall mekaniği, ult ile untargetable, Rakan ile dream team"
+    "blindPickSafety": 6,
+    "description": "Niş pick"
   },
-  "Xin Zhao": {
-    "name": "Xin Zhao",
-    "roles": ["jungle"],
-    "tier": { "jungle": "A" },
-    "winRate": { "jungle": 51.2 },
-    "pickRate": { "jungle": 3.5 },
-    "banRate": 1.5,
-    "blindPickSafety": 7,
+  "Trundle": {
+    "name": "Trundle",
+    "roles": [
+      "jungle"
+    ],
+    "tier": {
+      "jungle": "C"
+    },
+    "winRate": {
+      "jungle": 30.2
+    },
+    "pickRate": {
+      "jungle": 3
+    },
+    "banRate": 1.7,
+    "presence": 4.6,
+    "proStats": {
+      "picks": 43,
+      "bans": 24,
+      "wins": 13,
+      "losses": 30
+    },
     "counters": {
-      "Evelynn": 2.5, "Karthus": 3.0, "Shaco": 2.0, "Master Yi": 2.0
+      "Nautilus": 3,
+      "Varus": 3
     },
     "synergies": {
-      "Orianna": 2.5, "Lulu": 2.0, "Leona": 2.0, "Nautilus": 2.0
+      "Varus": 2,
+      "Gnar": 2,
+      "Nami": 3
     },
-    "description": "Güçlü erken gank, 1v1 uzmanı, ult ile dalış koruyucu"
-  },
-  "Yasuo": {
-    "name": "Yasuo",
-    "roles": ["mid", "adc", "top"],
-    "tier": { "mid": "A", "adc": "B", "top": "B" },
-    "winRate": { "mid": 50.5, "adc": 49.0, "top": 49.2 },
-    "pickRate": { "mid": 7.0, "adc": 2.0, "top": 2.5 },
-    "banRate": 12.0,
     "blindPickSafety": 4,
+    "description": "Niş pick"
+  },
+  "Ornn": {
+    "name": "Ornn",
+    "roles": [
+      "top"
+    ],
+    "tier": {
+      "top": "C"
+    },
+    "winRate": {
+      "top": 48.8
+    },
+    "pickRate": {
+      "top": 3
+    },
+    "banRate": 1.5,
+    "presence": 4.4,
+    "proStats": {
+      "picks": 43,
+      "bans": 21,
+      "wins": 21,
+      "losses": 22
+    },
     "counters": {
-      "Lux": 2.5, "Ziggs": 3.0, "Xerath": 2.5, "Varus": 2.0,
-      "Twisted Fate": 2.0
+      "MonkeyKing": 2.4,
+      "Rell": 2.7,
+      "Yunara": 2.4,
+      "Rakan": 2.7,
+      "Syndra": 4,
+      "Lulu": 4,
+      "Ezreal": 2.7,
+      "Jayce": 4,
+      "Galio": 2.7,
+      "Nocturne": 2.7
     },
     "synergies": {
-      "Malphite": 4.0, "Diana": 4.0, "Alistar": 3.5, "Rell": 3.0,
-      "Rakan": 2.5, "Gragas": 3.0, "Lee Sin": 3.0
+      "Azir": 2,
+      "Yunara": 1.9,
+      "Orianna": 1.8,
+      "MonkeyKing": 2,
+      "Varus": 3,
+      "Nautilus": 2.5,
+      "Taliyah": 2.3,
+      "Ashe": 2
     },
-    "description": "Wind Wall ile projectile block, knock-up sinerji, yüksek hasar"
+    "blindPickSafety": 6,
+    "description": "Niş pick"
   },
   "Yone": {
     "name": "Yone",
-    "roles": ["mid", "top"],
-    "tier": { "mid": "S", "top": "A" },
-    "winRate": { "mid": 52.0, "top": 50.5 },
-    "pickRate": { "mid": 8.5, "top": 4.5 },
-    "banRate": 15.0,
-    "blindPickSafety": 5,
+    "roles": [
+      "mid"
+    ],
+    "tier": {
+      "mid": "C"
+    },
+    "winRate": {
+      "mid": 45.7
+    },
+    "pickRate": {
+      "mid": 2.4
+    },
+    "banRate": 1.9,
+    "presence": 4.3,
+    "proStats": {
+      "picks": 35,
+      "bans": 27,
+      "wins": 16,
+      "losses": 19
+    },
     "counters": {
-      "Lux": 2.5, "Ziggs": 2.5, "Xerath": 2.0, "Viktor": 2.0
+      "Yunara": 3.4,
+      "Aatrox": 2.7,
+      "Renata": 2.7,
+      "Varus": 3,
+      "Rakan": 2.4,
+      "Lulu": 2.7,
+      "Viktor": 2.4,
+      "Sylas": 2.7,
+      "Taliyah": 2.7
     },
     "synergies": {
-      "Lulu": 3.0, "Orianna": 2.5, "Thresh": 2.0, "Amumu": 2.5, "Jarvan IV": 2.0
+      "Pantheon": 2.3,
+      "Kaisa": 2,
+      "Alistar": 2.4,
+      "Sivir": 2.3,
+      "Varus": 1.8,
+      "Sejuani": 2,
+      "Aurora": 2,
+      "Maokai": 1.8,
+      "Gnar": 2,
+      "Nautilus": 2,
+      "Lucian": 2
     },
-    "description": "Hibrit hasar, Spirit Cleave ile güçlü trade, teamfight carry"
+    "blindPickSafety": 6,
+    "description": "Niş pick"
+  },
+  "Annie": {
+    "name": "Annie",
+    "roles": [
+      "mid"
+    ],
+    "tier": {
+      "mid": "C"
+    },
+    "winRate": {
+      "mid": 41.7
+    },
+    "pickRate": {
+      "mid": 1.7
+    },
+    "banRate": 2.4,
+    "presence": 4.1,
+    "proStats": {
+      "picks": 24,
+      "bans": 35,
+      "wins": 10,
+      "losses": 14
+    },
+    "counters": {
+      "Vi": 4,
+      "Aurora": 2.7,
+      "Ezreal": 2.7,
+      "Varus": 4,
+      "Nautilus": 2.7
+    },
+    "synergies": {
+      "MonkeyKing": 2,
+      "Karma": 1.8,
+      "XinZhao": 2,
+      "Varus": 1.8,
+      "Sivir": 2,
+      "Renekton": 3
+    },
+    "blindPickSafety": 4,
+    "description": "Niş pick"
+  },
+  "Xayah": {
+    "name": "Xayah",
+    "roles": [
+      "adc"
+    ],
+    "tier": {
+      "adc": "C"
+    },
+    "winRate": {
+      "adc": 61.8
+    },
+    "pickRate": {
+      "adc": 2.4
+    },
+    "banRate": 1.6,
+    "presence": 3.9,
+    "proStats": {
+      "picks": 34,
+      "bans": 23,
+      "wins": 21,
+      "losses": 13
+    },
+    "counters": {
+      "Nocturne": 4,
+      "Akali": 4,
+      "Zaahen": 2.4,
+      "Nautilus": 3,
+      "KSante": 4,
+      "Aatrox": 2.7,
+      "Karma": 4,
+      "Ezreal": 2.7,
+      "Ryze": 4,
+      "Aphelios": 4,
+      "Yunara": 2.4,
+      "Renekton": 4,
+      "Corki": 3,
+      "Neeko": 2.7,
+      "Ambessa": 2.9
+    },
+    "synergies": {
+      "Aurora": 2,
+      "Ahri": 2.6,
+      "Gwen": 2.3,
+      "Vi": 2.6,
+      "Azir": 1.8,
+      "JarvanIV": 2,
+      "MonkeyKing": 3,
+      "Renekton": 2,
+      "Zaahen": 2,
+      "Alistar": 3
+    },
+    "blindPickSafety": 6,
+    "description": "Yüksek WR · Niş pick"
+  },
+  "Yorick": {
+    "name": "Yorick",
+    "roles": [
+      "top"
+    ],
+    "tier": {
+      "top": "C"
+    },
+    "winRate": {
+      "top": 65.6
+    },
+    "pickRate": {
+      "top": 2.2
+    },
+    "banRate": 1.7,
+    "presence": 3.9,
+    "proStats": {
+      "picks": 32,
+      "bans": 24,
+      "wins": 21,
+      "losses": 11
+    },
+    "counters": {
+      "Jayce": 2.7,
+      "Nautilus": 3,
+      "Ambessa": 3,
+      "Azir": 2.7,
+      "Aurora": 2.7,
+      "Gnar": 2.8,
+      "Trundle": 3,
+      "Yunara": 2.4,
+      "Renata": 4,
+      "Sivir": 2.7
+    },
+    "synergies": {
+      "Varus": 2.6,
+      "Sylas": 2,
+      "Braum": 3,
+      "Yunara": 2,
+      "Anivia": 2.3,
+      "Lulu": 2.3,
+      "Taliyah": 1.8,
+      "Alistar": 3,
+      "DrMundo": 2.4,
+      "Ryze": 2,
+      "Sivir": 3,
+      "Galio": 2,
+      "MonkeyKing": 3,
+      "Ashe": 2.3,
+      "Seraphine": 2,
+      "XinZhao": 2.4,
+      "Aurora": 2
+    },
+    "blindPickSafety": 6,
+    "description": "Yüksek WR · Niş pick"
+  },
+  "Lucian": {
+    "name": "Lucian",
+    "roles": [
+      "adc"
+    ],
+    "tier": {
+      "adc": "C"
+    },
+    "winRate": {
+      "adc": 36.7
+    },
+    "pickRate": {
+      "adc": 2.1
+    },
+    "banRate": 1.7,
+    "presence": 3.7,
+    "proStats": {
+      "picks": 30,
+      "bans": 24,
+      "wins": 11,
+      "losses": 19
+    },
+    "counters": {
+      "Qiyana": 3,
+      "Aurora": 2.7,
+      "Jayce": 2.7,
+      "Karma": 2.7,
+      "Nami": 2.7,
+      "Ahri": 2.7,
+      "Alistar": 2.7
+    },
+    "synergies": {
+      "Gnar": 2,
+      "Yone": 2,
+      "XinZhao": 2
+    },
+    "blindPickSafety": 4,
+    "description": "Niş pick"
+  },
+  "Thresh": {
+    "name": "Thresh",
+    "roles": [
+      "support"
+    ],
+    "tier": {
+      "support": "C"
+    },
+    "winRate": {
+      "support": 52.6
+    },
+    "pickRate": {
+      "support": 2.6
+    },
+    "banRate": 0.9,
+    "presence": 3.5,
+    "proStats": {
+      "picks": 38,
+      "bans": 13,
+      "wins": 20,
+      "losses": 18
+    },
+    "counters": {
+      "Lulu": 2.7,
+      "Renekton": 2.4,
+      "XinZhao": 3.2,
+      "Aatrox": 2.7,
+      "Trundle": 3,
+      "Aphelios": 3,
+      "Viktor": 2.7,
+      "KSante": 4,
+      "Taliyah": 2.7
+    },
+    "synergies": {
+      "Ryze": 1.9,
+      "Malphite": 3,
+      "Gnar": 2.1,
+      "Renekton": 1.8,
+      "Aurora": 3,
+      "Qiyana": 3,
+      "Jinx": 2.3,
+      "KSante": 2,
+      "Rumble": 3
+    },
+    "blindPickSafety": 6,
+    "description": "Niş pick"
+  },
+  "Naafiri": {
+    "name": "Naafiri",
+    "roles": [
+      "jungle"
+    ],
+    "tier": {
+      "jungle": "C"
+    },
+    "winRate": {
+      "jungle": 46.4
+    },
+    "pickRate": {
+      "jungle": 1.9
+    },
+    "banRate": 1.5,
+    "presence": 3.5,
+    "proStats": {
+      "picks": 29,
+      "bans": 22,
+      "wins": 14,
+      "losses": 15
+    },
+    "counters": {
+      "Jhin": 3.2,
+      "Seraphine": 3,
+      "KSante": 4,
+      "Azir": 3,
+      "Karma": 2.7,
+      "Ryze": 3,
+      "Nami": 2.7,
+      "DrMundo": 2.7,
+      "Sion": 4
+    },
+    "synergies": {
+      "Ambessa": 2,
+      "Ezreal": 2,
+      "Karma": 1.8,
+      "Neeko": 1.8,
+      "Sion": 2,
+      "Varus": 2,
+      "Corki": 2,
+      "Ahri": 2,
+      "Kaisa": 2.3
+    },
+    "blindPickSafety": 6,
+    "description": "Niş pick"
+  },
+  "Kennen": {
+    "name": "Kennen",
+    "roles": [
+      "top"
+    ],
+    "tier": {
+      "top": "C"
+    },
+    "winRate": {
+      "top": 45
+    },
+    "pickRate": {
+      "top": 1.4
+    },
+    "banRate": 1.9,
+    "presence": 3.3,
+    "proStats": {
+      "picks": 20,
+      "bans": 27,
+      "wins": 9,
+      "losses": 11
+    },
+    "counters": {
+      "Yunara": 4,
+      "Vi": 2.7,
+      "Alistar": 3.2,
+      "Renekton": 2.7,
+      "Karma": 2.7
+    },
+    "synergies": {
+      "Rakan": 2.3,
+      "Ezreal": 3,
+      "Taliyah": 2
+    },
+    "blindPickSafety": 5,
+    "description": "Niş pick"
+  },
+  "Renata": {
+    "name": "Renata Glasc",
+    "roles": [
+      "support"
+    ],
+    "tier": {
+      "support": "C"
+    },
+    "winRate": {
+      "support": 40
+    },
+    "pickRate": {
+      "support": 1.7
+    },
+    "banRate": 1.3,
+    "presence": 3,
+    "proStats": {
+      "picks": 25,
+      "bans": 19,
+      "wins": 10,
+      "losses": 15
+    },
+    "counters": {
+      "MonkeyKing": 2.4,
+      "Sion": 2.7,
+      "Lucian": 2.7,
+      "XinZhao": 2.7,
+      "Corki": 3.2,
+      "Nautilus": 4
+    },
+    "synergies": {
+      "Orianna": 2,
+      "Ahri": 2,
+      "Azir": 2,
+      "XinZhao": 2,
+      "Sion": 2
+    },
+    "blindPickSafety": 4,
+    "description": "Niş pick"
+  },
+  "TwistedFate": {
+    "name": "Twisted Fate",
+    "roles": [
+      "mid"
+    ],
+    "tier": {
+      "mid": "C"
+    },
+    "winRate": {
+      "mid": 68.2
+    },
+    "pickRate": {
+      "mid": 1.5
+    },
+    "banRate": 1.4,
+    "presence": 2.9,
+    "proStats": {
+      "picks": 22,
+      "bans": 20,
+      "wins": 15,
+      "losses": 7
+    },
+    "counters": {
+      "Ezreal": 4,
+      "Aurora": 2.7,
+      "Seraphine": 3.3,
+      "Sion": 4,
+      "Mel": 2.7,
+      "Ashe": 3,
+      "KSante": 4
+    },
+    "synergies": {
+      "Neeko": 2,
+      "Corki": 2.4,
+      "MonkeyKing": 2,
+      "Renekton": 2.3,
+      "Yuumi": 2,
+      "Kaisa": 3
+    },
+    "blindPickSafety": 6,
+    "description": "Yüksek WR · Niş pick"
+  },
+  "Ziggs": {
+    "name": "Ziggs",
+    "roles": [
+      "mid",
+      "adc"
+    ],
+    "tier": {
+      "mid": "C",
+      "adc": "C"
+    },
+    "winRate": {
+      "mid": 57.1,
+      "adc": 60
+    },
+    "pickRate": {
+      "mid": 0.5,
+      "adc": 0.3
+    },
+    "banRate": 1.8,
+    "presence": 2.6,
+    "proStats": {
+      "picks": 12,
+      "bans": 26,
+      "wins": 7,
+      "losses": 5
+    },
+    "counters": {
+      "Poppy": 2.7,
+      "Rakan": 4
+    },
+    "synergies": {
+      "XinZhao": 2,
+      "Alistar": 2.3,
+      "Leona": 2,
+      "Ambessa": 2
+    },
+    "blindPickSafety": 5,
+    "description": "Yüksek WR · Niş pick"
+  },
+  "Zoe": {
+    "name": "Zoe",
+    "roles": [
+      "mid"
+    ],
+    "tier": {
+      "mid": "C"
+    },
+    "winRate": {
+      "mid": 45.8
+    },
+    "pickRate": {
+      "mid": 1.7
+    },
+    "banRate": 0.9,
+    "presence": 2.6,
+    "proStats": {
+      "picks": 24,
+      "bans": 13,
+      "wins": 11,
+      "losses": 13
+    },
+    "counters": {
+      "Rumble": 2.7,
+      "Vi": 2.7,
+      "Jayce": 2.4,
+      "Poppy": 2.7,
+      "Gnar": 2.7,
+      "Syndra": 2.7
+    },
+    "synergies": {
+      "KSante": 2.4,
+      "Yunara": 2,
+      "Pantheon": 1.8,
+      "Kaisa": 2
+    },
+    "blindPickSafety": 6,
+    "description": "Niş pick"
+  },
+  "RekSai": {
+    "name": "Rek'Sai",
+    "roles": [
+      "top"
+    ],
+    "tier": {
+      "top": "C"
+    },
+    "winRate": {
+      "top": 60.9
+    },
+    "pickRate": {
+      "top": 1.6
+    },
+    "banRate": 0.7,
+    "presence": 2.4,
+    "proStats": {
+      "picks": 24,
+      "bans": 10,
+      "wins": 15,
+      "losses": 9
+    },
+    "counters": {
+      "Orianna": 4,
+      "Nocturne": 2.7,
+      "Sion": 2.4,
+      "Rakan": 2.4,
+      "Renekton": 4,
+      "Azir": 2.7,
+      "Alistar": 2.4,
+      "Sivir": 2.4,
+      "Pantheon": 4,
+      "Taliyah": 3,
+      "DrMundo": 2.7,
+      "Ezreal": 2.7
+    },
+    "synergies": {
+      "Varus": 3,
+      "Azir": 2.4,
+      "Bard": 3,
+      "Rell": 3,
+      "XinZhao": 2,
+      "Taliyah": 2,
+      "Aurora": 2
+    },
+    "blindPickSafety": 6,
+    "description": "Yüksek WR · Niş pick"
+  },
+  "LeeSin": {
+    "name": "Lee Sin",
+    "roles": [
+      "jungle",
+      "top"
+    ],
+    "tier": {
+      "jungle": "C",
+      "top": "C"
+    },
+    "winRate": {
+      "jungle": 47.4,
+      "top": 50
+    },
+    "pickRate": {
+      "jungle": 1.3,
+      "top": 0.1
+    },
+    "banRate": 0.9,
+    "presence": 2.4,
+    "proStats": {
+      "picks": 21,
+      "bans": 13,
+      "wins": 10,
+      "losses": 11
+    },
+    "counters": {
+      "Ezreal": 4,
+      "Aurora": 2.7,
+      "Jax": 4
+    },
+    "synergies": {
+      "Kaisa": 2.4,
+      "Ryze": 2.3,
+      "Ahri": 2
+    },
+    "blindPickSafety": 6,
+    "description": "Niş pick"
+  },
+  "Kalista": {
+    "name": "Kalista",
+    "roles": [
+      "adc"
+    ],
+    "tier": {
+      "adc": "C"
+    },
+    "winRate": {
+      "adc": 52.6
+    },
+    "pickRate": {
+      "adc": 1.3
+    },
+    "banRate": 0.6,
+    "presence": 1.9,
+    "proStats": {
+      "picks": 19,
+      "bans": 8,
+      "wins": 10,
+      "losses": 9
+    },
+    "counters": {
+      "Lucian": 2.7,
+      "Corki": 2.4,
+      "Nautilus": 4
+    },
+    "synergies": {
+      "Orianna": 2
+    },
+    "blindPickSafety": 6,
+    "description": "Niş pick"
+  },
+  "Volibear": {
+    "name": "Volibear",
+    "roles": [
+      "top",
+      "jungle"
+    ],
+    "tier": {
+      "top": "C",
+      "jungle": "C"
+    },
+    "winRate": {
+      "top": 61.5,
+      "jungle": 100
+    },
+    "pickRate": {
+      "top": 0.9,
+      "jungle": 0.2
+    },
+    "banRate": 0.8,
+    "presence": 1.9,
+    "proStats": {
+      "picks": 16,
+      "bans": 11,
+      "wins": 11,
+      "losses": 5
+    },
+    "counters": {
+      "Ambessa": 2.9,
+      "Akali": 4,
+      "Azir": 4,
+      "XinZhao": 2.7,
+      "Ezreal": 3,
+      "Bard": 2.7
+    },
+    "synergies": {
+      "Braum": 2,
+      "Ashe": 3,
+      "Ezreal": 2,
+      "Karma": 3
+    },
+    "blindPickSafety": 6,
+    "description": "Yüksek WR · Niş pick"
+  },
+  "Maokai": {
+    "name": "Maokai",
+    "roles": [
+      "jungle"
+    ],
+    "tier": {
+      "jungle": "C"
+    },
+    "winRate": {
+      "jungle": 36.8
+    },
+    "pickRate": {
+      "jungle": 1.3
+    },
+    "banRate": 0.3,
+    "presence": 1.7,
+    "proStats": {
+      "picks": 20,
+      "bans": 4,
+      "wins": 7,
+      "losses": 13
+    },
+    "counters": {
+      "Yunara": 3.2,
+      "Lulu": 2.7,
+      "Viktor": 2.7,
+      "Sylas": 4,
+      "Gnar": 4
+    },
+    "synergies": {
+      "Yone": 1.8,
+      "Sivir": 2,
+      "Nautilus": 2.3,
+      "Renekton": 2
+    },
+    "blindPickSafety": 4,
+    "description": "Niş pick"
+  },
+  "Pyke": {
+    "name": "Pyke",
+    "roles": [
+      "support"
+    ],
+    "tier": {
+      "support": "C"
+    },
+    "winRate": {
+      "support": 37.5
+    },
+    "pickRate": {
+      "support": 0.6
+    },
+    "banRate": 1,
+    "presence": 1.6,
+    "proStats": {
+      "picks": 8,
+      "bans": 15,
+      "wins": 3,
+      "losses": 5
+    },
+    "counters": {
+      "Karma": 2.7
+    },
+    "synergies": {},
+    "blindPickSafety": 4,
+    "description": "Niş pick"
+  },
+  "Jinx": {
+    "name": "Jinx",
+    "roles": [
+      "adc"
+    ],
+    "tier": {
+      "adc": "C"
+    },
+    "winRate": {
+      "adc": 50
+    },
+    "pickRate": {
+      "adc": 1.2
+    },
+    "banRate": 0.3,
+    "presence": 1.5,
+    "proStats": {
+      "picks": 18,
+      "bans": 4,
+      "wins": 9,
+      "losses": 9
+    },
+    "counters": {
+      "Nami": 2.7,
+      "Trundle": 4,
+      "Aphelios": 3.3,
+      "Aurora": 2.7
+    },
+    "synergies": {
+      "KSante": 2,
+      "Thresh": 2.3,
+      "DrMundo": 3,
+      "Sion": 2,
+      "Karma": 2
+    },
+    "blindPickSafety": 6,
+    "description": "Niş pick"
+  },
+  "Olaf": {
+    "name": "Olaf",
+    "roles": [
+      "jungle",
+      "top"
+    ],
+    "tier": {
+      "jungle": "C",
+      "top": "C"
+    },
+    "winRate": {
+      "jungle": 33.3,
+      "top": 50
+    },
+    "pickRate": {
+      "jungle": 0.2,
+      "top": 0.4
+    },
+    "banRate": 0.8,
+    "presence": 1.4,
+    "proStats": {
+      "picks": 9,
+      "bans": 11,
+      "wins": 4,
+      "losses": 5
+    },
+    "counters": {
+      "Rakan": 2.7
+    },
+    "synergies": {
+      "MissFortune": 2.3
+    },
+    "blindPickSafety": 4,
+    "description": "Niş pick"
+  },
+  "Yasuo": {
+    "name": "Yasuo",
+    "roles": [
+      "top",
+      "mid",
+      "adc"
+    ],
+    "tier": {
+      "top": "C",
+      "mid": "C",
+      "adc": "C"
+    },
+    "winRate": {
+      "top": 33.3,
+      "mid": 100,
+      "adc": 50
+    },
+    "pickRate": {
+      "top": 0.2,
+      "mid": 0.1,
+      "adc": 0.1
+    },
+    "banRate": 0.8,
+    "presence": 1.2,
+    "proStats": {
+      "picks": 7,
+      "bans": 11,
+      "wins": 4,
+      "losses": 3
+    },
+    "counters": {},
+    "synergies": {},
+    "blindPickSafety": 5,
+    "description": "Yüksek WR · Niş pick"
+  },
+  "Shen": {
+    "name": "Shen",
+    "roles": [
+      "support",
+      "top",
+      "jungle"
+    ],
+    "tier": {
+      "support": "C",
+      "top": "C",
+      "jungle": "C"
+    },
+    "winRate": {
+      "support": 66.7,
+      "top": 100,
+      "jungle": 75
+    },
+    "pickRate": {
+      "support": 0.4,
+      "top": 0.3,
+      "jungle": 0.3
+    },
+    "banRate": 0.1,
+    "presence": 1.2,
+    "proStats": {
+      "picks": 15,
+      "bans": 2,
+      "wins": 12,
+      "losses": 3
+    },
+    "counters": {
+      "Renekton": 3,
+      "Azir": 2.7,
+      "Ambessa": 4,
+      "Bard": 4,
+      "JarvanIV": 2.7,
+      "DrMundo": 4
+    },
+    "synergies": {
+      "Gnar": 3,
+      "Orianna": 2.3,
+      "Yunara": 3
+    },
+    "blindPickSafety": 6,
+    "description": "Yüksek WR · Niş pick"
+  },
+  "Viego": {
+    "name": "Viego",
+    "roles": [
+      "jungle"
+    ],
+    "tier": {
+      "jungle": "C"
+    },
+    "winRate": {
+      "jungle": 23.1
+    },
+    "pickRate": {
+      "jungle": 0.9
+    },
+    "banRate": 0.3,
+    "presence": 1.2,
+    "proStats": {
+      "picks": 13,
+      "bans": 4,
+      "wins": 3,
+      "losses": 10
+    },
+    "counters": {},
+    "synergies": {
+      "Kaisa": 2
+    },
+    "blindPickSafety": 4,
+    "description": "Niş pick"
+  },
+  "Blitzcrank": {
+    "name": "Blitzcrank",
+    "roles": [
+      "support"
+    ],
+    "tier": {
+      "support": "C"
+    },
+    "winRate": {
+      "support": 0
+    },
+    "pickRate": {
+      "support": 0.6
+    },
+    "banRate": 0.6,
+    "presence": 1.2,
+    "proStats": {
+      "picks": 8,
+      "bans": 9,
+      "wins": 0,
+      "losses": 8
+    },
+    "counters": {},
+    "synergies": {},
+    "blindPickSafety": 4,
+    "description": "Niş pick"
+  },
+  "Zeri": {
+    "name": "Zeri",
+    "roles": [
+      "adc"
+    ],
+    "tier": {
+      "adc": "C"
+    },
+    "winRate": {
+      "adc": 50
+    },
+    "pickRate": {
+      "adc": 0.8
+    },
+    "banRate": 0.2,
+    "presence": 1.1,
+    "proStats": {
+      "picks": 13,
+      "bans": 3,
+      "wins": 6,
+      "losses": 7
+    },
+    "counters": {},
+    "synergies": {},
+    "blindPickSafety": 6,
+    "description": "Niş pick"
+  },
+  "Skarner": {
+    "name": "Skarner",
+    "roles": [
+      "jungle"
+    ],
+    "tier": {
+      "jungle": "C"
+    },
+    "winRate": {
+      "jungle": 61.5
+    },
+    "pickRate": {
+      "jungle": 0.9
+    },
+    "banRate": 0.2,
+    "presence": 1.1,
+    "proStats": {
+      "picks": 13,
+      "bans": 3,
+      "wins": 8,
+      "losses": 5
+    },
+    "counters": {
+      "Pantheon": 4,
+      "Aatrox": 2.7
+    },
+    "synergies": {
+      "Azir": 2.4,
+      "Ashe": 2,
+      "Seraphine": 2
+    },
+    "blindPickSafety": 6,
+    "description": "Yüksek WR · Niş pick"
+  },
+  "Sejuani": {
+    "name": "Sejuani",
+    "roles": [
+      "jungle"
+    ],
+    "tier": {
+      "jungle": "C"
+    },
+    "winRate": {
+      "jungle": 54.5
+    },
+    "pickRate": {
+      "jungle": 0.8
+    },
+    "banRate": 0.3,
+    "presence": 1,
+    "proStats": {
+      "picks": 11,
+      "bans": 4,
+      "wins": 6,
+      "losses": 5
+    },
+    "counters": {},
+    "synergies": {
+      "Yone": 2
+    },
+    "blindPickSafety": 6,
+    "description": "Niş pick"
+  },
+  "AurelionSol": {
+    "name": "Aurelion Sol",
+    "roles": [
+      "mid"
+    ],
+    "tier": {
+      "mid": "C"
+    },
+    "winRate": {
+      "mid": 33.3
+    },
+    "pickRate": {
+      "mid": 0.4
+    },
+    "banRate": 0.6,
+    "presence": 1,
+    "proStats": {
+      "picks": 6,
+      "bans": 9,
+      "wins": 2,
+      "losses": 4
+    },
+    "counters": {
+      "Orianna": 2.7
+    },
+    "synergies": {},
+    "blindPickSafety": 4,
+    "description": "Niş pick"
+  },
+  "Elise": {
+    "name": "Elise",
+    "roles": [
+      "support"
+    ],
+    "tier": {
+      "support": "C"
+    },
+    "winRate": {
+      "support": 57.1
+    },
+    "pickRate": {
+      "support": 0.5
+    },
+    "banRate": 0.4,
+    "presence": 0.9,
+    "proStats": {
+      "picks": 7,
+      "bans": 6,
+      "wins": 4,
+      "losses": 3
+    },
+    "counters": {
+      "Vi": 2.7
+    },
+    "synergies": {
+      "KSante": 2
+    },
+    "blindPickSafety": 6,
+    "description": "Yüksek WR · Niş pick"
+  },
+  "Camille": {
+    "name": "Camille",
+    "roles": [
+      "top",
+      "support"
+    ],
+    "tier": {
+      "top": "C",
+      "support": "C"
+    },
+    "winRate": {
+      "top": 42.9,
+      "support": 50
+    },
+    "pickRate": {
+      "top": 0.5,
+      "support": 0.1
+    },
+    "banRate": 0.3,
+    "presence": 0.9,
+    "proStats": {
+      "picks": 9,
+      "bans": 4,
+      "wins": 4,
+      "losses": 5
+    },
+    "counters": {
+      "Rakan": 2.4
+    },
+    "synergies": {},
+    "blindPickSafety": 4,
+    "description": "Niş pick"
+  },
+  "Hwei": {
+    "name": "Hwei",
+    "roles": [
+      "mid"
+    ],
+    "tier": {
+      "mid": "C"
+    },
+    "winRate": {
+      "mid": 41.7
+    },
+    "pickRate": {
+      "mid": 0.8
+    },
+    "banRate": 0,
+    "presence": 0.8,
+    "proStats": {
+      "picks": 12,
+      "bans": 0,
+      "wins": 5,
+      "losses": 7
+    },
+    "counters": {},
+    "synergies": {},
+    "blindPickSafety": 4,
+    "description": "Niş pick"
   },
   "Yuumi": {
     "name": "Yuumi",
-    "roles": ["support"],
-    "tier": { "support": "C" },
-    "winRate": { "support": 47.5 },
-    "pickRate": { "support": 2.0 },
-    "banRate": 5.0,
+    "roles": [
+      "support"
+    ],
+    "tier": {
+      "support": "C"
+    },
+    "winRate": {
+      "support": 40
+    },
+    "pickRate": {
+      "support": 0.7
+    },
+    "banRate": 0,
+    "presence": 0.7,
+    "proStats": {
+      "picks": 10,
+      "bans": 0,
+      "wins": 4,
+      "losses": 6
+    },
+    "counters": {},
+    "synergies": {
+      "TwistedFate": 2
+    },
+    "blindPickSafety": 4,
+    "description": "Niş pick"
+  },
+  "Rengar": {
+    "name": "Rengar",
+    "roles": [
+      "jungle"
+    ],
+    "tier": {
+      "jungle": "C"
+    },
+    "winRate": {
+      "jungle": 50
+    },
+    "pickRate": {
+      "jungle": 0.1
+    },
+    "banRate": 0.6,
+    "presence": 0.7,
+    "proStats": {
+      "picks": 2,
+      "bans": 8,
+      "wins": 1,
+      "losses": 1
+    },
+    "counters": {},
+    "synergies": {},
     "blindPickSafety": 3,
+    "description": "Niş pick"
+  },
+  "Tristana": {
+    "name": "Tristana",
+    "roles": [
+      "adc",
+      "mid"
+    ],
+    "tier": {
+      "adc": "C",
+      "mid": "C"
+    },
+    "winRate": {
+      "adc": 16.7,
+      "mid": 50
+    },
+    "pickRate": {
+      "adc": 0.4,
+      "mid": 0.1
+    },
+    "banRate": 0.1,
+    "presence": 0.6,
+    "proStats": {
+      "picks": 8,
+      "bans": 1,
+      "wins": 2,
+      "losses": 6
+    },
+    "counters": {},
+    "synergies": {},
+    "blindPickSafety": 4,
+    "description": "Niş pick"
+  },
+  "Gragas": {
+    "name": "Gragas",
+    "roles": [
+      "top"
+    ],
+    "tier": {
+      "top": "C"
+    },
+    "winRate": {
+      "top": 44.4
+    },
+    "pickRate": {
+      "top": 0.6
+    },
+    "banRate": 0,
+    "presence": 0.6,
+    "proStats": {
+      "picks": 9,
+      "bans": 0,
+      "wins": 4,
+      "losses": 5
+    },
     "counters": {
-      "Janna": 1.5, "Sona": 1.5
+      "Neeko": 2.7
     },
     "synergies": {
-      "Darius": 3.5, "Garen": 3.0, "Master Yi": 3.5, "Twitch": 3.5,
-      "Viego": 2.5, "Hecarim": 3.0
+      "Nami": 2
     },
-    "description": "Yapışan enchanter, untargetable W, geç oyun güçlü buff"
+    "blindPickSafety": 4,
+    "description": "Niş pick"
   },
-  "Zac": {
-    "name": "Zac",
-    "roles": ["jungle", "top"],
-    "tier": { "jungle": "A", "top": "B" },
-    "winRate": { "jungle": 51.5, "top": 49.5 },
-    "pickRate": { "jungle": 4.0, "top": 1.5 },
-    "banRate": 2.5,
-    "blindPickSafety": 7,
-    "counters": {
-      "Master Yi": 2.0, "Shaco": 2.0, "Evelynn": 2.0, "Karthus": 2.0
+  "Milio": {
+    "name": "Milio",
+    "roles": [
+      "support"
+    ],
+    "tier": {
+      "support": "C"
     },
-    "synergies": {
-      "Yasuo": 3.0, "Orianna": 2.5, "Miss Fortune": 2.0, "Jinx": 2.0
+    "winRate": {
+      "support": 37.5
     },
-    "description": "Uzun menzil engage, blob pasifi ile sustain, AoE CC tank"
+    "pickRate": {
+      "support": 0.6
+    },
+    "banRate": 0.1,
+    "presence": 0.6,
+    "proStats": {
+      "picks": 8,
+      "bans": 1,
+      "wins": 3,
+      "losses": 5
+    },
+    "counters": {},
+    "synergies": {},
+    "blindPickSafety": 4,
+    "description": "Niş pick"
   },
-  "Zed": {
-    "name": "Zed",
-    "roles": ["mid"],
-    "tier": { "mid": "A" },
-    "winRate": { "mid": 50.5 },
-    "pickRate": { "mid": 7.5 },
-    "banRate": 10.0,
+  "Lux": {
+    "name": "Lux",
+    "roles": [
+      "support"
+    ],
+    "tier": {
+      "support": "C"
+    },
+    "winRate": {
+      "support": 0
+    },
+    "pickRate": {
+      "support": 0.1
+    },
+    "banRate": 0.5,
+    "presence": 0.6,
+    "proStats": {
+      "picks": 2,
+      "bans": 7,
+      "wins": 0,
+      "losses": 2
+    },
+    "counters": {},
+    "synergies": {},
+    "blindPickSafety": 3,
+    "description": "Niş pick"
+  },
+  "Vayne": {
+    "name": "Vayne",
+    "roles": [
+      "top"
+    ],
+    "tier": {
+      "top": "C"
+    },
+    "winRate": {
+      "top": 60
+    },
+    "pickRate": {
+      "top": 0.3
+    },
+    "banRate": 0.1,
+    "presence": 0.6,
+    "proStats": {
+      "picks": 6,
+      "bans": 2,
+      "wins": 3,
+      "losses": 3
+    },
+    "counters": {},
+    "synergies": {},
     "blindPickSafety": 6,
+    "description": "Niş pick"
+  },
+  "Swain": {
+    "name": "Swain",
+    "roles": [
+      "mid"
+    ],
+    "tier": {
+      "mid": "C"
+    },
+    "winRate": {
+      "mid": 50
+    },
+    "pickRate": {
+      "mid": 0.4
+    },
+    "banRate": 0.1,
+    "presence": 0.5,
+    "proStats": {
+      "picks": 6,
+      "bans": 1,
+      "wins": 3,
+      "losses": 3
+    },
     "counters": {
-      "Lux": 3.0, "Veigar": 2.5, "Twisted Fate": 3.0, "Ziggs": 3.5,
-      "Xerath": 3.0, "Viktor": 2.5
+      "Galio": 2.4,
+      "Naafiri": 2.7
     },
+    "synergies": {},
+    "blindPickSafety": 6,
+    "description": "Niş pick"
+  },
+  "Draven": {
+    "name": "Draven",
+    "roles": [
+      "adc"
+    ],
+    "tier": {
+      "adc": "C"
+    },
+    "winRate": {
+      "adc": 50
+    },
+    "pickRate": {
+      "adc": 0.4
+    },
+    "banRate": 0.1,
+    "presence": 0.5,
+    "proStats": {
+      "picks": 6,
+      "bans": 1,
+      "wins": 3,
+      "losses": 3
+    },
+    "counters": {},
+    "synergies": {},
+    "blindPickSafety": 6,
+    "description": "Niş pick"
+  },
+  "Nidalee": {
+    "name": "Nidalee",
+    "roles": [
+      "top",
+      "jungle"
+    ],
+    "tier": {
+      "top": "C",
+      "jungle": "C"
+    },
+    "winRate": {
+      "top": 0,
+      "jungle": 50
+    },
+    "pickRate": {
+      "top": 0.1,
+      "jungle": 0.1
+    },
+    "banRate": 0.2,
+    "presence": 0.5,
+    "proStats": {
+      "picks": 4,
+      "bans": 3,
+      "wins": 1,
+      "losses": 3
+    },
+    "counters": {},
+    "synergies": {},
+    "blindPickSafety": 4,
+    "description": "Niş pick"
+  },
+  "Khazix": {
+    "name": "Kha'Zix",
+    "roles": [
+      "jungle"
+    ],
+    "tier": {
+      "jungle": "C"
+    },
+    "winRate": {
+      "jungle": 66.7
+    },
+    "pickRate": {
+      "jungle": 0.4
+    },
+    "banRate": 0.1,
+    "presence": 0.5,
+    "proStats": {
+      "picks": 6,
+      "bans": 1,
+      "wins": 4,
+      "losses": 2
+    },
+    "counters": {},
+    "synergies": {},
+    "blindPickSafety": 6,
+    "description": "Yüksek WR · Niş pick"
+  },
+  "Kled": {
+    "name": "Kled",
+    "roles": [
+      "top"
+    ],
+    "tier": {
+      "top": "C"
+    },
+    "winRate": {
+      "top": 66.7
+    },
+    "pickRate": {
+      "top": 0.4
+    },
+    "banRate": 0.1,
+    "presence": 0.5,
+    "proStats": {
+      "picks": 6,
+      "bans": 1,
+      "wins": 4,
+      "losses": 2
+    },
+    "counters": {},
     "synergies": {
-      "Leona": 2.0, "Nautilus": 2.0, "Thresh": 2.0, "Jarvan IV": 2.0
+      "Braum": 2
     },
-    "description": "AD assassin, ult ile tek atma, shadow mekaniği ile outplay"
+    "blindPickSafety": 6,
+    "description": "Yüksek WR · Niş pick"
+  },
+  "KogMaw": {
+    "name": "Kog'Maw",
+    "roles": [
+      "adc",
+      "mid"
+    ],
+    "tier": {
+      "adc": "C",
+      "mid": "C"
+    },
+    "winRate": {
+      "adc": 66.7,
+      "mid": 33.3
+    },
+    "pickRate": {
+      "adc": 0.2,
+      "mid": 0.2
+    },
+    "banRate": 0,
+    "presence": 0.4,
+    "proStats": {
+      "picks": 6,
+      "bans": 0,
+      "wins": 3,
+      "losses": 3
+    },
+    "counters": {
+      "Azir": 2.7
+    },
+    "synergies": {},
+    "blindPickSafety": 6,
+    "description": "Niş pick"
+  },
+  "Garen": {
+    "name": "Garen",
+    "roles": [
+      "top"
+    ],
+    "tier": {
+      "top": "C"
+    },
+    "winRate": {
+      "top": 75
+    },
+    "pickRate": {
+      "top": 0.3
+    },
+    "banRate": 0.1,
+    "presence": 0.4,
+    "proStats": {
+      "picks": 4,
+      "bans": 2,
+      "wins": 3,
+      "losses": 1
+    },
+    "counters": {
+      "KSante": 3
+    },
+    "synergies": {},
+    "blindPickSafety": 6,
+    "description": "Niş pick"
   },
   "Zyra": {
     "name": "Zyra",
-    "roles": ["support"],
-    "tier": { "support": "A" },
-    "winRate": { "support": 51.8 },
-    "pickRate": { "support": 3.5 },
-    "banRate": 2.0,
-    "blindPickSafety": 7,
+    "roles": [
+      "jungle"
+    ],
+    "tier": {
+      "jungle": "C"
+    },
+    "winRate": {
+      "jungle": 50
+    },
+    "pickRate": {
+      "jungle": 0.3
+    },
+    "banRate": 0.1,
+    "presence": 0.3,
+    "proStats": {
+      "picks": 4,
+      "bans": 1,
+      "wins": 2,
+      "losses": 2
+    },
+    "counters": {},
+    "synergies": {},
+    "blindPickSafety": 6,
+    "description": "Niş pick"
+  },
+  "Senna": {
+    "name": "Senna",
+    "roles": [
+      "adc"
+    ],
+    "tier": {
+      "adc": "C"
+    },
+    "winRate": {
+      "adc": 0
+    },
+    "pickRate": {
+      "adc": 0.3
+    },
+    "banRate": 0,
+    "presence": 0.3,
+    "proStats": {
+      "picks": 5,
+      "bans": 0,
+      "wins": 1,
+      "losses": 4
+    },
+    "counters": {},
+    "synergies": {},
+    "blindPickSafety": 4,
+    "description": "Niş pick"
+  },
+  "Smolder": {
+    "name": "Smolder",
+    "roles": [
+      "mid",
+      "adc"
+    ],
+    "tier": {
+      "mid": "C",
+      "adc": "C"
+    },
+    "winRate": {
+      "mid": 50,
+      "adc": 0
+    },
+    "pickRate": {
+      "mid": 0.1,
+      "adc": 0.1
+    },
+    "banRate": 0.1,
+    "presence": 0.3,
+    "proStats": {
+      "picks": 4,
+      "bans": 1,
+      "wins": 1,
+      "losses": 3
+    },
+    "counters": {},
+    "synergies": {},
+    "blindPickSafety": 4,
+    "description": "Niş pick"
+  },
+  "Sett": {
+    "name": "Sett",
+    "roles": [
+      "top"
+    ],
+    "tier": {
+      "top": "C"
+    },
+    "winRate": {
+      "top": 33.3
+    },
+    "pickRate": {
+      "top": 0.2
+    },
+    "banRate": 0.1,
+    "presence": 0.3,
+    "proStats": {
+      "picks": 4,
+      "bans": 1,
+      "wins": 2,
+      "losses": 2
+    },
+    "counters": {},
+    "synergies": {},
+    "blindPickSafety": 6,
+    "description": "Niş pick"
+  },
+  "Chogath": {
+    "name": "Cho'Gath",
+    "roles": [
+      "top"
+    ],
+    "tier": {
+      "top": "C"
+    },
+    "winRate": {
+      "top": 33.3
+    },
+    "pickRate": {
+      "top": 0.2
+    },
+    "banRate": 0.1,
+    "presence": 0.3,
+    "proStats": {
+      "picks": 3,
+      "bans": 1,
+      "wins": 1,
+      "losses": 2
+    },
+    "counters": {},
+    "synergies": {},
+    "blindPickSafety": 4,
+    "description": "Niş pick"
+  },
+  "Malzahar": {
+    "name": "Malzahar",
+    "roles": [
+      "mid"
+    ],
+    "tier": {
+      "mid": "C"
+    },
+    "winRate": {
+      "mid": 100
+    },
+    "pickRate": {
+      "mid": 0.1
+    },
+    "banRate": 0.1,
+    "presence": 0.2,
+    "proStats": {
+      "picks": 2,
+      "bans": 1,
+      "wins": 2,
+      "losses": 0
+    },
+    "counters": {},
+    "synergies": {},
+    "blindPickSafety": 3,
+    "description": "Niş pick"
+  },
+  "Mordekaiser": {
+    "name": "Mordekaiser",
+    "roles": [
+      "top"
+    ],
+    "tier": {
+      "top": "C"
+    },
+    "winRate": {
+      "top": 0
+    },
+    "pickRate": {
+      "top": 0.2
+    },
+    "banRate": 0,
+    "presence": 0.2,
+    "proStats": {
+      "picks": 3,
+      "bans": 0,
+      "wins": 0,
+      "losses": 3
+    },
+    "counters": {},
+    "synergies": {},
+    "blindPickSafety": 4,
+    "description": "Niş pick"
+  },
+  "Lissandra": {
+    "name": "Lissandra",
+    "roles": [
+      "mid"
+    ],
+    "tier": {
+      "mid": "C"
+    },
+    "winRate": {
+      "mid": 100
+    },
+    "pickRate": {
+      "mid": 0.2
+    },
+    "banRate": 0,
+    "presence": 0.2,
+    "proStats": {
+      "picks": 3,
+      "bans": 0,
+      "wins": 3,
+      "losses": 0
+    },
     "counters": {
-      "Yuumi": 3.0, "Sona": 2.5, "Soraka": 2.0, "Janna": 2.0
+      "Ahri": 4
     },
-    "synergies": {
-      "Caitlyn": 2.5, "Jhin": 2.5, "Miss Fortune": 2.5, "Ashe": 2.0, "Varus": 2.0
+    "synergies": {},
+    "blindPickSafety": 6,
+    "description": "Niş pick"
+  },
+  "Gangplank": {
+    "name": "Gangplank",
+    "roles": [
+      "top"
+    ],
+    "tier": {
+      "top": "C"
     },
-    "description": "Zone control support, bitki hasarı, AoE ult ile teamfight"
+    "winRate": {
+      "top": 0
+    },
+    "pickRate": {
+      "top": 0.2
+    },
+    "banRate": 0,
+    "presence": 0.2,
+    "proStats": {
+      "picks": 3,
+      "bans": 0,
+      "wins": 0,
+      "losses": 3
+    },
+    "counters": {},
+    "synergies": {},
+    "blindPickSafety": 4,
+    "description": "Niş pick"
+  },
+  "Soraka": {
+    "name": "Soraka",
+    "roles": [
+      "support"
+    ],
+    "tier": {
+      "support": "C"
+    },
+    "winRate": {
+      "support": 50
+    },
+    "pickRate": {
+      "support": 0.1
+    },
+    "banRate": 0.1,
+    "presence": 0.2,
+    "proStats": {
+      "picks": 2,
+      "bans": 1,
+      "wins": 1,
+      "losses": 1
+    },
+    "counters": {},
+    "synergies": {},
+    "blindPickSafety": 3,
+    "description": "Niş pick"
+  },
+  "Morgana": {
+    "name": "Morgana",
+    "roles": [
+      "mid"
+    ],
+    "tier": {
+      "mid": "C"
+    },
+    "winRate": {
+      "mid": 50
+    },
+    "pickRate": {
+      "mid": 0.1
+    },
+    "banRate": 0.1,
+    "presence": 0.2,
+    "proStats": {
+      "picks": 2,
+      "bans": 1,
+      "wins": 1,
+      "losses": 1
+    },
+    "counters": {},
+    "synergies": {},
+    "blindPickSafety": 3,
+    "description": "Niş pick"
+  },
+  "Veigar": {
+    "name": "Veigar",
+    "roles": [
+      "mid"
+    ],
+    "tier": {
+      "mid": "C"
+    },
+    "winRate": {
+      "mid": 0
+    },
+    "pickRate": {
+      "mid": 0.2
+    },
+    "banRate": 0,
+    "presence": 0.2,
+    "proStats": {
+      "picks": 3,
+      "bans": 0,
+      "wins": 0,
+      "losses": 3
+    },
+    "counters": {},
+    "synergies": {},
+    "blindPickSafety": 4,
+    "description": "Niş pick"
+  },
+  "Ekko": {
+    "name": "Ekko",
+    "roles": [
+      "mid"
+    ],
+    "tier": {
+      "mid": "C"
+    },
+    "winRate": {
+      "mid": 0
+    },
+    "pickRate": {
+      "mid": 0.1
+    },
+    "banRate": 0,
+    "presence": 0.1,
+    "proStats": {
+      "picks": 2,
+      "bans": 0,
+      "wins": 0,
+      "losses": 2
+    },
+    "counters": {},
+    "synergies": {},
+    "blindPickSafety": 3,
+    "description": "Niş pick"
+  },
+  "Vladimir": {
+    "name": "Vladimir",
+    "roles": [
+      "top"
+    ],
+    "tier": {
+      "top": "C"
+    },
+    "winRate": {
+      "top": 50
+    },
+    "pickRate": {
+      "top": 0.1
+    },
+    "banRate": 0,
+    "presence": 0.1,
+    "proStats": {
+      "picks": 2,
+      "bans": 0,
+      "wins": 1,
+      "losses": 1
+    },
+    "counters": {},
+    "synergies": {},
+    "blindPickSafety": 3,
+    "description": "Niş pick"
+  },
+  "Taric": {
+    "name": "Taric",
+    "roles": [
+      "support"
+    ],
+    "tier": {
+      "support": "C"
+    },
+    "winRate": {
+      "support": 0
+    },
+    "pickRate": {
+      "support": 0.1
+    },
+    "banRate": 0,
+    "presence": 0.1,
+    "proStats": {
+      "picks": 2,
+      "bans": 0,
+      "wins": 0,
+      "losses": 2
+    },
+    "counters": {},
+    "synergies": {},
+    "blindPickSafety": 3,
+    "description": "Niş pick"
+  },
+  "Tryndamere": {
+    "name": "Tryndamere",
+    "roles": [
+      "top"
+    ],
+    "tier": {
+      "top": "C"
+    },
+    "winRate": {
+      "top": 0
+    },
+    "pickRate": {
+      "top": 0.1
+    },
+    "banRate": 0,
+    "presence": 0.1,
+    "proStats": {
+      "picks": 2,
+      "bans": 0,
+      "wins": 0,
+      "losses": 2
+    },
+    "counters": {},
+    "synergies": {},
+    "blindPickSafety": 3,
+    "description": "Niş pick"
+  },
+  "Kayle": {
+    "name": "Kayle",
+    "roles": [
+      "top"
+    ],
+    "tier": {
+      "top": "C"
+    },
+    "winRate": {
+      "top": 0
+    },
+    "pickRate": {
+      "top": 0.1
+    },
+    "banRate": 0,
+    "presence": 0.1,
+    "proStats": {
+      "picks": 2,
+      "bans": 0,
+      "wins": 0,
+      "losses": 2
+    },
+    "counters": {},
+    "synergies": {},
+    "blindPickSafety": 3,
+    "description": "Niş pick"
   }
 }
