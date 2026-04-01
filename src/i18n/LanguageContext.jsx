@@ -96,6 +96,22 @@ const translations = {
     analyticsActiveDays: 'Aktif Gün',
     analyticsFirstVisit: 'İlk Ziyaret',
     analyticsNote: 'Veriler yalnızca tarayıcınızda yerel olarak saklanır.',
+    // Live Game
+    liveTitle: '⚡ Canlı Oyun Tespiti',
+    liveDesc: 'Riot ID\'ni gir, eğer bir maçtaysan takımlar otomatik olarak algılansın.',
+    livePlaceholder: 'Riot ID (Oyuncu#TAG)',
+    liveDetect: 'Oyun Ara',
+    liveSearching: 'Aranıyor...',
+    liveInvalidId: 'Geçerli bir Riot ID girin (örn: Oyuncu#TR1)',
+    liveError: 'Bir hata oluştu. Lütfen tekrar deneyin.',
+    liveNotInGame: 'Bu oyuncu şu an bir maçta değil.',
+    liveNotInGameHint: 'Maç başladıktan sonra tekrar deneyin veya manuel draft kullanın.',
+    liveGameFound: '✅ Canlı oyun bulundu!',
+    livePlayers: 'oyuncu',
+    liveApply: 'Draft\'a Uygula',
+    liveApiNote: 'Riot API ile çalışır. Vercel deployment ve API anahtarı gerektirir.',
+    // Donate
+    donate: 'Bizi Destekle',
   },
 
   en: {
@@ -174,6 +190,22 @@ const translations = {
     analyticsActiveDays: 'Active Days',
     analyticsFirstVisit: 'First Visit',
     analyticsNote: 'Data stored locally in your browser only.',
+    // Live Game
+    liveTitle: '⚡ Live Game Detection',
+    liveDesc: 'Enter your Riot ID to auto-detect teams if you\'re in a match.',
+    livePlaceholder: 'Riot ID (Player#TAG)',
+    liveDetect: 'Find Game',
+    liveSearching: 'Searching...',
+    liveInvalidId: 'Enter a valid Riot ID (e.g. Player#NA1)',
+    liveError: 'An error occurred. Please try again.',
+    liveNotInGame: 'This player is not currently in a match.',
+    liveNotInGameHint: 'Try again after the match starts, or use manual draft.',
+    liveGameFound: '✅ Live game found!',
+    livePlayers: 'players',
+    liveApply: 'Apply to Draft',
+    liveApiNote: 'Powered by Riot API. Requires Vercel deployment and API key.',
+    // Donate
+    donate: 'Support Us',
   },
 
   zh: {
@@ -251,6 +283,22 @@ const translations = {
     analyticsActiveDays: '活跃天数',
     analyticsFirstVisit: '首次访问',
     analyticsNote: '数据仅存储在您的浏览器本地。',
+    // Live Game
+    liveTitle: '⚡ 实时对局检测',
+    liveDesc: '输入你的Riot ID，如果你在对局中将自动检测双方阵容。',
+    livePlaceholder: 'Riot ID (玩家#标签)',
+    liveDetect: '搜索对局',
+    liveSearching: '搜索中...',
+    liveInvalidId: '请输入有效的Riot ID（例如：玩家#CN1）',
+    liveError: '发生错误，请重试。',
+    liveNotInGame: '该玩家当前不在对局中。',
+    liveNotInGameHint: '对局开始后再试，或使用手动BP。',
+    liveGameFound: '✅ 发现实时对局！',
+    livePlayers: '名玩家',
+    liveApply: '应用到BP',
+    liveApiNote: '由Riot API驱动。需要Vercel部署和API密钥。',
+    // Donate
+    donate: '支持我们',
   },
 
   hi: {
@@ -328,6 +376,22 @@ const translations = {
     analyticsActiveDays: 'सक्रिय दिन',
     analyticsFirstVisit: 'पहली यात्रा',
     analyticsNote: 'डेटा केवल आपके ब्राउज़र में स्थानीय रूप से संग्रहीत है।',
+    // Live Game
+    liveTitle: '⚡ लाइव गेम डिटेक्शन',
+    liveDesc: 'अपना Riot ID डालें, अगर आप मैच में हैं तो टीमें ऑटो-डिटेक्ट होंगी।',
+    livePlaceholder: 'Riot ID (खिलाड़ी#TAG)',
+    liveDetect: 'गेम खोजें',
+    liveSearching: 'खोज रहे हैं...',
+    liveInvalidId: 'एक मान्य Riot ID दर्ज करें (जैसे: खिलाड़ी#IN1)',
+    liveError: 'एक त्रुटि हुई। कृपया पुनः प्रयास करें।',
+    liveNotInGame: 'यह खिलाड़ी वर्तमान में किसी मैच में नहीं है।',
+    liveNotInGameHint: 'मैच शुरू होने के बाद फिर से प्रयास करें, या मैनुअल ड्राफ्ट करें।',
+    liveGameFound: '✅ लाइव गेम मिला!',
+    livePlayers: 'खिलाड़ी',
+    liveApply: 'ड्राफ्ट में लागू करें',
+    liveApiNote: 'Riot API द्वारा संचालित। Vercel deployment और API कुंजी आवश्यक।',
+    // Donate
+    donate: 'हमें सपोर्ट करें',
   },
 
   es: {
@@ -405,6 +469,22 @@ const translations = {
     analyticsActiveDays: 'Días Activos',
     analyticsFirstVisit: 'Primera Visita',
     analyticsNote: 'Los datos se almacenan solo localmente en su navegador.',
+    // Live Game
+    liveTitle: '⚡ Detección de Partida en Vivo',
+    liveDesc: 'Ingresa tu Riot ID para detectar equipos si estás en partida.',
+    livePlaceholder: 'Riot ID (Jugador#TAG)',
+    liveDetect: 'Buscar Partida',
+    liveSearching: 'Buscando...',
+    liveInvalidId: 'Ingresa un Riot ID válido (ej: Jugador#LA1)',
+    liveError: 'Ocurrió un error. Por favor intenta de nuevo.',
+    liveNotInGame: 'Este jugador no está en una partida actualmente.',
+    liveNotInGameHint: 'Intenta después de que inicie la partida, o usa draft manual.',
+    liveGameFound: '✅ ¡Partida en vivo encontrada!',
+    livePlayers: 'jugadores',
+    liveApply: 'Aplicar al Draft',
+    liveApiNote: 'Funciona con Riot API. Requiere deployment en Vercel y clave API.',
+    // Donate
+    donate: 'Apóyanos',
   },
 
   ar: {
@@ -482,6 +562,22 @@ const translations = {
     analyticsActiveDays: 'الأيام النشطة',
     analyticsFirstVisit: 'أول زيارة',
     analyticsNote: 'البيانات مخزنة محلياً في متصفحك فقط.',
+    // Live Game
+    liveTitle: '⚡ كشف المباراة المباشرة',
+    liveDesc: 'أدخل Riot ID الخاص بك لاكتشاف الفرق تلقائياً إذا كنت في مباراة.',
+    livePlaceholder: 'Riot ID (اللاعب#TAG)',
+    liveDetect: 'ابحث عن مباراة',
+    liveSearching: 'جاري البحث...',
+    liveInvalidId: 'أدخل Riot ID صالح (مثال: لاعب#AR1)',
+    liveError: 'حدث خطأ. يرجى المحاولة مرة أخرى.',
+    liveNotInGame: 'هذا اللاعب ليس في مباراة حالياً.',
+    liveNotInGameHint: 'حاول مرة أخرى بعد بدء المباراة، أو استخدم الدرافت اليدوي.',
+    liveGameFound: '✅ تم العثور على مباراة مباشرة!',
+    livePlayers: 'لاعبين',
+    liveApply: 'تطبيق على الدرافت',
+    liveApiNote: 'مدعوم بـ Riot API. يتطلب نشر Vercel ومفتاح API.',
+    // Donate
+    donate: 'ادعمنا',
   },
 };
 

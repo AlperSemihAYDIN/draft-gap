@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
 import LanguageSelector from './LanguageSelector';
 
-const CHOVY_IMAGE = 'https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/5/5f/GenG_Cup2026.jpg/revision/latest?cb=20260114084721';
-const CHOVY_FALLBACK = 'https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/3/36/GenG_Cup2025.jpg/revision/latest?cb=20250116164410';
+// Chovy'nin imza şampiyonu — Data Dragon CDN (her zaman çalışır)
+const HERO_SPLASH = 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Azir_0.jpg';
 
 export default function WelcomeScreen({ onEnter }) {
   const { t } = useLanguage();
@@ -33,6 +33,15 @@ export default function WelcomeScreen({ onEnter }) {
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-lol-gold/30 to-transparent" />
       </div>
 
+      {/* Şampiyon splash arka plan */}
+      <img
+        src={HERO_SPLASH}
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover opacity-[0.08] pointer-events-none select-none"
+        draggable="false"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0A1428]/60 to-[#061018]/90 pointer-events-none" />
+
       <div className="relative max-w-3xl w-full mx-4 flex flex-col items-center text-center animate-fadeIn">
         {/* Dil seçici - üst sağ köşe */}
         <div className="absolute top-0 right-0">
@@ -46,33 +55,21 @@ export default function WelcomeScreen({ onEnter }) {
           <div className="w-8 h-px bg-lol-gold/30" />
         </div>
 
-        {/* Gen.G Takım Kutlama Fotoğrafı */}
-        <div className="relative mb-8 group w-full max-w-md">
-          {/* Glow efekti */}
-          <div className="absolute -inset-4 bg-lol-gold/10 rounded-2xl blur-2xl opacity-60" />
-          <div className="absolute -inset-1 rounded-2xl bg-gradient-to-b from-lol-gold/40 via-lol-gold/20 to-transparent" />
-          <div className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden border-2 border-lol-gold/50 shadow-2xl shadow-lol-gold/20">
-            <img
-              src={CHOVY_IMAGE}
-              alt="Gen.G — LCK Champions"
-              className="w-full h-full object-cover object-center"
-              onError={(e) => {
-                if (e.target.src !== CHOVY_FALLBACK) {
-                  e.target.src = CHOVY_FALLBACK;
-                } else {
-                  e.target.style.display = 'none';
-                  e.target.parentElement.innerHTML = `
-                    <div class="w-full h-full bg-lol-gray flex items-center justify-center">
-                      <span class="text-4xl font-bold text-lol-gold">GEN.G</span>
-                    </div>
-                  `;
-                }
-              }}
-              loading="eager"
-            />
+        {/* Şampiyon çerçevesi — Diamond şekil */}
+        <div className="relative mb-8">
+          <div className="relative w-28 h-28 mx-auto">
+            {/* Dış altın çerçeve */}
+            <div className="absolute inset-0 rotate-45 border-2 border-lol-gold/30 rounded-xl" />
+            <div className="absolute inset-3 rotate-45 border border-lol-gold/15 rounded-lg" />
+            {/* Merkez ikon */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="text-4xl">🏆</span>
+            </div>
+            {/* Glow */}
+            <div className="absolute -inset-6 bg-lol-gold/5 rounded-full blur-2xl" />
           </div>
           {/* İsim plakası */}
-          <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-lol-dark border border-lol-gold/40 rounded-full px-5 py-1 shadow-lg">
+          <div className="mt-4 bg-lol-dark/80 border border-lol-gold/30 rounded-full px-5 py-1.5 inline-block">
             <span className="text-lol-gold font-bold text-sm tracking-wider">GEN.G · CHOVY</span>
           </div>
         </div>
