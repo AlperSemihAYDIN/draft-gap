@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { useLanguage } from '../i18n/LanguageContext';
 import LanguageSelector from './LanguageSelector';
 
-// Chovy'nin imza şampiyonları — Data Dragon CDN
-const HERO_SPLASH = 'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Azir_0.jpg';
-// Gen.G takım fotoğrafı / Worlds trophy - Data Dragon üzerinden alternatif splash
+// Chovy kupa fotoğrafı (MSI 2025 - Gen.G)
+const CHOVY_TROPHY = '/images/chovy-trophy.jpg';
+// Chovy'nin imza şampiyonları — Data Dragon CDN (arka plan kolajı)
 const CHOVY_CHAMPS = [
   'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Orianna_0.jpg',
   'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Azir_0.jpg',
@@ -71,16 +71,14 @@ export default function WelcomeScreen({ onEnter }) {
           <div className="w-8 h-px bg-lol-gold/30" />
         </div>
 
-        {/* Chovy Şampiyon Çerçevesi */}
+        {/* Chovy Kupa Fotoğrafı */}
         <div className="relative mb-8">
-          <div className="relative w-36 h-36 mx-auto">
-            {/* Chovy'nin imza şampiyonu splash */}
+          <div className="relative w-72 sm:w-80 md:w-96 mx-auto">
             <img
-              src={HERO_SPLASH}
-              alt="Chovy"
-              className="w-full h-full object-cover rounded-2xl border-2 border-lol-gold/40
+              src={CHOVY_TROPHY}
+              alt="Chovy - MSI 2025 Champion"
+              className="w-full h-auto object-cover rounded-2xl border-2 border-lol-gold/40
                          shadow-2xl shadow-lol-gold/20"
-              style={{ objectPosition: 'center 20%' }}
             />
             {/* Altın glow */}
             <div className="absolute -inset-3 bg-lol-gold/10 rounded-3xl blur-xl -z-10" />
