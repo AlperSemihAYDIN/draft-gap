@@ -8,6 +8,9 @@ import RoleSelector from './components/RoleSelector';
 import SelectedChampions from './components/SelectedChampions';
 import ResultsPage from './components/ResultsPage';
 import TierList from './components/TierList';
+import BlindPickList from './components/BlindPickList';
+import CounterPick from './components/CounterPick';
+import ProCoach from './components/ProCoach';
 import WelcomeScreen from './components/WelcomeScreen';
 import LanguageSelector from './components/LanguageSelector';
 import AnalyticsPanel from './components/AnalyticsPanel';
@@ -176,10 +179,10 @@ export default function App() {
         </div>
 
         {/* Tab Navigasyon */}
-        <div className="max-w-5xl mx-auto px-4 flex gap-1">
+        <div className="max-w-5xl mx-auto px-4 flex gap-1 overflow-x-auto">
           <button
             onClick={() => { setActiveTab('draft'); setShowResults(false); }}
-            className={`px-5 py-2.5 text-sm font-medium rounded-t-lg transition-all ${
+            className={`px-5 py-2.5 text-sm font-medium rounded-t-lg transition-all whitespace-nowrap ${
               activeTab === 'draft'
                 ? 'bg-lol-dark text-lol-gold border-t border-x border-lol-gold/30'
                 : 'text-lol-light/40 hover:text-lol-light/60 hover:bg-lol-dark/40'
@@ -189,13 +192,43 @@ export default function App() {
           </button>
           <button
             onClick={() => setActiveTab('tierlist')}
-            className={`px-5 py-2.5 text-sm font-medium rounded-t-lg transition-all ${
+            className={`px-5 py-2.5 text-sm font-medium rounded-t-lg transition-all whitespace-nowrap ${
               activeTab === 'tierlist'
                 ? 'bg-lol-dark text-lol-gold border-t border-x border-lol-gold/30'
                 : 'text-lol-light/40 hover:text-lol-light/60 hover:bg-lol-dark/40'
             }`}
           >
             {t('tabTierList')}
+          </button>
+          <button
+            onClick={() => setActiveTab('blindpick')}
+            className={`px-5 py-2.5 text-sm font-medium rounded-t-lg transition-all whitespace-nowrap ${
+              activeTab === 'blindpick'
+                ? 'bg-lol-dark text-lol-gold border-t border-x border-lol-gold/30'
+                : 'text-lol-light/40 hover:text-lol-light/60 hover:bg-lol-dark/40'
+            }`}
+          >
+            {t('tabBlindPick')}
+          </button>
+          <button
+            onClick={() => setActiveTab('counterpick')}
+            className={`px-5 py-2.5 text-sm font-medium rounded-t-lg transition-all whitespace-nowrap ${
+              activeTab === 'counterpick'
+                ? 'bg-lol-dark text-lol-gold border-t border-x border-lol-gold/30'
+                : 'text-lol-light/40 hover:text-lol-light/60 hover:bg-lol-dark/40'
+            }`}
+          >
+            {t('tabCounterPick')}
+          </button>
+          <button
+            onClick={() => setActiveTab('procoach')}
+            className={`px-5 py-2.5 text-sm font-medium rounded-t-lg transition-all whitespace-nowrap ${
+              activeTab === 'procoach'
+                ? 'bg-lol-dark text-lol-gold border-t border-x border-lol-gold/30'
+                : 'text-lol-light/40 hover:text-lol-light/60 hover:bg-lol-dark/40'
+            }`}
+          >
+            {t('tabProCoach')}
           </button>
         </div>
       </header>
@@ -205,6 +238,18 @@ export default function App() {
         {activeTab === 'tierlist' ? (
           <div className="animate-fadeIn">
             <TierList />
+          </div>
+        ) : activeTab === 'blindpick' ? (
+          <div className="animate-fadeIn">
+            <BlindPickList />
+          </div>
+        ) : activeTab === 'counterpick' ? (
+          <div className="animate-fadeIn">
+            <CounterPick />
+          </div>
+        ) : activeTab === 'procoach' ? (
+          <div className="animate-fadeIn">
+            <ProCoach />
           </div>
         ) : showResults && recommendations ? (
           // --- SONUÇ SAYFASI ---

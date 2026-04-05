@@ -165,7 +165,25 @@ async function main() {
   // Toplam oyun sayısı
   const totalGames = allGames.length;
   
-  // Tier hesaplama: Presence (pick+ban / total games) bazlı
+  // Tier hesaplama: Presence, ban rate ve WR bazlı
+  // Ban rate çok önemli — perma-ban olan şampiyon S-tier
+  function getTier(presence, winRate, picks, banRate) {
+    if (picks < 5) return 'C'; // Çok az oynanan outlier
+    // Perma-ban seviyesi = S-tier
+    if (banRate >= 30 && winRate >= 45) return 'S';
+    if (banRate >= 20 && winRate >= 50) return 'S';
+    if (presence >= 50 && winRate >= 48) return 'S';
+    if (presence >= 40 && winRate >= 50) return 'S';
+    // Güçlü = A-tier
+    if (banRate >= 10 && winRate >= 50) return 'A';
+    if (presence >= 25 && winRate >= 48) return 'A';
+    if (presence >= 35 && winRate >= 45) return 'A';
+    // Orta = B-tier
+    if (presence >= 15 && winRate >= 45) return 'B';
+    if (presence >= 10) return 'B';
+    return 'C';
+  }
+  
   const champList = Object.entries(stats).map(([key, s]) => {
     const presence = ((s.picks + s.bans) / totalGames * 100);
     const winRate = s.picks > 0 ? (s.wins / s.picks * 100) : 0;
@@ -194,28 +212,21 @@ async function main() {
   // Presence'a göre sırala
   champList.sort((a, b) => b.presence - a.presence);
   
-  // Tier atama
-  function getTier(presence, winRate, picks) {
-    if (picks < 3) return 'C'; // Çok az oynanan
-    if (presence >= 60 && winRate >= 45) return 'S';
-    if (presence >= 35 && winRate >= 45) return 'A';
-    if (presence >= 15) return 'B';
-    return 'C';
-  }
-  
   // Blind pick safety hesapla
-  // Çok ban almayan ama çok pick edilen = güvenli blind pick
-  // Yüksek ban rate = muhtemelen OP, düşük ban yüksek pick = güvenli blind
+  // Yüksek ban = güçlü şampiyon = iyi pick (ban yememek blind pick safety değil)
+  // Gerçek blind pick safety = düşük counter alınma riski + decent WR
   function getBlindPickSafety(champ) {
-    if (champ.picks < 3) return 3;
-    const banRatio = champ.bans / (champ.picks + champ.bans);
+    if (champ.picks < 5) return 3;
     const wr = champ.winRate;
+    const pr = champ.pickRate;
     
-    // Düşük ban oranı + decent WR = güvenli blind
-    if (banRatio < 0.2 && champ.pickRate >= 10 && wr >= 48) return 9;
-    if (banRatio < 0.3 && champ.pickRate >= 8 && wr >= 47) return 8;
-    if (banRatio < 0.4 && champ.pickRate >= 5 && wr >= 45) return 7;
-    if (banRatio < 0.5 && wr >= 45) return 6;
+    // Yüksek WR + yüksek pick rate = güvenli blind pick (çok denendi, hala kazanıyor)
+    if (wr >= 55 && pr >= 8) return 10;
+    if (wr >= 52 && pr >= 10) return 9;
+    if (wr >= 50 && pr >= 8) return 8;
+    if (wr >= 50 && pr >= 5) return 7;
+    if (wr >= 48 && pr >= 5) return 7;
+    if (wr >= 48) return 6;
     if (wr >= 45) return 5;
     return 4;
   }
@@ -289,12 +300,13 @@ async function main() {
       const rd = champ.roleData[role];
       const rolePresence = ((rd.picks + (champ.bans * (rd.picks / Math.max(champ.picks, 1)))) / totalGames * 100);
       const roleWR = rd.picks > 0 ? (rd.wins / rd.picks * 100) : 0;
-      tierByRole[role] = getTier(rolePresence, roleWR, rd.picks);
+      const roleBanRate = (champ.bans * (rd.picks / Math.max(champ.picks, 1))) / totalGames * 100;
+      tierByRole[role] = getTier(rolePresence, roleWR, rd.picks, roleBanRate);
     }
     
     // Eğer hiç rol yoksa ama ban edildiyse, genel tier ver
     if (champ.roles.length === 0) {
-      tierByRole['mid'] = getTier(champ.presence, champ.winRate, champ.picks);
+      tierByRole['mid'] = getTier(champ.presence, champ.winRate, champ.picks, champ.banRate);
     }
     
     // Counter ilişkileri (en az 3 maç, WR >= 60%)

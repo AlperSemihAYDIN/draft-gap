@@ -71,8 +71,11 @@ export default function RecommendationCard({ recommendation, version, rank }) {
         <div className="grid grid-cols-2 gap-2">
           <ScoreBar label={t('counter')} value={scores.counter} maxValue={20} color="bg-red-500" />
           <ScoreBar label={t('synergy')} value={scores.synergy} maxValue={15} color="bg-green-500" />
-          <ScoreBar label={t('meta')} value={scores.meta} maxValue={15} color="bg-blue-500" />
+          <ScoreBar label={t('meta')} value={scores.meta} maxValue={20} color="bg-blue-500" />
           <ScoreBar label={t('safety')} value={scores.blindPick} maxValue={10} color="bg-yellow-500" />
+          {scores.banPriority > 0 && (
+            <ScoreBar label="Ban" value={scores.banPriority} maxValue={15} color="bg-purple-500" />
+          )}
         </div>
 
         {/* Toplam puan */}

@@ -33,17 +33,33 @@ export async function getAccountByRiotId(gameName, tagLine, regionKey = 'tr') {
 
 /**
  * Canlı oyun verisi al (oyuncu şu an maçtaysa)
+ * Not: Spectator v5 API önceden PUUID alıyor ama bazı bölgelerde
+ * ek izin gerektirebilir. Rate limit'e dikkat.
  */
 export async function getActiveGame(puuid, regionKey = 'tr') {
   const { platform } = REGIONS[regionKey] || REGIONS.tr;
   const params = new URLSearchParams({ action: 'spectator', puuid, platform });
-  const res = await fetch(`/api/riot?${params}`);
-  if (res.status === 404) return null; // Oyunda değil
-  if (!res.ok) {
-    const err = await res.json().catch(() => ({}));
-    throw new Error(err.error || `Spectator error (${res.status})`);
+  
+  try {
+    const res = await fetch(`/api/riot?${params}`);
+    if (res.status === 404) return null; // Oyunda değil
+    if (res.status === 403) {
+      throw new Error('API anahtarı bu sunucu için yetki vermiyor. Riot Developer Portal\'dan üretim anahtarı gerekli.');
+    }
+    if (res.status === 503) {
+      throw new Error('Sunucu tarafında RIOT_API_KEY yapılandırılmamış. Vercel deployment gerekli.');
+    }
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || `Spectator error (${res.status})`);
+    }
+    return res.json();
+  } catch (err) {
+    if (err.message.includes('Failed to fetch') || err.message.includes('NetworkError')) {
+      throw new Error('API sunucusuna ulaşılamıyor. Bu özellik Vercel deployment gerektirir — GitHub Pages üzerinde çalışmaz.');
+    }
+    throw err;
   }
-  return res.json();
 }
 
 /**

@@ -74,6 +74,9 @@ function ChampionIcon({ champId, champData, version }) {
             {champData.winRate[champData._currentRole]}%
           </span>
         )}
+        {champData.banRate >= 15 && (
+          <span className="text-red-400">🚫</span>
+        )}
         {champData.pickRate && champData.pickRate[champData._currentRole] && (
           <span className="text-lol-light/40">
             | {champData.pickRate[champData._currentRole]}%
@@ -110,12 +113,28 @@ export default function TierList() {
       if (champId === '_meta') continue;
       if (!champData.roles.includes(selectedRole)) continue;
 
-      const tier = champData.tier[selectedRole] || 'C';
+      // Etkin tier hesapla — ban rate ve WR'ye göre override
+      let tier = champData.tier[selectedRole] || 'C';
+      const wr = champData.winRate?.[selectedRole] || 0;
+      const banRate = champData.banRate || 0;
+      const presence = champData.presence || 0;
+      const picks = champData.proStats?.picks || 0;
+
+      if (picks >= 5) {
+        if (banRate >= 25 && wr >= 48) tier = 'S';
+        else if (banRate >= 15 && wr >= 52) tier = 'S';
+        else if (presence >= 50 && wr >= 48) tier = 'S';
+        else if (presence >= 40 && wr >= 50) tier = 'S';
+        else if (banRate >= 10 && wr >= 50) tier = 'A';
+        else if (presence >= 25 && wr >= 48) tier = 'A';
+      }
+
       const enriched = {
         ...champData,
         _id: champId,
         _currentRole: selectedRole,
         _displayName: ddChampions?.[champId]?.name || champData.name,
+        _effectiveTier: tier,
       };
       if (groups[tier]) {
         groups[tier].push(enriched);
@@ -230,7 +249,7 @@ export default function TierList() {
           </div>
         </div>
         <p className="text-xs text-lol-light/40 mt-3">
-          {t('lastUpdate')}: {meta?.lastUpdated} | {t('source')}: op.gg, u.gg, lolalytics.com
+          {t('lastUpdate')}: {meta?.lastUpdated} | {t('source')}: gol.gg, Leaguepedia
         </p>
       </div>
     </div>
