@@ -108,26 +108,35 @@ export default function TierList() {
 
   const tierGroups = useMemo(() => {
     const groups = { S: [], A: [], B: [], C: [] };
+    const totalGames = championMeta._meta?.totalGames || 1446;
 
     for (const [champId, champData] of Object.entries(championMeta)) {
       if (champId === '_meta') continue;
       if (!champData.roles.includes(selectedRole)) continue;
 
-      // Etkin tier hesapla — ban rate ve WR'ye göre override
-      let tier = champData.tier[selectedRole] || 'C';
-      const wr = champData.winRate?.[selectedRole] || 0;
-      const banRate = champData.banRate || 0;
-      const presence = champData.presence || 0;
-      const picks = champData.proStats?.picks || 0;
+      // Rol-spesifik pick sayısı hesapla
+      const rolePicks = champData.rolePickCounts?.[selectedRole]
+        || Math.round((champData.pickRate?.[selectedRole] || 0) / 100 * totalGames);
+      
+      // Çok az oynanan şampiyonları listeden çıkar (rol-spesifik)
+      if (rolePicks < 10) continue;
 
-      if (picks >= 5) {
-        if (banRate >= 25 && wr >= 48) tier = 'S';
-        else if (banRate >= 15 && wr >= 52) tier = 'S';
-        else if (presence >= 50 && wr >= 48) tier = 'S';
-        else if (presence >= 40 && wr >= 50) tier = 'S';
-        else if (banRate >= 10 && wr >= 50) tier = 'A';
-        else if (presence >= 25 && wr >= 48) tier = 'A';
-      }
+      // Rol-spesifik prioScore hesapla
+      const totalPicks = champData.proStats?.picks || 1;
+      const totalBans = champData.proStats?.bans || 0;
+      const proportionalBans = totalBans * (rolePicks / Math.max(totalPicks, 1));
+      const prioScore = (rolePicks + proportionalBans) / totalGames * 100;
+      const wr = champData.winRate?.[selectedRole] || 0;
+
+      // PrioScore + WR bazlı tier
+      let tier = 'C';
+      if (prioScore >= 50 && wr >= 45) tier = 'S';
+      else if (prioScore >= 40 && wr >= 48) tier = 'S';
+      else if (prioScore >= 30 && wr >= 50) tier = 'S';
+      else if (prioScore >= 25 && wr >= 48) tier = 'A';
+      else if (prioScore >= 20 && wr >= 45) tier = 'A';
+      else if (prioScore >= 15 && wr >= 45) tier = 'B';
+      else if (prioScore >= 10) tier = 'B';
 
       const enriched = {
         ...champData,
@@ -135,19 +144,17 @@ export default function TierList() {
         _currentRole: selectedRole,
         _displayName: ddChampions?.[champId]?.name || champData.name,
         _effectiveTier: tier,
+        _prioScore: prioScore,
+        _rolePicks: rolePicks,
       };
       if (groups[tier]) {
         groups[tier].push(enriched);
       }
     }
 
-    // Her tier içinde win rate'e göre sırala
+    // Her tier içinde prioScore'a göre sırala
     for (const tier of TIERS) {
-      groups[tier].sort((a, b) => {
-        const wrA = a.winRate?.[selectedRole] || 0;
-        const wrB = b.winRate?.[selectedRole] || 0;
-        return wrB - wrA;
-      });
+      groups[tier].sort((a, b) => b._prioScore - a._prioScore);
     }
 
     return groups;

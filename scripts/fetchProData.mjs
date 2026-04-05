@@ -335,6 +335,16 @@ async function main() {
     
     const blindSafety = getBlindPickSafety(champ);
     
+    // Rol-spesifik pick sayıları ve prioScore hesapla
+    const rolePickCounts = {};
+    const rolePrioScores = {};
+    for (const role of champ.roles) {
+      const rd = champ.roleData[role];
+      rolePickCounts[role] = rd.picks;
+      const proportionalBans = champ.bans * (rd.picks / Math.max(champ.picks, 1));
+      rolePrioScores[role] = +((rd.picks + proportionalBans) / totalGames * 100).toFixed(1);
+    }
+    
     // Açıklama
     const descParts = [];
     if (champ.banRate >= 50) descParts.push('Perma-ban');
@@ -352,6 +362,8 @@ async function main() {
       tier: tierByRole,
       winRate: champ.roleWinRates,
       pickRate: champ.rolePickRates,
+      rolePickCounts: rolePickCounts,
+      rolePrioScore: rolePrioScores,
       banRate: +champ.banRate.toFixed(1),
       presence: +champ.presence.toFixed(1),
       proStats: {
