@@ -5,9 +5,10 @@ import { useLanguage } from '../i18n/LanguageContext';
 // =============================================
 // Papara numaranı veya IBAN'ını buraya gir
 // =============================================
-const PAPARA_NO = '';       // örn: '1234567890'
-const IBAN = '';            // örn: 'TR12 0006 2000 1234 0006 2993 26'
-const ACCOUNT_NAME = 'DraftGap';
+const PAPARA_NO = '';
+const IBAN = 'TR86 0001 0009 2296 5022 6150 01';
+const SWIFT = 'ISBKTRIS';
+const ACCOUNT_NAME = 'Alper Semih AYDIN';
 // =============================================
 
 export default function DonateButton() {
@@ -86,6 +87,17 @@ export default function DonateButton() {
                   </button>
                 </div>
                 <p className="text-lol-light/40 text-[10px]">{ACCOUNT_NAME}</p>
+                {SWIFT && (
+                  <div className="flex items-center justify-between gap-2 mt-1 pt-1 border-t border-lol-light/5">
+                    <span className="text-lol-light/40 text-[10px]">SWIFT/BIC: <span className="text-white font-mono">{SWIFT}</span></span>
+                    <button
+                      onClick={() => copyToClipboard(SWIFT, 'swift')}
+                      className="text-lol-blue text-xs hover:text-lol-blue/70 transition-colors whitespace-nowrap"
+                    >
+                      {copied === 'swift' ? '✓' : t('donateCopy')}
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           )}
