@@ -15,6 +15,7 @@ import WelcomeScreen from './components/WelcomeScreen';
 import LanguageSelector from './components/LanguageSelector';
 import AnalyticsPanel from './components/AnalyticsPanel';
 import LiveGameDetector from './components/LiveGameDetector';
+import DonateButton from './components/DonateButton';
 import { useLanguage } from './i18n/LanguageContext';
 
 export default function App() {
@@ -355,15 +356,7 @@ export default function App() {
       <footer className="border-t border-lol-light/5 mt-16">
         <div className="max-w-5xl mx-auto px-4 py-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-lol-light/20 text-xs">
           <span>{t('footer')}</span>
-          <a
-            href="https://ko-fi.com/draftgap"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#FF5E5B]/10 border border-[#FF5E5B]/20
-                       text-[#FF5E5B] hover:bg-[#FF5E5B]/20 transition-colors text-xs font-medium"
-          >
-            ☕ {t('donate')}
-          </a>
+          <DonateButton />
         </div>
       </footer>
 

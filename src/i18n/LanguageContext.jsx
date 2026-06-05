@@ -149,6 +149,11 @@ const translations = {
     proFearlessInfoDesc: 'Fearless draft, profesyonel turnuvalarda kullanılan bir format. Bir maç serisinde (Bo3/Bo5) her iki takım da daha önce seçtikleri şampiyonları tekrar seçemez. Bu, şampiyon havuzunu daraltır ve daha yaratıcı draft\'lar zorunlu kılar.',
     // Donate
     donate: 'Bizi Destekle',
+    donateTitle: 'Bizi Destekle ☕',
+    donateDesc: 'DraftGap tamamen ücretsiz. Beğendiysen küçük bir destek çok şey ifade eder!',
+    donateCopy: 'Kopyala',
+    donateSoon: 'Ödeme yöntemleri yakında eklenecek.',
+    donateThank: 'Desteğin için teşekkürler! 💛',
   },
 
   en: {
@@ -280,6 +285,11 @@ const translations = {
     proFearlessInfoDesc: 'Fearless draft is a format used in professional tournaments. In a match series (Bo3/Bo5), neither team can pick champions that were already picked in previous games. This narrows the champion pool and forces more creative drafts.',
     // Donate
     donate: 'Support Us',
+    donateTitle: 'Support Us ☕',
+    donateDesc: 'DraftGap is completely free. If you enjoy it, a small contribution means a lot!',
+    donateCopy: 'Copy',
+    donateSoon: 'Payment methods coming soon.',
+    donateThank: 'Thank you for your support! 💛',
   },
 
   zh: {
@@ -376,6 +386,11 @@ const translations = {
     liveApiNote: '由Riot API驱动。需要Vercel部署和API密钥。',
     // Donate
     donate: '支持我们',
+    donateTitle: '支持我们 ☕',
+    donateDesc: 'DraftGap完全免费。如果你喜欢，小小的支持对我们意义重大！',
+    donateCopy: '复制',
+    donateSoon: '支付方式即将推出。',
+    donateThank: '感谢你的支持！💛',
   },
 
   hi: {
@@ -472,6 +487,11 @@ const translations = {
     liveApiNote: 'Riot API द्वारा संचालित। Vercel deployment और API कुंजी आवश्यक।',
     // Donate
     donate: 'हमें सपोर्ट करें',
+    donateTitle: 'हमें सपोर्ट करें ☕',
+    donateDesc: 'DraftGap बिल्कुल मुफ़्त है। अगर आपको पसंद आया, तो छोटा सा योगदान बहुत मायने रखता है!',
+    donateCopy: 'कॉपी करें',
+    donateSoon: 'भुगतान के तरीके जल्द आ रहे हैं।',
+    donateThank: 'आपके समर्थन के लिए धन्यवाद! 💛',
   },
 
   es: {
@@ -568,6 +588,11 @@ const translations = {
     liveApiNote: 'Funciona con Riot API. Requiere deployment en Vercel y clave API.',
     // Donate
     donate: 'Apóyanos',
+    donateTitle: 'Apóyanos ☕',
+    donateDesc: '¡DraftGap es completamente gratis. Si lo disfrutas, una pequeña contribución significa mucho!',
+    donateCopy: 'Copiar',
+    donateSoon: 'Métodos de pago próximamente.',
+    donateThank: '¡Gracias por tu apoyo! 💛',
   },
 
   ar: {
@@ -664,6 +689,11 @@ const translations = {
     liveApiNote: 'مدعوم بـ Riot API. يتطلب نشر Vercel ومفتاح API.',
     // Donate
     donate: 'ادعمنا',
+    donateTitle: 'ادعمنا ☕',
+    donateDesc: 'DraftGap مجاني تمامًا. إذا أعجبك، فإن المساهمة الصغيرة تعني الكثير!',
+    donateCopy: 'نسخ',
+    donateSoon: 'طرق الدفع قادمة قريبًا.',
+    donateThank: 'شكرًا لدعمك! 💛',
   },
 };
 

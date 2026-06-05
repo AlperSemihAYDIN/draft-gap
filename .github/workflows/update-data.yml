@@ -1,0 +1,44 @@
+name: Auto-Update Pro Play Data
+
+# Her 2 haftada bir Pazartesi 02:00 UTC'de çalışır (yeni yama günleri)
+on:
+  schedule:
+    - cron: '0 2 * * 1/14'
+  workflow_dispatch: # Manuel tetikleme de mümkün
+
+permissions:
+  contents: write
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Fetch latest pro play data
+        run: node scripts/fetchProData.mjs
+
+      - name: Check for changes
+        id: changes
+        run: |
+          git diff --quiet src/data/championMeta.json || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Commit and push if changed
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          PATCH=$(node -e "const d=require('./src/data/championMeta.json'); console.log(d._meta?.patch || 'unknown')")
+          git add src/data/championMeta.json
+          git commit -m "chore: auto-update pro data (patch $PATCH)"
+          git push
+
+      - name: No changes
+        if: steps.changes.outputs.changed != 'true'
+        run: echo "championMeta.json unchanged — no commit needed."

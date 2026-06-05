@@ -2,23 +2,39 @@
 // Kaynak: https://lol.fandom.com (Leaguepedia)
 
 const TOURNAMENTS = [
-  // Major Leagues 2026
+  // LCK 2026
   'LCK/2026 Season/Rounds 1-2',
+  'LCK/2026 Season/Cup',
+  // LPL 2026
   'LPL/2026 Season/Split 1',
   'LPL/2026 Season/Split 1 Playoffs',
+  'LPL/2026 Season/Split 2',
+  'LPL/2026 Season/Split 2 Playoffs',
+  // LEC 2026
   'LEC/2026 Season/Spring Season',
+  'LEC/2026 Season/Spring Playoffs',
   'LEC/2026 Season/Versus Season',
   'LEC/2026 Season/Versus Playoffs',
-  // Secondary Leagues 2026
+  // LCP 2026
+  'LCP/2026 Season/Split 1',
+  'LCP/2026 Season/Split 1 Playoffs',
+  'LCP/2026 Season/Split 2',
+  'LCP/2026 Season/Split 2 Playoffs',
+  // VCS 2026
   'VCS/2026 Season/Spring Season',
   'VCS/2026 Season/Spring Playoffs',
+  'VCS/2026 Season/Summer Season',
+  // CBLOL 2026
   'CBLOL/2026 Season/Split 1',
   'CBLOL/2026 Season/Split 1 Playoffs',
+  'CBLOL/2026 Season/Cup',
+  // Uluslararası
   '2026 Americas Cup',
   '2026 First Stand',
-  'EMEA Masters/2026 Season/Winter',
+  // Akademi / Challenger
   'LCK CL/2026 Season/Rounds 1-2',
-  'LCP/2026 Season/Split 1 Playoffs',
+  'LCK CL/2026 Season/Kickoff',
+  'EMEA Masters/2026 Season/Winter',
 ];
 
 const FIELDS = [
@@ -283,7 +299,7 @@ async function main() {
   // championMeta.json oluştur
   const meta = {
     _meta: {
-      patch: '16.5-16.7',
+      patch: '16.9-16.11',
       source: 'Leaguepedia (lol.fandom.com)',
       tournaments: TOURNAMENTS.filter(t => allGames.some(g => g.OverviewPage === t)),
       totalGames,
