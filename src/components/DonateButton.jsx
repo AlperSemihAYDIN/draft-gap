@@ -7,7 +7,7 @@ import { useLanguage } from '../i18n/LanguageContext';
 // =============================================
 const PAPARA_NO = '';
 const IBAN = 'TR86 0001 0009 2296 5022 6150 01';
-const SWIFT = 'ISBKTRIS';
+const SWIFT = 'TCZBTR2A'; // Ziraat Bankası
 const ACCOUNT_NAME = 'Alper Semih AYDIN';
 // =============================================
 
