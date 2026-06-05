@@ -167,7 +167,7 @@ export default function TierList() {
       {/* Başlık */}
       <div className="text-center mb-6">
         <h2 className="text-2xl font-bold text-lol-gold mb-2">
-          {t('tierListTitle')} {meta?.patch || '26.6'}
+          {t('tierListTitle')} {meta?.patch || '16.11'}
         </h2>
         <p className="text-sm text-lol-light/60 max-w-2xl mx-auto">
           {t('tierListDesc')}

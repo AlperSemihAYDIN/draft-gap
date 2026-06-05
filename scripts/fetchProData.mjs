@@ -113,8 +113,26 @@ function champKey(name) {
   return name.replace(/[' .]/g, '');
 }
 
+// Data Dragon'dan en son yama numarasını çek
+async function fetchLatestPatch() {
+  try {
+    const res = await fetch('https://ddragon.leagueoflegends.com/api/versions.json');
+    const versions = await res.json();
+    // versions[0] = '16.11.1' → '16.11'
+    const latest = versions[0].split('.').slice(0, 2).join('.');
+    const prev   = versions[1].split('.').slice(0, 2).join('.');
+    console.log(`Son yamalar: ${prev} ve ${latest}`);
+    return { latest, prev };
+  } catch {
+    return { latest: '16.11', prev: '16.10' };
+  }
+}
+
 async function main() {
   console.log('=== Leaguepedia Pro Play Data Fetcher ===\n');
+
+  // Patch bilgisini al
+  const { latest, prev } = await fetchLatestPatch();
   
   // Tüm turnuvalardan veri çek
   let allGames = [];
@@ -299,7 +317,8 @@ async function main() {
   // championMeta.json oluştur
   const meta = {
     _meta: {
-      patch: '16.9-16.11',
+      patch: latest,
+      patchRange: `${prev}-${latest}`,
       source: 'Leaguepedia (lol.fandom.com)',
       tournaments: TOURNAMENTS.filter(t => allGames.some(g => g.OverviewPage === t)),
       totalGames,
