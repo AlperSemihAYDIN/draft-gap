@@ -16,6 +16,9 @@ import LanguageSelector from './components/LanguageSelector';
 import AnalyticsPanel from './components/AnalyticsPanel';
 import LiveGameDetector from './components/LiveGameDetector';
 import DonateButton from './components/DonateButton';
+import DraftCoach from './components/DraftCoach';
+import DraftModeSelector from './components/DraftModeSelector';
+import { DraftProvider } from './contexts/DraftContext';
 import { useLanguage } from './i18n/LanguageContext';
 
 export default function App() {
@@ -148,7 +151,8 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen">
+    <DraftProvider>
+      <div className="min-h-screen">
       {/* Karşılama Ekranı */}
       {showWelcome && <WelcomeScreen onEnter={() => setShowWelcome(false)} />}
 
@@ -231,6 +235,16 @@ export default function App() {
           >
             {t('tabProCoach')}
           </button>
+          <button
+            onClick={() => setActiveTab('draftai')}
+            className={`px-5 py-2.5 text-sm font-medium rounded-t-lg transition-all whitespace-nowrap ${
+              activeTab === 'draftai'
+                ? 'bg-lol-dark text-lol-gold border-t border-x border-lol-gold/30'
+                : 'text-lol-light/40 hover:text-lol-light/60 hover:bg-lol-dark/40'
+            }`}
+          >
+            ⚡ Draft AI Coach
+          </button>
         </div>
       </header>
 
@@ -251,6 +265,11 @@ export default function App() {
         ) : activeTab === 'procoach' ? (
           <div className="animate-fadeIn">
             <ProCoach />
+          </div>
+        ) : activeTab === 'draftai' ? (
+          <div className="space-y-6 animate-fadeIn">
+            <DraftModeSelector />
+            <DraftCoach />
           </div>
         ) : showResults && recommendations ? (
           // --- SONUÇ SAYFASI ---
@@ -363,5 +382,6 @@ export default function App() {
       {/* Analytics Panel */}
       <AnalyticsPanel />
     </div>
+    </DraftProvider>
   );
 }
