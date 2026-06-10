@@ -18,6 +18,9 @@ import LiveGameDetector from './components/LiveGameDetector';
 import DonateButton from './components/DonateButton';
 import DraftCoach from './components/DraftCoach';
 import DraftModeSelector from './components/DraftModeSelector';
+import LiveGameDetectorV2 from './components/LiveGameDetectorV2';
+import RealTimeDraftCoach from './components/RealTimeDraftCoach';
+import ChampSelectMonitor from './components/ChampSelectMonitor';
 import { DraftProvider } from './contexts/DraftContext';
 import { useLanguage } from './i18n/LanguageContext';
 
@@ -44,6 +47,10 @@ export default function App() {
 
   // Karşılama ekranı durumu
   const [showWelcome, setShowWelcome] = useState(true);
+
+  // Canlı oyun verileri
+  const [liveGameData, setLiveGameData] = useState(null);
+  const [isLiveGameActive, setIsLiveGameActive] = useState(false);
 
   // Uygulama başladığında şampiyon verisini çek
   useEffect(() => {
@@ -245,6 +252,19 @@ export default function App() {
           >
             ⚡ Draft AI Coach
           </button>
+          <button
+            onClick={() => {
+              setActiveTab('liveDraft');
+              setIsLiveGameActive(true);
+            }}
+            className={`px-5 py-2.5 text-sm font-medium rounded-t-lg transition-all whitespace-nowrap ${
+              activeTab === 'liveDraft'
+                ? 'bg-lol-dark text-lol-gold border-t border-x border-lol-gold/30'
+                : 'text-lol-light/40 hover:text-lol-light/60 hover:bg-lol-dark/40'
+            }`}
+          >
+            🔴 Canlı Draft Koçu
+          </button>
         </div>
       </header>
 
@@ -270,6 +290,24 @@ export default function App() {
           <div className="space-y-6 animate-fadeIn">
             <DraftModeSelector />
             <DraftCoach />
+          </div>
+        ) : activeTab === 'liveDraft' ? (
+          <div className="space-y-6 animate-fadeIn">
+            {!isLiveGameActive ? (
+              <LiveGameDetectorV2
+                onGameDetected={(data) => {
+                  setLiveGameData(data);
+                  setIsLiveGameActive(true);
+                }}
+              />
+            ) : (
+              <>
+                <RealTimeDraftCoach />
+                {liveGameData?.spectatorData && (
+                  <ChampSelectMonitor spectatorData={liveGameData.spectatorData} />
+                )}
+              </>
+            )}
           </div>
         ) : showResults && recommendations ? (
           // --- SONUÇ SAYFASI ---

@@ -72,3 +72,10 @@ export async function getMatchHistory(puuid, regionKey = 'tr', count = 10) {
   if (!res.ok) return [];
   return res.json();
 }
+
+export default {
+  getAccountByRiotId,
+  getActiveGame,
+  getMatchHistory,
+  REGIONS,
+};
