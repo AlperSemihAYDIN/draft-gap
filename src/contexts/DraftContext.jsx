@@ -63,6 +63,24 @@ export function DraftProvider({ children }) {
     setLastUpdate(null);
   }, []);
 
+  const removePick = useCallback((champId, team = 'blue') => {
+    if (team === 'blue') {
+      setBlueTeam(prev => prev.filter(p => p.champId !== champId));
+    } else {
+      setRedTeam(prev => prev.filter(p => p.champId !== champId));
+    }
+    setLastUpdate(new Date());
+  }, []);
+
+  const removeBan = useCallback((champId, team = 'blue') => {
+    if (team === 'blue') {
+      setBlueBans(prev => prev.filter(id => id !== champId));
+    } else {
+      setRedBans(prev => prev.filter(id => id !== champId));
+    }
+    setLastUpdate(new Date());
+  }, []);
+
   const value = {
     // State
     blueTeam,
@@ -82,6 +100,8 @@ export function DraftProvider({ children }) {
     // Actions
     addPick,
     addBan,
+    removePick,
+    removeBan,
     updateDraftPhase,
     resetDraft,
     setUserRole,
