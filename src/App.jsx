@@ -21,6 +21,7 @@ import DraftModeSelector from './components/DraftModeSelector';
 import LiveGameDetectorV2 from './components/LiveGameDetectorV2';
 import RealTimeDraftCoach from './components/RealTimeDraftCoach';
 import ChampSelectMonitor from './components/ChampSelectMonitor';
+import AutoDraftSimulator from './components/AutoDraftSimulator';
 import { DraftProvider } from './contexts/DraftContext';
 import { useLanguage } from './i18n/LanguageContext';
 
@@ -265,6 +266,16 @@ export default function App() {
           >
             🔴 Canlı Draft Koçu
           </button>
+          <button
+            onClick={() => setActiveTab('aiSim')}
+            className={`px-5 py-2.5 text-sm font-medium rounded-t-lg transition-all whitespace-nowrap ${
+              activeTab === 'aiSim'
+                ? 'bg-lol-dark text-lol-gold border-t border-x border-lol-gold/30'
+                : 'text-lol-light/40 hover:text-lol-light/60 hover:bg-lol-dark/40'
+            }`}
+          >
+            🤖 AI Simülatör
+          </button>
         </div>
       </header>
 
@@ -308,6 +319,10 @@ export default function App() {
                 )}
               </>
             )}
+          </div>
+        ) : activeTab === 'aiSim' ? (
+          <div className="animate-fadeIn">
+            <AutoDraftSimulator />
           </div>
         ) : showResults && recommendations ? (
           // --- SONUÇ SAYFASI ---
