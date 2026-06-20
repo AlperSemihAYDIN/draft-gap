@@ -359,9 +359,24 @@ export function getDraftPhaseInfo(bluePicks, redPicks, blueBans, redBans) {
 // ANA SKORLAMA ALGORİTMASI — 10 Kriter
 // ============================================================
 
+// Bayesian WR smoothing: küçük örnek boyutlarını 50%'e çeker
+// smoothedWR = (wins + k*0.5) / (games + k)   k=50 ile 50 maçtan az = 50%'ye yakın
+function bayesianWR(rawWR, sampleSize, k = 50) {
+  if (!sampleSize || sampleSize <= 0) return 50;
+  const wins = (rawWR / 100) * sampleSize;
+  return ((wins + k * 0.5) / (sampleSize + k)) * 100;
+}
+
+// Minimum rol pick count — bu altında role verisi güvenilmez
+const MIN_ROLE_PICKS = 20;
+
 export function calculateDraftScore(champId, role, blueTeam, redTeam, userTeam, mode, phaseInfo) {
   const champ = championMeta[champId];
   if (!champ) return { score: 0, breakdown: {}, reasoning: [] };
+
+  // Minimum örnek boyutu kontrolü — az oynanan roller skoru düşürür
+  const rolePickCount = champ.rolePickCounts?.[role] || 0;
+  const samplePenalty = rolePickCount < MIN_ROLE_PICKS && rolePickCount > 0 ? 0.4 : 1.0;
 
   const allies  = (userTeam === 'blue' ? blueTeam : redTeam).map(p => p.champId);
   const enemies = (userTeam === 'blue' ? redTeam : blueTeam).map(p => p.champId);
@@ -370,9 +385,11 @@ export function calculateDraftScore(champId, role, blueTeam, redTeam, userTeam, 
 
   // --- 1. META GÜCÜ (0-15) ---
   const presence = champ.presence || 0;
-  const wr = (typeof champ.winRate === 'object'
-    ? (champ.winRate[role] || Object.values(champ.winRate)[0] || 50)
-    : (champ.winRate || 50));
+  // Rol bazlı raw WR al, sonra Bayesian smoothing uygula
+  const rawWR = (typeof champ.winRate === 'object'
+    ? (champ.winRate[role] ?? Object.values(champ.winRate)[0] ?? 50)
+    : (champ.winRate ?? 50));
+  const wr = bayesianWR(rawWR, rolePickCount);
   const banRate = champ.banRate || 0;
   let metaScore = 0;
   if (presence >= 70 && wr >= 48) metaScore = 15;
@@ -380,6 +397,7 @@ export function calculateDraftScore(champId, role, blueTeam, redTeam, userTeam, 
   else if (presence >= 35 && wr >= 47) metaScore = 9;
   else if (presence >= 20 && wr >= 46) metaScore = 6;
   else metaScore = Math.max(0, (wr - 44) * 1.5);
+  metaScore *= samplePenalty;
 
   // --- 2. COUNTER DEĞERİ (0-15) ---
   let counterScore = 0;
@@ -433,11 +451,16 @@ export function calculateDraftScore(champId, role, blueTeam, redTeam, userTeam, 
   const roleFit = Array.isArray(champ.roles) ? champ.roles.includes(role) : false;
   if (!roleFit) {
     laneScore = 1;
+  } else if (rolePickCount < MIN_ROLE_PICKS) {
+    // Çok az oynandı — lane score minimal
+    laneScore = 2;
   } else {
+    // pickRate yerine rolePickCounts kullan — daha güvenilir
     const pr = (typeof champ.pickRate === 'object'
       ? (champ.pickRate[role] || 0)
       : (champ.pickRate || 0));
     laneScore = Math.min(12, 4 + (pr / 5));
+    laneScore *= samplePenalty;
   }
 
   // --- 6. CARRY POTANSİYELİ (0-12) ---
@@ -448,7 +471,7 @@ export function calculateDraftScore(champId, role, blueTeam, redTeam, userTeam, 
   else if (tags.includes('assassin') || tags.includes('scaling')) carryScore = 9;
   else if (tags.includes('early_game') && wr >= 52) carryScore = 8;
   else carryScore = 6;
-  carryScore = Math.min(12, carryScore * roleBonus);
+  carryScore = Math.min(12, carryScore * roleBonus * samplePenalty);
 
   // --- 7. SCALING (0-10) ---
   const spike = getPowerSpike(champId);
@@ -546,13 +569,18 @@ export function getRecommendations(role, blueTeam, redTeam, userTeam, mode, limi
     if (usedChamps.has(champId)) continue;
     if (!Array.isArray(champData.roles) || !champData.roles.includes(role)) continue;
 
+    // Minimum örnek boyutu kontrolü — bu roldeki pick sayısı çok azsa atla
+    const rolePickCount = champData.rolePickCounts?.[role] || 0;
+    if (rolePickCount > 0 && rolePickCount < MIN_ROLE_PICKS) continue;
+
     const { score, breakdown, reasoning } = calculateDraftScore(
       champId, role, blueTeam, redTeam, userTeam, mode, phaseInfo
     );
 
-    const wr = typeof champData.winRate === 'object'
-      ? (champData.winRate[role] || Object.values(champData.winRate)[0] || 50)
-      : (champData.winRate || 50);
+    const rawWR = typeof champData.winRate === 'object'
+      ? (champData.winRate[role] ?? Object.values(champData.winRate)[0] ?? 50)
+      : (champData.winRate ?? 50);
+    const wr = bayesianWR(rawWR, rolePickCount);
     const pr = typeof champData.pickRate === 'object'
       ? (champData.pickRate[role] || Object.values(champData.pickRate)[0] || 0)
       : (champData.pickRate || 0);
