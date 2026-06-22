@@ -31,7 +31,7 @@
       "EMEA Masters/2026 Season/Winter"
     ],
     "totalGames": 2069,
-    "generatedAt": "2026-06-15T03:17:39.390Z"
+    "generatedAt": "2026-06-22T03:17:14.988Z"
   },
   "Orianna": {
     "name": "Orianna",
@@ -109,7 +109,7 @@
       "adc": "S"
     },
     "winRate": {
-      "top": 47.4,
+      "top": 44.7,
       "adc": 52.7
     },
     "pickRate": {
@@ -129,8 +129,8 @@
     "proStats": {
       "picks": 338,
       "bans": 1229,
-      "wins": 176,
-      "losses": 162
+      "wins": 175,
+      "losses": 163
     },
     "counters": {
       "Maokai": 2.7,
@@ -143,7 +143,7 @@
       "Nocturne": 2.6,
       "Taliyah": 2.7,
       "Lucian": 2.9,
-      "Nautilus": 2.7,
+      "Nautilus": 2.6,
       "Jayce": 2.4,
       "Galio": 2.6,
       "KSante": 3.1,
@@ -184,7 +184,7 @@
       "Camille": 2,
       "Kaisa": 3
     },
-    "blindPickSafety": 9,
+    "blindPickSafety": 8,
     "description": "Perma-ban · Güvenli blind pick · Meta tanımlayan"
   },
   "Rumble": {
@@ -198,7 +198,7 @@
       "mid": "C"
     },
     "winRate": {
-      "top": 53.4,
+      "top": 53.6,
       "mid": 50
     },
     "pickRate": {
@@ -218,14 +218,15 @@
     "proStats": {
       "picks": 478,
       "bans": 961,
-      "wins": 255,
-      "losses": 223
+      "wins": 256,
+      "losses": 222
     },
     "counters": {
       "Lucian": 2.8,
       "Milio": 2.8,
       "Nocturne": 2.6,
       "Seraphine": 2.6,
+      "XinZhao": 2.4,
       "Akali": 2.8,
       "Yorick": 2.4,
       "Azir": 2.7,
@@ -250,13 +251,14 @@
     },
     "synergies": {
       "TwistedFate": 2,
-      "Cassiopeia": 1.8,
+      "Cassiopeia": 2,
       "MissFortune": 2.2,
       "Caitlyn": 1.8,
       "Lux": 2.3,
       "Bard": 1.8,
       "Skarner": 1.9,
       "Seraphine": 1.8,
+      "Trundle": 1.8,
       "Alistar": 2,
       "Xayah": 2.1,
       "Rakan": 1.9,
@@ -367,7 +369,7 @@
       "top": "C"
     },
     "winRate": {
-      "mid": 54.8,
+      "mid": 54.6,
       "top": 50
     },
     "pickRate": {
@@ -387,8 +389,8 @@
     "proStats": {
       "picks": 557,
       "bans": 510,
-      "wins": 305,
-      "losses": 252
+      "wins": 304,
+      "losses": 253
     },
     "counters": {
       "KSante": 2.5,
@@ -434,7 +436,6 @@
       "Caitlyn": 1.9,
       "Lux": 1.8,
       "Ashe": 2.1,
-      "XinZhao": 1.8,
       "Alistar": 1.8,
       "Nami": 1.8,
       "Rakan": 2.2,
@@ -468,7 +469,7 @@
       "support": "S"
     },
     "winRate": {
-      "support": 47.2
+      "support": 46.9
     },
     "pickRate": {
       "support": 13.9
@@ -484,8 +485,8 @@
     "proStats": {
       "picks": 290,
       "bans": 743,
-      "wins": 136,
-      "losses": 154
+      "wins": 135,
+      "losses": 155
     },
     "counters": {
       "Neeko": 2.7,
@@ -506,7 +507,7 @@
     },
     "synergies": {
       "Annie": 1.9,
-      "Sivir": 2.1,
+      "Sivir": 2,
       "TwistedFate": 2.1,
       "Mel": 1.8,
       "Skarner": 2.2,
@@ -534,7 +535,7 @@
       "jungle": "C"
     },
     "winRate": {
-      "support": 43,
+      "support": 43.3,
       "jungle": 50
     },
     "pickRate": {
@@ -554,12 +555,13 @@
     "proStats": {
       "picks": 376,
       "bans": 649,
-      "wins": 162,
-      "losses": 214
+      "wins": 163,
+      "losses": 213
     },
     "counters": {
       "Sylas": 2.7,
       "Renekton": 2.6,
+      "Karma": 2.5,
       "Jayce": 2.6,
       "Lulu": 3.2,
       "Cassiopeia": 2.6,
@@ -1129,7 +1131,7 @@
       "jungle": "A"
     },
     "winRate": {
-      "jungle": 48.4
+      "jungle": 48.2
     },
     "pickRate": {
       "jungle": 28.7
@@ -1145,8 +1147,8 @@
     "proStats": {
       "picks": 593,
       "bans": 275,
-      "wins": 287,
-      "losses": 306
+      "wins": 286,
+      "losses": 307
     },
     "counters": {
       "Jayce": 2.5,
@@ -1172,7 +1174,6 @@
       "Shen": 2.5,
       "Ashe": 1.9,
       "Pyke": 1.8,
-      "Ryze": 1.8,
       "Olaf": 1.8,
       "Renata": 1.9,
       "Poppy": 3,
@@ -1305,7 +1306,7 @@
       "adc": "A"
     },
     "winRate": {
-      "adc": 49.7
+      "adc": 49.9
     },
     "pickRate": {
       "adc": 24.2
@@ -1321,8 +1322,8 @@
     "proStats": {
       "picks": 502,
       "bans": 309,
-      "wins": 249,
-      "losses": 253
+      "wins": 250,
+      "losses": 252
     },
     "counters": {
       "Naafiri": 2.6,
@@ -1350,6 +1351,7 @@
       "AurelionSol": 1.8,
       "Kennen": 2.1,
       "LeBlanc": 1.9,
+      "Cassiopeia": 1.9,
       "DrMundo": 1.9,
       "Yone": 1.8,
       "Syndra": 1.8,
@@ -2533,7 +2535,7 @@
       "adc": "B"
     },
     "winRate": {
-      "adc": 54.9
+      "adc": 54.5
     },
     "pickRate": {
       "adc": 12.8
@@ -2549,14 +2551,13 @@
     "proStats": {
       "picks": 264,
       "bans": 175,
-      "wins": 145,
-      "losses": 119
+      "wins": 144,
+      "losses": 120
     },
     "counters": {
       "XinZhao": 2.5,
       "Orianna": 2.7,
       "LeeSin": 2.5,
-      "Nautilus": 2.5,
       "Corki": 2.5,
       "Nocturne": 2.6,
       "Kaisa": 2.8,
@@ -2573,7 +2574,7 @@
       "Alistar": 2.7,
       "Galio": 2.6,
       "Rell": 3,
-      "Trundle": 2.9,
+      "Trundle": 2.5,
       "Lulu": 2.4,
       "Syndra": 3.1,
       "Malphite": 3.3,
@@ -2588,7 +2589,7 @@
     "synergies": {
       "Jayce": 2.3,
       "Annie": 2.3,
-      "Karma": 2.1,
+      "Karma": 2,
       "TwistedFate": 3,
       "LeeSin": 2.2,
       "Gnar": 1.9,
@@ -3185,7 +3186,7 @@
       "top": "C"
     },
     "winRate": {
-      "mid": 48.5,
+      "mid": 49.1,
       "top": 50
     },
     "pickRate": {
@@ -3205,8 +3206,8 @@
     "proStats": {
       "picks": 169,
       "bans": 216,
-      "wins": 82,
-      "losses": 87
+      "wins": 83,
+      "losses": 86
     },
     "counters": {
       "Orianna": 2.7,
@@ -3215,6 +3216,7 @@
       "Rumble": 2.9,
       "Lucian": 2.4,
       "Milio": 2.7,
+      "Karma": 2.4,
       "Nami": 2.5,
       "Aurora": 3.3,
       "Leona": 2.4,
@@ -3227,12 +3229,13 @@
       "Aatrox": 2.7
     },
     "synergies": {
-      "Rumble": 1.8,
+      "Rumble": 2,
       "Camille": 3,
       "Kaisa": 1.8,
       "Lux": 2,
       "Milio": 1.8,
       "MissFortune": 1.9,
+      "Ezreal": 1.9,
       "Ashe": 1.8,
       "Yunara": 1.9,
       "Naafiri": 2.3,
@@ -4873,7 +4876,7 @@
       "jungle": "B"
     },
     "winRate": {
-      "jungle": 48.6
+      "jungle": 49.3
     },
     "pickRate": {
       "jungle": 7
@@ -4889,11 +4892,12 @@
     "proStats": {
       "picks": 144,
       "bans": 86,
-      "wins": 70,
-      "losses": 74
+      "wins": 71,
+      "losses": 73
     },
     "counters": {
       "Nautilus": 2.6,
+      "Varus": 2.4,
       "Ambessa": 2.9,
       "Bard": 2.7,
       "Yunara": 2.6,
@@ -4907,14 +4911,17 @@
       "Zeri": 4,
       "Rell": 2.9,
       "Aatrox": 2.4,
+      "Ryze": 2.5,
       "Qiyana": 2.5,
-      "Yuumi": 4
+      "Yuumi": 4,
+      "Karma": 3
     },
     "synergies": {
       "Ahri": 2.2,
       "Ashe": 2.4,
       "Seraphine": 2.3,
       "Vayne": 3,
+      "Rumble": 1.8,
       "Ziggs": 2.3,
       "TwistedFate": 2,
       "Gnar": 2.1,
