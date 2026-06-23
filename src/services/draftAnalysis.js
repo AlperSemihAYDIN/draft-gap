@@ -392,11 +392,27 @@ export function calculateDraftScore(champId, role, blueTeam, redTeam, userTeam, 
   const wr = bayesianWR(rawWR, rolePickCount);
   const banRate = champ.banRate || 0;
   let metaScore = 0;
-  if (presence >= 70 && wr >= 48) metaScore = 15;
-  else if (presence >= 50 && wr >= 48) metaScore = 12;
-  else if (presence >= 35 && wr >= 47) metaScore = 9;
-  else if (presence >= 20 && wr >= 46) metaScore = 6;
-  else metaScore = Math.max(0, (wr - 44) * 1.5);
+
+  if (mode === 'pro') {
+    // Pro modda presence birincil kapı: az oynanan şampiyon meta sayılmaz
+    // Twisted Fate gibi %12 presence li şampiyonlar yüksek WR ile yanıltmamalı
+    if      (presence >= 65) metaScore = 15;
+    else if (presence >= 50) metaScore = 13;
+    else if (presence >= 35) metaScore = 10;
+    else if (presence >= 22) metaScore = 7;
+    else if (presence >= 12) metaScore = 4;
+    else if (presence >= 5)  metaScore = 2;
+    else                     metaScore = 1;
+    // WR küçük modifier: ±2 puan (presence'ı geçemez)
+    metaScore = Math.min(15, Math.max(0, metaScore + Math.max(-2, Math.min(2, (wr - 50) / 3))));
+  } else {
+    // SoloQ: hem presence hem WR önemli
+    if (presence >= 70 && wr >= 48) metaScore = 15;
+    else if (presence >= 50 && wr >= 48) metaScore = 12;
+    else if (presence >= 35 && wr >= 47) metaScore = 9;
+    else if (presence >= 20 && wr >= 46) metaScore = 6;
+    else metaScore = Math.max(0, (wr - 44) * 1.5);
+  }
   metaScore *= samplePenalty;
 
   // --- 2. COUNTER DEĞERİ (0-15) ---
@@ -425,7 +441,7 @@ export function calculateDraftScore(champId, role, blueTeam, redTeam, userTeam, 
     synergyScore = 5;
   }
 
-  // --- 4. RAKİP KOMPOZİSYONUNA ETKİ (0-10) ---
+  // --- 4. RAKİP KOMPOZİSYONUNA ETKİ + ARKETİP UYUMU (0-10) ---
   let compImpact = 5;
   if (enemies.length >= 2) {
     const enemyPicks = enemies.map(id => ({ champId: id }));
@@ -443,6 +459,19 @@ export function calculateDraftScore(champId, role, blueTeam, redTeam, userTeam, 
       const counters = counterMap[enemyArch.type] || [];
       const matchCount = counters.filter(t => tags.includes(t)).length;
       compImpact = Math.min(10, 4 + matchCount * 2);
+    }
+  }
+
+  // Pro modda kompozisyon arketipi tutarlılık bonusu: mevcut takım yönünü güçlendir
+  if (mode === 'pro' && allies.length >= 1) {
+    const allyArch = detectCompArchetype(allies.map(id => ({ champId: id })));
+    if (allyArch && allyArch.score >= 3) {
+      const archTags = COMP_ARCHETYPES[allyArch.type]?.tags || [];
+      const matchCount = archTags.filter(t => tags.includes(t)).length;
+      if (matchCount > 0) {
+        // Aynı yönde pick: compImpact bonusu
+        compImpact = Math.min(10, compImpact + matchCount * 2);
+      }
     }
   }
 
@@ -516,10 +545,29 @@ export function calculateDraftScore(champId, role, blueTeam, redTeam, userTeam, 
     : { meta:1.3, counter:1.1, synergy:1.5, compImpact:1.4, lane:0.9,
         carry:0.7, scaling:1.2, objective:1.4, flex:1.5, roleApp:1.0 };
 
-  // Blind pick fazında flex & blind safety önem kazanır
+  // Faz farkındalıklı ağırlık ayarları — Pro modda çok daha güçlü etki
+  const phase = phaseInfo?.phase;
   if (isBlindPhase) {
-    weights.flex = (weights.flex || 1) + 0.6;
-    weights.counter = Math.max(0.5, (weights.counter || 1) - 0.3);
+    if (mode === 'pro') {
+      // Blind fazda pro: presence/meta dominant, counter henüz bilinmiyor
+      weights.meta    *= 2.0;   // presence priority
+      weights.flex    += 1.2;   // flex pick değeri yüksek
+      weights.counter  = Math.max(0.3, weights.counter - 0.6);
+      weights.carry   *= 0.7;   // erken blind'da carry riski yüksek
+    } else {
+      weights.flex    += 0.6;
+      weights.counter  = Math.max(0.5, weights.counter - 0.3);
+    }
+  } else if (phase === 'pick2') {
+    // Counter pick fazı: counter değeri ve kompozisyon tamamlama dominant
+    if (mode === 'pro') {
+      weights.counter     *= 2.5;
+      weights.compImpact  *= 1.8;
+      weights.meta        *= 0.7;  // meta zaten bitti, nişan picks devreye girer
+    } else {
+      weights.counter     *= 2.0;
+      weights.meta        *= 0.8;
+    }
   }
 
   let total = 0, maxTotal = 0;
@@ -534,15 +582,17 @@ export function calculateDraftScore(champId, role, blueTeam, redTeam, userTeam, 
 
   // Gerekçe metinleri
   const reasoning = [];
-  if (metaScore >= 12)     reasoning.push(`🔥 Meta dominant — presence: ${presence.toFixed(0)}%`);
-  if (counterScore >= 10)  reasoning.push('⚔️ Rakip şampiyonlara güçlü counter');
-  if (synergyScore >= 8)   reasoning.push('🤝 Takım uyumu çok iyi');
-  if (compImpact >= 8)     reasoning.push('🎯 Rakip kompozisyonunu doğrudan çözer');
-  if (carryScore >= 10)    reasoning.push('💪 Yüksek carry potansiyeli');
-  if (scalingScore >= 8)   reasoning.push('📈 Güçlü geç oyun');
-  if (flexScore >= 6)      reasoning.push('🔄 Flex pick — rakibe bilgi verme');
-  if (spike.early >= 8)    reasoning.push('⚡ Erken baskı yapabilir');
-  if (roleAppScore === 0)  reasoning.push('⚠️ Off-role — risk yüksek');
+  if (metaScore >= 12)       reasoning.push(`🔥 Meta dominant — presence: ${presence.toFixed(0)}%`);
+  else if (metaScore >= 7)   reasoning.push(`📊 Orta meta — presence: ${presence.toFixed(0)}%`);
+  else if (mode === 'pro' && presence < 15) reasoning.push(`⚠️ Düşük pro presence (${presence.toFixed(0)}%) — niche pick`);
+  if (counterScore >= 10)    reasoning.push('⚔️ Rakip şampiyonlara güçlü counter');
+  if (synergyScore >= 8)     reasoning.push('🤝 Takım uyumu çok iyi');
+  if (compImpact >= 8)       reasoning.push('🎯 Rakip kompozisyonunu doğrudan çözer');
+  if (carryScore >= 10)      reasoning.push('💪 Yüksek carry potansiyeli');
+  if (scalingScore >= 8)     reasoning.push('📈 Güçlü geç oyun');
+  if (flexScore >= 6)        reasoning.push('🔄 Flex pick — rakibe bilgi verme');
+  if (spike.early >= 8)      reasoning.push('⚡ Erken baskı yapabilir');
+  if (roleAppScore === 0)    reasoning.push('⚠️ Off-role — risk yüksek');
 
   return {
     score: Math.max(0, Math.min(100, score)),

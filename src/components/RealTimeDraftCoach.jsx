@@ -7,8 +7,12 @@ import {
 } from '../services/draftAnalysis';
 import championMeta from '../data/championMeta.json';
 
-const PATCH = championMeta._meta?.patch || '16.11';
-const IMG = (id) => `https://ddragon.leagueoflegends.com/cdn/${PATCH}/img/champion/${id}.png`;
+import { getLatestVersion } from '../services/dataDragon';
+
+// Sürümü dinamik olarak DDragon'dan çeker; fallback olarak güncel bilinen versiyon
+let _ddVer = '16.12.1';
+getLatestVersion().then(v => { _ddVer = v; }).catch(() => {});
+const IMG = (id) => `https://ddragon.leagueoflegends.com/cdn/${_ddVer}/img/champion/${id}.png`;
 
 const ROLES = [
   { id:'top',     label:'Top',     icon:'🏔️' },
@@ -589,7 +593,7 @@ export default function RealTimeDraftCoach() {
             {draftMode === 'soloq'
               ? '🎮 SoloQ Modu — Kişisel kazanma ihtimali maksimize ediliyor'
               : '🏆 Pro Arena Modu — Takım stratejisi ve optimal kompozisyon analizi'}
-            {' · '}Patch {PATCH} · {analysis.timestamp.toLocaleTimeString('tr-TR')}
+            {' · '}Patch {championMeta._meta?.patch || _ddVer} · {analysis.timestamp.toLocaleTimeString('tr-TR')}
           </div>
         </>
       )}

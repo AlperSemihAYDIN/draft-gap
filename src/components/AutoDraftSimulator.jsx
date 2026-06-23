@@ -1,10 +1,13 @@
 import { useState, useEffect, useRef, useMemo } from 'react';
 import { runFullSimulation, DRAFT_ORDER } from '../services/autoDraftEngine';
 import { useDraftContext } from '../contexts/DraftContext';
+import { getLatestVersion } from '../services/dataDragon';
 import championMeta from '../data/championMeta.json';
 
-const PATCH      = championMeta._meta?.patch || '16.11';
-const IMG        = id => `https://ddragon.leagueoflegends.com/cdn/${PATCH}/img/champion/${id}.png`;
+// Sürümü dinamik olarak DDragon'dan çeker; fallback olarak güncel bilinen versiyon
+let _ddVer = '16.12.1';
+getLatestVersion().then(v => { _ddVer = v; }).catch(() => {});
+const IMG = id => `https://ddragon.leagueoflegends.com/cdn/${_ddVer}/img/champion/${id}.png`;
 const ROLES_ORD  = ['top', 'jungle', 'mid', 'adc', 'support'];
 const ROLE_ICON  = { top:'🏔️', jungle:'🌿', mid:'⚡', adc:'🏹', support:'🛡️' };
 const ROLE_LBL   = { top:'Top', jungle:'Jungle', mid:'Mid', adc:'ADC', support:'Support' };
