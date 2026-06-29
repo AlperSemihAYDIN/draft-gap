@@ -4,6 +4,7 @@ import {
   getBanSuggestions,
   generateProDraftAnalysis,
 } from './draftAnalysis.js';
+import { isProHardBlacklisted } from './proMetaEngine.js';
 
 // Standard LoL tournament draft order
 // Ban Phase 1: B-R-B-R-B-R (6 bans)
@@ -99,10 +100,9 @@ function computeAIPick(actingTeam, blueTeam, redTeam, blueBans, redBans, phase) 
 
   if (!remaining.length) return null;
 
-  // Blind faz: ilk pick — karsida kimse yok, flex + yuksek meta
-  const isBlind    = phase === 'pick1' && ownTeam.length === 0;
-  const isCounterFaze = phase === 'pick2';
-  const phaseInfo  = { isBlind };
+  // Faz bilgisi: blind pick (ilk seçim) mi, counter faz mı?
+  const isBlind   = phase === 'pick1' && ownTeam.length === 0;
+  const phaseInfo = { isBlind, phase };
 
   let best      = null;
   let bestScore = -Infinity;
@@ -113,29 +113,24 @@ function computeAIPick(actingTeam, blueTeam, redTeam, blueBans, redBans, phase) 
       if (used.has(champId)) continue;
       if (!Array.isArray(champ.roles) || !champ.roles.includes(role)) continue;
 
-      const { score, reasoning } = calculateDraftScore(
+      // Pro hard blacklist: presence < 4% → asla seçme
+      if (isProHardBlacklisted(champId)) continue;
+
+      const { score, reasoning, tier } = calculateDraftScore(
         champId, role, blueTeam, redTeam, actingTeam, 'pro', phaseInfo
       );
 
-      // Counter fazda bonus: rakibe karsi counter degeri fazla olan sampiyonlara + puan
-      let finalScore = score;
-      if (isCounterFaze) {
-        const enemyTeam = actingTeam === 'blue' ? redTeam : blueTeam;
-        let counterBonus = 0;
-        for (const ep of enemyTeam) {
-          counterBonus += champ.counters?.[ep.champId] || 0;
-        }
-        finalScore += (counterBonus / Math.max(1, enemyTeam.length)) * 3;
-      }
-
-      if (finalScore > bestScore) {
-        bestScore = finalScore;
+      // calculateDraftScore artık phase-aware weighting içeriyor;
+      // fazladan counter bonusu kaldırıldı (çifte sayım önlendi)
+      if (score > bestScore) {
+        bestScore = score;
         best = {
           champId,
           name: champ.name,
           role,
           score: Math.round(score),
           reasoning,
+          tier,
           presence: champ.presence || 0,
         };
       }

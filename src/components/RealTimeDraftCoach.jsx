@@ -665,14 +665,14 @@ function RecommendationCard({ rec, rank, mode }) {
         </div>
       </div>
 
-      {/* Kriter Breakdown */}
+      {/* Kriter Breakdown — Yeni 13-bileşen sistemi */}
       <div className="grid grid-cols-5 gap-1.5 text-center">
         {[
-          ['Meta', rec.breakdown.meta, 15],
+          ['Meta',    rec.breakdown.meta,    15],
           ['Counter', rec.breakdown.counter, 15],
-          ['Synergy', rec.breakdown.synergy, 12],
-          ['Carry', rec.breakdown.carry, 12],
-          ['Flex', rec.breakdown.flex, 8],
+          ['Pair Syn',rec.breakdown.pairSyn, 12],
+          ['Comp',    rec.breakdown.compFit, 12],
+          ['Flex',    rec.breakdown.flex,     8],
         ].map(([label, val, max]) => (
           <div key={label} className="bg-lol-dark/60 rounded-lg p-1.5 border border-lol-light/5">
             <p className="text-lol-light/30 text-[10px]">{label}</p>
@@ -700,8 +700,8 @@ function RecommendationCard({ rec, rank, mode }) {
           : 'bg-lol-blue/5 border-lol-blue/20 text-lol-blue/80'
       }`}>
         {mode === 'soloq'
-          ? `🎮 SoloQ: ${rec.breakdown.carry >= 10 ? 'Güçlü carry potansiyeli — maçı omuzlayabilir.' : rec.breakdown.counter >= 10 ? 'Rakibe güçlü counter — lane hakimiyeti sağlar.' : 'Stabil meta seçim, tutarlı performans.'}`
-          : `🏆 Pro: ${rec.breakdown.synergy >= 8 ? 'Takım kompozisyonuyla güçlü sinerji.' : rec.breakdown.flex >= 6 ? 'Flex pick değeri yüksek — rakibe bilgi verme.' : 'Kompozisyonu tamamlayan kritik rol.'}`
+          ? `🎮 SoloQ: ${rec.breakdown.counter >= 10 ? 'Rakibe güçlü counter — lane hakimiyeti sağlar.' : rec.breakdown.compFit >= 9 ? 'Kompozisyon uyumu mükemmel.' : 'Stabil meta seçim, tutarlı performans.'}`
+          : `🏆 Pro: ${rec.breakdown.pairSyn >= 9 ? 'Pro pair sinerji çok güçlü.' : rec.breakdown.flex >= 6 ? 'Flex pick değeri yüksek — rakibe bilgi verme.' : 'Kompozisyonu tamamlayan kritik rol.'} Tier: ${rec.tier || '?'}`
         }
       </div>
     </div>

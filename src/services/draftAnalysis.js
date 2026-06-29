@@ -1,4 +1,13 @@
 import championMeta from '../data/championMeta.json';
+import {
+  calculateProMetaScore,
+  getTeamPairScore,
+  analyzeTeamNeeds,
+  getDraftPositionScore,
+  isProHardBlacklisted,
+  getChampionProTier,
+  TIER_BAN_MULT,
+} from './proMetaEngine';
 
 // ============================================================
 // CHAMPION ARCHETYPE TAG SYSTEM
@@ -372,232 +381,259 @@ const MIN_ROLE_PICKS = 20;
 
 export function calculateDraftScore(champId, role, blueTeam, redTeam, userTeam, mode, phaseInfo) {
   const champ = championMeta[champId];
-  if (!champ) return { score: 0, breakdown: {}, reasoning: [] };
+  if (!champ) return { score: 0, breakdown: {}, reasoning: [], tier: 'D' };
 
-  // Minimum örnek boyutu kontrolü — az oynanan roller skoru düşürür
+  // ── Hard blacklist: Pro modda presence < 4% → asla önerme ──────────────────
+  if (mode === 'pro' && isProHardBlacklisted(champId)) {
+    return { score: 0, breakdown: {}, reasoning: ['🚫 Pro blacklist: presence < 4%'], tier: 'D' };
+  }
+
   const rolePickCount = champ.rolePickCounts?.[role] || 0;
-  const samplePenalty = rolePickCount < MIN_ROLE_PICKS && rolePickCount > 0 ? 0.4 : 1.0;
-
-  const allies  = (userTeam === 'blue' ? blueTeam : redTeam).map(p => p.champId);
-  const enemies = (userTeam === 'blue' ? redTeam : blueTeam).map(p => p.champId);
-  const tags = getChampionTags(champId);
-  const isBlindPhase = phaseInfo?.isBlind ?? true;
-
-  // --- 1. META GÜCÜ (0-15) ---
-  const presence = champ.presence || 0;
-  // Rol bazlı raw WR al, sonra Bayesian smoothing uygula
-  const rawWR = (typeof champ.winRate === 'object'
+  const roleFit   = Array.isArray(champ.roles) ? champ.roles.includes(role) : false;
+  const allies    = (userTeam === 'blue' ? blueTeam : redTeam).map(p => p.champId);
+  const enemies   = (userTeam === 'blue' ? redTeam  : blueTeam).map(p => p.champId);
+  const tags      = getChampionTags(champId);
+  const isBlind   = phaseInfo?.isBlind ?? true;
+  const phase     = phaseInfo?.phase   || 'pick1';
+  const presence  = champ.presence    || 0;
+  const rawWR     = typeof champ.winRate === 'object'
     ? (champ.winRate[role] ?? Object.values(champ.winRate)[0] ?? 50)
-    : (champ.winRate ?? 50));
-  const wr = bayesianWR(rawWR, rolePickCount);
-  const banRate = champ.banRate || 0;
-  let metaScore = 0;
+    : (champ.winRate ?? 50);
+  const wr        = bayesianWR(rawWR, rolePickCount);
+  const tierInfo  = getChampionProTier(champId);
 
+  // ══════════════════════════════════════════════════════════════════════
+  // 1. META SCORE (0-15)
+  // Pro: Presence 45% | BanRate 15% | WinRate 10% | Flex 10% | Blind 10% | Counter avg 10%
+  // SoloQ: orijinal presence + WR formülü
+  // ══════════════════════════════════════════════════════════════════════
+  let metaScore;
   if (mode === 'pro') {
-    // Pro modda presence birincil kapı: az oynanan şampiyon meta sayılmaz
-    // Twisted Fate gibi %12 presence li şampiyonlar yüksek WR ile yanıltmamalı
-    if      (presence >= 65) metaScore = 15;
-    else if (presence >= 50) metaScore = 13;
-    else if (presence >= 35) metaScore = 10;
-    else if (presence >= 22) metaScore = 7;
-    else if (presence >= 12) metaScore = 4;
-    else if (presence >= 5)  metaScore = 2;
-    else                     metaScore = 1;
-    // WR küçük modifier: ±2 puan (presence'ı geçemez)
-    metaScore = Math.min(15, Math.max(0, metaScore + Math.max(-2, Math.min(2, (wr - 50) / 3))));
+    metaScore = calculateProMetaScore(champId, role);
   } else {
-    // SoloQ: hem presence hem WR önemli
-    if (presence >= 70 && wr >= 48) metaScore = 15;
+    const sp = rolePickCount < MIN_ROLE_PICKS && rolePickCount > 0 ? 0.4 : 1.0;
+    if      (presence >= 70 && wr >= 48) metaScore = 15;
     else if (presence >= 50 && wr >= 48) metaScore = 12;
     else if (presence >= 35 && wr >= 47) metaScore = 9;
     else if (presence >= 20 && wr >= 46) metaScore = 6;
     else metaScore = Math.max(0, (wr - 44) * 1.5);
+    metaScore *= sp;
   }
-  metaScore *= samplePenalty;
 
-  // --- 2. COUNTER DEĞERİ (0-15) ---
-  let counterScore = 0;
+  // ══════════════════════════════════════════════════════════════════════
+  // 2. COUNTER SCORE (0-15)
+  // Pro maçlardan çıkarılan matchup verisi — rakibe karşı ne kadar etkili
+  // ══════════════════════════════════════════════════════════════════════
+  let counterScore = enemies.length > 0 ? 0 : 7;
   if (enemies.length > 0) {
     let total = 0;
-    for (const enemy of enemies) {
-      total += champ.counters?.[enemy] || 0;
-    }
-    const avg = total / enemies.length;
-    counterScore = Math.max(0, Math.min(15, avg * 3));
-  } else {
-    counterScore = 7; // neutral when no enemies known
+    for (const enemy of enemies) total += champ.counters?.[enemy] || 0;
+    counterScore = Math.max(0, Math.min(15, (total / enemies.length) * 3));
   }
 
-  // --- 3. TAKIM UYUMU (0-12) ---
-  let synergyScore = 0;
+  // ══════════════════════════════════════════════════════════════════════
+  // 3. PAIR SYNERGY (0-12)
+  // Pro maçlardan çıkarılan en sık birlikte seçilen ikili kombinasyonlar
+  // ══════════════════════════════════════════════════════════════════════
+  let pairSyn;
   if (allies.length > 0) {
-    let total = 0;
-    for (const ally of allies) {
-      total += champ.synergies?.[ally] || 0;
-    }
-    const avg = total / allies.length;
-    synergyScore = Math.max(0, Math.min(12, avg * 3));
+    const avg = getTeamPairScore(champId, allies);
+    pairSyn = Math.max(0, Math.min(12, avg * 3));
   } else {
-    synergyScore = 5;
+    pairSyn = 5; // nötr (henüz takım yok)
   }
 
-  // --- 4. RAKİP KOMPOZİSYONUNA ETKİ + ARKETİP UYUMU (0-10) ---
-  let compImpact = 5;
+  // ══════════════════════════════════════════════════════════════════════
+  // 4. KOMPOZISYON FIT (0-12)
+  //    a) Rakip arketipi sayma
+  //    b) Kendi takım arketipi tutarlılığı (Pro)
+  //    c) Takım ihtiyaçları: AP/AD dengesi, frontline, engage
+  // ══════════════════════════════════════════════════════════════════════
+  let compFit = 4;
+
+  // a) Rakip arketipi karşılama
   if (enemies.length >= 2) {
-    const enemyPicks = enemies.map(id => ({ champId: id }));
-    const enemyArch = detectCompArchetype(enemyPicks);
+    const enemyArch = detectCompArchetype(enemies.map(id => ({ champId: id })));
     if (enemyArch) {
-      // Bizim şampiyon rakip arketipine counter mı?
-      const counterMap = {
-        engage:    ['disengage','peel','poke','anti_engage'],
-        poke:      ['engage','mobility','anti_mobility','frontline'],
-        teamfight: ['splitpush','disengage','poke'],
-        scaling:   ['early_game','pick','assassin'],
-        splitpush: ['frontline','peel','teamfight'],
-        pick:      ['peel','frontline','disengage'],
+      const archetypeCounterMap = {
+        engage:    ['disengage', 'peel', 'poke', 'anti_engage'],
+        poke:      ['engage', 'mobility', 'frontline'],
+        teamfight: ['splitpush', 'disengage', 'poke'],
+        scaling:   ['early_game', 'pick', 'assassin'],
+        splitpush: ['frontline', 'peel', 'teamfight'],
+        pick:      ['peel', 'frontline', 'disengage'],
       };
-      const counters = counterMap[enemyArch.type] || [];
-      const matchCount = counters.filter(t => tags.includes(t)).length;
-      compImpact = Math.min(10, 4 + matchCount * 2);
+      const ctrs = archetypeCounterMap[enemyArch.type] || [];
+      compFit += ctrs.filter(t => tags.includes(t)).length * 2;
     }
   }
 
-  // Pro modda kompozisyon arketipi tutarlılık bonusu: mevcut takım yönünü güçlendir
+  // b) Kendi takım arketip tutarlılığı (Pro)
   if (mode === 'pro' && allies.length >= 1) {
     const allyArch = detectCompArchetype(allies.map(id => ({ champId: id })));
     if (allyArch && allyArch.score >= 3) {
       const archTags = COMP_ARCHETYPES[allyArch.type]?.tags || [];
-      const matchCount = archTags.filter(t => tags.includes(t)).length;
-      if (matchCount > 0) {
-        // Aynı yönde pick: compImpact bonusu
-        compImpact = Math.min(10, compImpact + matchCount * 2);
-      }
+      compFit += archTags.filter(t => tags.includes(t)).length * 1.5;
     }
   }
 
-  // --- 5. LANE GÜCÜ (0-12) ---
-  let laneScore = 6;
-  const roleFit = Array.isArray(champ.roles) ? champ.roles.includes(role) : false;
+  // c) Takım ihtiyaçları: AP/AD + frontline + engage
+  const allyPicks = allies.map(id => ({ champId: id }));
+  const needs     = analyzeTeamNeeds(allyPicks, getChampionTags);
+  if (needs.needsFrontline && (tags.includes('frontline') || tags.includes('tank') || tags.includes('bruiser'))) compFit += 3;
+  if (needs.needsEngage    && (tags.includes('engage')    || tags.includes('cc')))                               compFit += 2;
+  if (needs.needsAP        && tags.includes('ap'))                                                               compFit += 2;
+  if (needs.needsAD        && (tags.includes('ad') || tags.includes('adc')))                                    compFit += 2;
+  if (needs.isAPHeavy && tags.includes('ap') && !tags.includes('ad'))                                           compFit -= 2;
+  if (needs.isADHeavy && (tags.includes('ad') || tags.includes('adc')) && !tags.includes('ap'))                 compFit -= 2;
+
+  compFit = Math.max(0, Math.min(12, compFit));
+
+  // ══════════════════════════════════════════════════════════════════════
+  // 5. LANE PRIORITY (0-10)
+  // Pro pick rate × rol uygunluğu
+  // ══════════════════════════════════════════════════════════════════════
+  let laneScore = 0;
   if (!roleFit) {
-    laneScore = 1;
+    laneScore = 0;
   } else if (rolePickCount < MIN_ROLE_PICKS) {
-    // Çok az oynandı — lane score minimal
     laneScore = 2;
   } else {
-    // pickRate yerine rolePickCounts kullan — daha güvenilir
-    const pr = (typeof champ.pickRate === 'object'
+    const pr = typeof champ.pickRate === 'object'
       ? (champ.pickRate[role] || 0)
-      : (champ.pickRate || 0));
-    laneScore = Math.min(12, 4 + (pr / 5));
-    laneScore *= samplePenalty;
+      : (champ.pickRate || 0);
+    laneScore = Math.min(10, 3 + (pr / 4));
   }
 
-  // --- 6. CARRY POTANSİYELİ (0-12) ---
-  const carryRoleBonus = { mid:1.3, adc:1.2, jungle:1.1, top:1.0, support:0.4 };
-  const roleBonus = carryRoleBonus[role] || 1.0;
-  let carryScore = 0;
-  if (tags.includes('hypercarry')) carryScore = 12;
-  else if (tags.includes('assassin') || tags.includes('scaling')) carryScore = 9;
-  else if (tags.includes('early_game') && wr >= 52) carryScore = 8;
-  else carryScore = 6;
-  carryScore = Math.min(12, carryScore * roleBonus * samplePenalty);
+  // ══════════════════════════════════════════════════════════════════════
+  // 6. DRAFT POSITION SCORE (0-10)
+  // Blind pick: blindSafe + presence + flex gerektirir
+  // Counter pick: düşük blindSafe OK
+  // Pro pick order uygunluğu (B1, R1R2, B2B3, last pick)
+  // ══════════════════════════════════════════════════════════════════════
+  const draftPos = getDraftPositionScore(champId, phaseInfo);
 
-  // --- 7. SCALING (0-10) ---
-  const spike = getPowerSpike(champId);
-  const scalingScore = Math.min(10, spike.late);
+  // ══════════════════════════════════════════════════════════════════════
+  // 7. TEAM BALANCE (0-10)
+  // AP/AD denge profili + frontline ihtiyacı + engage/disengage dengesi + damage profili
+  // ══════════════════════════════════════════════════════════════════════
+  let balance = 5;
+  if (allies.length >= 1) {
+    if (needs.needsAP        && tags.includes('ap'))                                  balance += 2;
+    if (needs.needsAD        && (tags.includes('ad') || tags.includes('adc')))        balance += 2;
+    if (needs.isAPHeavy      && tags.includes('ap') && !tags.includes('ad'))          balance -= 2;
+    if (needs.isADHeavy      && (tags.includes('ad') || tags.includes('adc')) && !tags.includes('ap')) balance -= 2;
+    if (needs.needsFrontline && (tags.includes('frontline') || tags.includes('tank'))) balance += 2;
+    if (needs.needsEngage    && tags.includes('engage'))                               balance += 1;
+    if (needs.hasPoke        && tags.includes('disengage'))                            balance += 1; // poke comp + disengage = iyi
+  }
+  balance = Math.max(0, Math.min(10, balance));
 
-  // --- 8. OBJECTIVE KONTROL (0-10) ---
-  let objectiveScore = 5;
-  if (tags.includes('objective')) objectiveScore += 3;
-  if (tags.includes('cc') || tags.includes('engage')) objectiveScore += 2;
-  if (tags.includes('waveclear')) objectiveScore += 1;
-  objectiveScore = Math.min(10, objectiveScore);
-
-  // --- 9. ESNEKLİK / FLEX DEĞERİ (0-8) ---
-  let flexScore = 0;
+  // ══════════════════════════════════════════════════════════════════════
+  // 8. FLEX VALUE + BLINDABILITY (0-8)
+  // Kaç rolle oynanabilir × blind pick güvenliği
+  // ══════════════════════════════════════════════════════════════════════
   const numRoles = Array.isArray(champ.roles) ? champ.roles.length : 1;
-  flexScore += Math.min(4, numRoles * 2);
-  if (tags.includes('blind_safe') || (champ.blindPickSafety || 5) >= 7) flexScore += 4;
-  else if ((champ.blindPickSafety || 5) >= 5) flexScore += 2;
+  let flexScore  = Math.min(4, (numRoles - 1) * 3);
+  const bs = champ.blindPickSafety || 5;
+  if (bs >= 8) flexScore += 4;
+  else if (bs >= 7) flexScore += 3;
+  else if (bs >= 5) flexScore += 1;
   flexScore = Math.min(8, flexScore);
 
-  // --- 10. OYUNCU ROLÜNE UYGUNLUK (0-6) ---
-  const roleAppScore = roleFit ? 6 : 0;
+  // ══════════════════════════════════════════════════════════════════════
+  // 9. SCALING + OBJECTIVE (0-8)
+  // Geç oyun gücü + objective kontrol kapasitesi
+  // ══════════════════════════════════════════════════════════════════════
+  const spike = getPowerSpike(champId);
+  let scaleObj = Math.min(5, spike.late / 2);
+  if (tags.includes('objective')) scaleObj += 2;
+  if (tags.includes('cc') || tags.includes('engage')) scaleObj += 1;
+  scaleObj = Math.min(8, scaleObj);
 
-  // --- AĞIRLIKLI TOPLAM ---
+  // ══════════════════════════════════════════════════════════════════════
+  // 10. ROLE APP (0-6) — Rol uygunluğu
+  // ══════════════════════════════════════════════════════════════════════
+  const roleApp = roleFit ? 6 : 0;
+
+  // ── Raw score map ──────────────────────────────────────────────────
   const rawScores = {
-    meta:       metaScore,
-    counter:    counterScore,
-    synergy:    synergyScore,
-    compImpact: compImpact,
-    lane:       laneScore,
-    carry:      carryScore,
-    scaling:    scalingScore,
-    objective:  objectiveScore,
-    flex:       flexScore,
-    roleApp:    roleAppScore,
+    meta:     metaScore,
+    counter:  counterScore,
+    pairSyn:  pairSyn,
+    compFit:  compFit,
+    lane:     laneScore,
+    draftPos: draftPos,
+    balance:  balance,
+    flex:     flexScore,
+    scaling:  scaleObj,
+    roleApp:  roleApp,
+  };
+  const MAX_RAW = {
+    meta:15, counter:15, pairSyn:12, compFit:12, lane:10,
+    draftPos:10, balance:10, flex:8, scaling:8, roleApp:6,
   };
 
-  // Mod bazlı ağırlıklar
+  // ── Mod bazlı ağırlıklar ───────────────────────────────────────────
   const weights = mode === 'soloq'
-    ? { meta:1.2, counter:1.5, synergy:0.8, compImpact:1.0, lane:1.3,
-        carry:1.5, scaling:0.9, objective:0.7, flex:0.6, roleApp:1.0 }
-    : { meta:1.3, counter:1.1, synergy:1.5, compImpact:1.4, lane:0.9,
-        carry:0.7, scaling:1.2, objective:1.4, flex:1.5, roleApp:1.0 };
+    ? { meta:1.1, counter:1.5, pairSyn:0.8, compFit:0.9, lane:1.3,
+        draftPos:0.5, balance:0.7, flex:0.6, scaling:0.9, roleApp:1.0 }
+    : { meta:1.4, counter:1.0, pairSyn:1.4, compFit:1.3, lane:0.9,
+        draftPos:1.2, balance:1.3, flex:1.3, scaling:1.0, roleApp:1.0 };
 
-  // Faz farkındalıklı ağırlık ayarları — Pro modda çok daha güçlü etki
-  const phase = phaseInfo?.phase;
-  if (isBlindPhase) {
+  // ── Faz farkındalıklı ağırlık ayarları ────────────────────────────
+  if (isBlind) {
     if (mode === 'pro') {
-      // Blind fazda pro: presence/meta dominant, counter henüz bilinmiyor
-      weights.meta    *= 2.0;   // presence priority
-      weights.flex    += 1.2;   // flex pick değeri yüksek
-      weights.counter  = Math.max(0.3, weights.counter - 0.6);
-      weights.carry   *= 0.7;   // erken blind'da carry riski yüksek
+      weights.meta    *= 1.8;  // presence dominant
+      weights.draftPos *= 2.0; // blind safety kritik
+      weights.flex    *= 1.5;  // flex pick değerli
+      weights.counter  = Math.max(0.3, weights.counter * 0.5); // rakip henüz bilinmiyor
     } else {
-      weights.flex    += 0.6;
-      weights.counter  = Math.max(0.5, weights.counter - 0.3);
+      weights.flex    *= 1.3;
+      weights.counter  = Math.max(0.5, weights.counter * 0.7);
     }
   } else if (phase === 'pick2') {
-    // Counter pick fazı: counter değeri ve kompozisyon tamamlama dominant
     if (mode === 'pro') {
-      weights.counter     *= 2.5;
-      weights.compImpact  *= 1.8;
-      weights.meta        *= 0.7;  // meta zaten bitti, nişan picks devreye girer
+      weights.counter  *= 2.5;  // counter pick fazı dominant
+      weights.compFit  *= 1.8;  // kompozisyon tamamlama kritik
+      weights.draftPos *= 1.3;  // last pick pozisyon bonusu
+      weights.meta     *= 0.7;  // meta önemi azalır
     } else {
-      weights.counter     *= 2.0;
-      weights.meta        *= 0.8;
+      weights.counter  *= 2.0;
+      weights.meta     *= 0.8;
     }
   }
 
+  // ── Normalize 0-100 ────────────────────────────────────────────────
   let total = 0, maxTotal = 0;
   for (const [key, w] of Object.entries(weights)) {
-    const maxRaw = { meta:15, counter:15, synergy:12, compImpact:10, lane:12,
-                     carry:12, scaling:10, objective:10, flex:8, roleApp:6 };
     total    += (rawScores[key] || 0) * w;
-    maxTotal += (maxRaw[key] || 10) * w;
+    maxTotal += (MAX_RAW[key]   || 10) * w;
   }
-
   const score = Math.round((total / maxTotal) * 100);
 
-  // Gerekçe metinleri
+  // ── Gerekçe metinleri ──────────────────────────────────────────────
+  const { tier } = tierInfo;
   const reasoning = [];
-  if (metaScore >= 12)       reasoning.push(`🔥 Meta dominant — presence: ${presence.toFixed(0)}%`);
-  else if (metaScore >= 7)   reasoning.push(`📊 Orta meta — presence: ${presence.toFixed(0)}%`);
-  else if (mode === 'pro' && presence < 15) reasoning.push(`⚠️ Düşük pro presence (${presence.toFixed(0)}%) — niche pick`);
-  if (counterScore >= 10)    reasoning.push('⚔️ Rakip şampiyonlara güçlü counter');
-  if (synergyScore >= 8)     reasoning.push('🤝 Takım uyumu çok iyi');
-  if (compImpact >= 8)       reasoning.push('🎯 Rakip kompozisyonunu doğrudan çözer');
-  if (carryScore >= 10)      reasoning.push('💪 Yüksek carry potansiyeli');
-  if (scalingScore >= 8)     reasoning.push('📈 Güçlü geç oyun');
-  if (flexScore >= 6)        reasoning.push('🔄 Flex pick — rakibe bilgi verme');
-  if (spike.early >= 8)      reasoning.push('⚡ Erken baskı yapabilir');
-  if (roleAppScore === 0)    reasoning.push('⚠️ Off-role — risk yüksek');
+  if (metaScore >= 12)           reasoning.push(`🔥 Tier ${tier} — presence ${presence.toFixed(0)}%`);
+  else if (metaScore >= 7)       reasoning.push(`📊 Tier ${tier} — presence ${presence.toFixed(0)}%`);
+  else if (mode === 'pro' && presence < 15) reasoning.push(`⚠️ Tier ${tier} — düşük presence (${presence.toFixed(0)}%)`);
+  if (counterScore >= 10)        reasoning.push('⚔️ Rakip şampiyonlara güçlü counter');
+  if (pairSyn >= 9)              reasoning.push('🤝 Pro pair sinerji çok güçlü');
+  if (compFit >= 9)              reasoning.push('🎯 Kompozisyonu mükemmel tamamlar');
+  if (draftPos >= 9)             reasoning.push('🥇 İdeal blind pick: güvenli + meta');
+  if (balance >= 8)              reasoning.push('⚖️ Takım AP/AD + frontline dengesini sağlıyor');
+  if (flexScore >= 6)            reasoning.push('🔄 Flex pick — role bilgisi gizlenir');
+  if (scaleObj >= 6)             reasoning.push('📈 Güçlü objective kontrolü + scaling');
+  if (needs.needsFrontline && (tags.includes('frontline') || tags.includes('tank'))) reasoning.push('🛡️ Kritik frontline ihtiyacı karşılanıyor');
+  if (needs.needsAP && tags.includes('ap')) reasoning.push('💫 AP eksikliğini kapatıyor');
+  if (roleApp === 0)             reasoning.push('⚠️ Off-role — risk yüksek');
 
   return {
     score: Math.max(0, Math.min(100, score)),
     breakdown: rawScores,
     reasoning,
+    tier,
   };
 }
 
@@ -665,56 +701,59 @@ export function getBanSuggestions(ownTeam, enemyTeam, ownBans, enemyBans, mode, 
     ...enemyTeam.map(p => p.champId),
   ]);
 
-  const ownTags   = ownTeam.flatMap(p => getChampionTags(p.champId));
   const ownProfile = getTeamPowerProfile(ownTeam);
-
   const suggestions = [];
 
   for (const [champId, champ] of Object.entries(championMeta)) {
     if (champId === '_meta') continue;
     if (alreadyBanned.has(champId) || allPicked.has(champId)) continue;
 
+    const tierInfo  = getChampionProTier(champId);
+    const tierMult  = TIER_BAN_MULT[tierInfo.tier] ?? 1.0;
+
+    // Pro modda D tier şampiyonları asla banlama — ban israfı
+    if (mode === 'pro' && tierInfo.tier === 'D') continue;
+    // C tier sadece direkt tehdit varsa banlanabilir
+    if (mode === 'pro' && tierInfo.tier === 'C' && !enemyTeam.length) continue;
+
     const tags = getChampionTags(champId);
 
-    // P(rakip alır) ≈ presence% / 100
+    // P(rakip alır) ≈ tier-weighted presence
     const pPickedByEnemy = Math.min(1, (champ.presence || 0) / 100);
 
-    // Güç = meta score
+    // Güç = presence + WR bazlı
     const wr = typeof champ.winRate === 'object'
-      ? Object.values(champ.winRate)[0] || 50
-      : champ.winRate || 50;
+      ? (Object.values(champ.winRate)[0] || 50)
+      : (champ.winRate || 50);
     const power = ((champ.presence || 0) * 0.6 + Math.max(0, wr - 45) * 4) / 100;
 
     // Bizim zayıflığımıza etki
     let threatToUs = 0;
-    // AP ağır takımsa AP carry sıkıntısı yok, AD threatening
-    if (ownProfile.apCount >= 3 && tags.includes('ad')) threatToUs += 0.3;
-    if (ownProfile.adCount >= 3 && tags.includes('ap')) threatToUs += 0.3;
-    // CC azsa engage threats
-    if (ownProfile.ccCount <= 1 && tags.includes('engage')) threatToUs += 0.4;
-    // Peel yoksa assassin threats
+    if (ownProfile.apCount >= 3  && tags.includes('ad'))         threatToUs += 0.3;
+    if (ownProfile.adCount >= 3  && tags.includes('ap'))         threatToUs += 0.3;
+    if (ownProfile.ccCount <= 1  && tags.includes('engage'))     threatToUs += 0.4;
     if (ownProfile.peelCount === 0 && tags.includes('assassin')) threatToUs += 0.3;
-    // Split push yoksa split pushers
-    if (!ownTags.includes('splitpush') && tags.includes('splitpush')) threatToUs += 0.2;
+    if (!getChampionTags(ownTeam[0]?.champId || '').includes('splitpush') && tags.includes('splitpush')) threatToUs += 0.2;
 
-    const ebv = pPickedByEnemy * power * (1 + threatToUs);
-
-    // Ban Rate bonus (rakip zaten çok banlıyorsa değerli)
+    // EBV × tier multiplier = final ban değeri
+    const ebv      = pPickedByEnemy * power * (1 + threatToUs);
     const banBonus = (champ.banRate || 0) / 100;
+    const priority = (ebv + banBonus) * tierMult;
 
-    const priority = ebv + banBonus;
+    if (priority > 0.02) {
+      let reason = `Tier ${tierInfo.tier}: `;
+      if (champ.presence >= 60)                                    reason += `Perma pick/ban (${champ.presence.toFixed(0)}% presence)`;
+      else if (tags.includes('engage') && ownProfile.ccCount <= 1) reason += 'Engage tehdidi — CC zayıflığımızı sömürür';
+      else if (tags.includes('assassin') && ownProfile.peelCount === 0) reason += 'Assassin tehdidi — backline korumasız';
+      else if (tags.includes('splitpush'))                         reason += 'Split push tehlikesi — cevap veremeyiz';
+      else if (wr >= 53)                                           reason += `Win rate ${wr.toFixed(1)}% — güçlü meta şampiyonu`;
+      else reason += 'Meta tehdit';
 
-    if (priority > 0.05) {
-      // Gerekçe
-      let reason = '';
-      if (champ.presence >= 60) reason = `Presence ${champ.presence.toFixed(0)}% — perma-pick/ban`;
-      else if (tags.includes('engage') && ownProfile.ccCount <= 1) reason = 'Engage tehdidi — CC zayıflığımızı sömürür';
-      else if (tags.includes('assassin') && ownProfile.peelCount === 0) reason = 'Assassin tehdidi — backline korumasız';
-      else if (tags.includes('splitpush')) reason = 'Split push tehlikesi — cevap veremeyiz';
-      else if (wr >= 53) reason = `Win rate ${wr.toFixed(1)}% — güçlü meta şampiyonu`;
-      else reason = 'Genel meta tehdit';
-
-      suggestions.push({ champId, name: champ.name, priority, reason, presence: champ.presence || 0, banRate: champ.banRate || 0, tags });
+      suggestions.push({
+        champId, name: champ.name, priority, reason,
+        presence: champ.presence || 0, banRate: champ.banRate || 0,
+        tier: tierInfo.tier, tags,
+      });
     }
   }
 
