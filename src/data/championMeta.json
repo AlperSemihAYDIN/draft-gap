@@ -1,7 +1,7 @@
 {
   "_meta": {
-    "patch": "16.12",
-    "patchRange": "16.11-16.12",
+    "patch": "16.13",
+    "patchRange": "16.12-16.13",
     "source": "Leaguepedia (lol.fandom.com)",
     "tournaments": [
       "LCK/2026 Season/Rounds 1-2",
@@ -31,7 +31,7 @@
       "EMEA Masters/2026 Season/Winter"
     ],
     "totalGames": 2069,
-    "generatedAt": "2026-06-22T03:17:14.988Z"
+    "generatedAt": "2026-06-29T03:16:41.510Z"
   },
   "Orianna": {
     "name": "Orianna",
