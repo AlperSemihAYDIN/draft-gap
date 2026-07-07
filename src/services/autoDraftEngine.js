@@ -113,8 +113,9 @@ function computeAIPick(actingTeam, blueTeam, redTeam, blueBans, redBans, phase) 
       if (used.has(champId)) continue;
       if (!Array.isArray(champ.roles) || !champ.roles.includes(role)) continue;
 
-      // Pro hard blacklist: presence < 4% → asla seçme
-      if (isProHardBlacklisted(champId)) continue;
+      // Pro hard blacklist: bu roldeki presence < 4% → asla seçme
+      // (rol-spesifik kontrol — başka rolde güçlü bir şampiyon bu role sızmasın)
+      if (isProHardBlacklisted(champId, role)) continue;
 
       const { score, reasoning, tier } = calculateDraftScore(
         champId, role, blueTeam, redTeam, actingTeam, 'pro', phaseInfo

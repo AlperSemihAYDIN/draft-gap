@@ -1,7 +1,22 @@
 // Leaguepedia Cargo API'den pro play verisi çeker ve championMeta.json oluşturur
 // Kaynak: https://lol.fandom.com (Leaguepedia)
+//
+// GÜNCELLİK (recency) MODELİ
+// ==========================
+// Amaç: "istatistiksel olarak sık oynanmış" değil, "GÜNCEL profesyonel metada
+// gerçekten oynanan" şampiyonları önceliklendirmek. Bunun için her turnuvanın
+// maçlarına bir AĞIRLIK atanır. Ağırlık iki faktörden oluşur:
+//   1) Seviye: Uluslararası (MSI) > Büyük bölge (LCK/LPL/LEC/LTA) > İkincil bölge > Minor/Qualifier
+//   2) Güncellik: MSI'a yakın zamanlı split/playoff > sezon başı (First Stand/Kickoff/Winter)
+// Her istatistik (presence, winRate, pickRate, banRate, tier, counters, synergies)
+// bu ağırlıklarla hesaplanır; ancak "yeterli örneklem var mı" kontrolleri HAM
+// (ağırlıksız) maç sayısı üzerinden yapılır — az oynanmış ama yüksek ağırlıklı
+// (örn. tek bir MSI maçı) bir şampiyonun yapay olarak öne çıkması engellenir.
 
 const TOURNAMENTS = [
+  // ══ Uluslararası — en güncel & en yüksek seviye ══
+  '2026 Mid-Season Invitational',
+  'LCK/2026 Season/Road to MSI',
   // LCK 2026
   'LCK/2026 Season/Rounds 1-2',
   'LCK/2026 Season/Cup',
@@ -15,6 +30,13 @@ const TOURNAMENTS = [
   'LEC/2026 Season/Spring Playoffs',
   'LEC/2026 Season/Versus Season',
   'LEC/2026 Season/Versus Playoffs',
+  // LTA North/South 2026 (LCS/CBLOL'ün devamı — henüz yayınlanmamışsa 0 satır döner, zararsız)
+  'LTA North/2026 Season/Split 1',
+  'LTA North/2026 Season/Split 1 Playoffs',
+  'LTA North/2026 Season/Promotion',
+  'LTA South/2026 Season/Split 1',
+  'LTA South/2026 Season/Split 1 Playoffs',
+  'LTA South/2026 Season/Promotion',
   // LCP 2026
   'LCP/2026 Season/Split 1',
   'LCP/2026 Season/Split 1 Playoffs',
@@ -28,7 +50,7 @@ const TOURNAMENTS = [
   'CBLOL/2026 Season/Split 1',
   'CBLOL/2026 Season/Split 1 Playoffs',
   'CBLOL/2026 Season/Cup',
-  // Uluslararası
+  // Uluslararası (erken sezon)
   '2026 Americas Cup',
   '2026 First Stand',
   // Akademi / Challenger
@@ -36,6 +58,58 @@ const TOURNAMENTS = [
   'LCK CL/2026 Season/Kickoff',
   'EMEA Masters/2026 Season/Winter',
 ];
+
+// Turnuva ağırlıkları — bkz. yukarıdaki "GÜNCELLİK MODELİ" açıklaması.
+// Listede olmayan bir turnuva DEFAULT_WEIGHT alır.
+const TOURNAMENT_WEIGHT = {
+  // ═══ S: Uluslararası zirve — güncel metanın en güvenilir göstergesi ═══
+  '2026 Mid-Season Invitational': 3.0,
+
+  // ═══ A: MSI'a en yakın büyük bölge verisi ═══
+  'LCK/2026 Season/Road to MSI': 2.2,
+  'LPL/2026 Season/Split 2 Playoffs': 2.0,
+  'LEC/2026 Season/Versus Playoffs': 2.0,
+  'LTA North/2026 Season/Split 1 Playoffs': 1.8,
+  'LTA South/2026 Season/Split 1 Playoffs': 1.8,
+  'LPL/2026 Season/Split 2': 1.5,
+  'LEC/2026 Season/Versus Season': 1.5,
+  'LTA North/2026 Season/Split 1': 1.3,
+  'LTA South/2026 Season/Split 1': 1.3,
+
+  // ═══ B: Büyük bölge — erken sezon ═══
+  'LCK/2026 Season/Cup': 1.2,
+  'LPL/2026 Season/Split 1 Playoffs': 1.0,
+  'LEC/2026 Season/Spring Playoffs': 1.0,
+  'LCK/2026 Season/Rounds 1-2': 0.9,
+  'LPL/2026 Season/Split 1': 0.7,
+  'LEC/2026 Season/Spring Season': 0.7,
+
+  // ═══ C: İkincil bölgeler — güncel ═══
+  'LCP/2026 Season/Split 2 Playoffs': 1.0,
+  'LCP/2026 Season/Split 2': 0.7,
+  'VCS/2026 Season/Summer Season': 0.6,
+  'LTA North/2026 Season/Promotion': 0.5,
+  'LTA South/2026 Season/Promotion': 0.5,
+
+  // ═══ D: İkincil bölgeler (erken sezon) + minor/qualifier ═══
+  'LCP/2026 Season/Split 1 Playoffs': 0.6,
+  'VCS/2026 Season/Spring Playoffs': 0.5,
+  '2026 Americas Cup': 0.45,
+  '2026 First Stand': 0.45,
+  'LCP/2026 Season/Split 1': 0.4,
+  'CBLOL/2026 Season/Split 1 Playoffs': 0.5,
+  'VCS/2026 Season/Spring Season': 0.35,
+  'CBLOL/2026 Season/Split 1': 0.35,
+  'CBLOL/2026 Season/Cup': 0.35,
+  'LCK CL/2026 Season/Rounds 1-2': 0.3,
+  'LCK CL/2026 Season/Kickoff': 0.25,
+  'EMEA Masters/2026 Season/Winter': 0.25,
+};
+const DEFAULT_WEIGHT = 0.4;
+
+function getWeight(overviewPage) {
+  return TOURNAMENT_WEIGHT[overviewPage] ?? DEFAULT_WEIGHT;
+}
 
 const FIELDS = [
   'Team1Ban1','Team1Ban2','Team1Ban3','Team1Ban4','Team1Ban5',
@@ -151,9 +225,17 @@ async function main() {
   }
   
   // İstatistik hesapla
-  const stats = {}; // champKey -> { name, picks, bans, wins, losses, roles: { role: { picks, wins } } }
-  
+  // Her şampiyon için HEM ham (raw) HEM ağırlıklı (weighted) sayaçlar tutulur:
+  //  - raw    → örneklem büyüklüğü / güvenilirlik kontrolleri için (ör. "en az 20 maç")
+  //  - w*     → güncellik ağırlıklı — presence/winRate/banRate/tier hesaplarının kaynağı
+  const stats = {}; // champKey -> { name, picks, bans, wins, losses, wPicks, wBans, wWins, wLosses, roles }
+
+  function blankStat(name) {
+    return { name, picks: 0, bans: 0, wins: 0, losses: 0, wPicks: 0, wBans: 0, wWins: 0, wLosses: 0, roles: {} };
+  }
+
   for (const game of allGames) {
+    const w = getWeight(game.OverviewPage);
     const winner = parseInt(game.Winner);
     
     // Banları işle
@@ -163,8 +245,9 @@ async function main() {
         if (!banName) continue;
         const key = champKey(banName);
         if (!key) continue;
-        if (!stats[key]) stats[key] = { name: banName, picks: 0, bans: 0, wins: 0, losses: 0, roles: {} };
+        if (!stats[key]) stats[key] = blankStat(banName);
         stats[key].bans++;
+        stats[key].wBans += w;
       }
     }
     
@@ -178,17 +261,19 @@ async function main() {
         if (!key) continue;
         const role = normalizeRole(roleName);
         
-        if (!stats[key]) stats[key] = { name: pickName, picks: 0, bans: 0, wins: 0, losses: 0, roles: {} };
+        if (!stats[key]) stats[key] = blankStat(pickName);
         stats[key].picks++;
+        stats[key].wPicks += w;
         
         const isWinner = (winner === parseInt(teamIdx));
-        if (isWinner) stats[key].wins++;
-        else stats[key].losses++;
+        if (isWinner) { stats[key].wins++; stats[key].wWins += w; }
+        else          { stats[key].losses++; stats[key].wLosses += w; }
         
         if (role) {
-          if (!stats[key].roles[role]) stats[key].roles[role] = { picks: 0, wins: 0 };
+          if (!stats[key].roles[role]) stats[key].roles[role] = { picks: 0, wins: 0, wPicks: 0, wWins: 0 };
           stats[key].roles[role].picks++;
-          if (isWinner) stats[key].roles[role].wins++;
+          stats[key].roles[role].wPicks += w;
+          if (isWinner) { stats[key].roles[role].wins++; stats[key].roles[role].wWins += w; }
         }
       }
     }
@@ -196,10 +281,13 @@ async function main() {
   
   console.log(`${Object.keys(stats).length} farklı şampiyon bulundu\n`);
   
-  // Toplam oyun sayısı
+  // Toplam oyun sayısı — HAM (metadata/backward-compat) ve AĞIRLIKLI (yüzde hesapları için)
   const totalGames = allGames.length;
+  let weightedTotalGames = 0;
+  for (const game of allGames) weightedTotalGames += getWeight(game.OverviewPage);
+  console.log(`Ağırlıklı toplam oyun havuzu: ${weightedTotalGames.toFixed(1)} (ham: ${totalGames})\n`);
   
-  // Tier hesaplama: Presence, ban rate ve WR bazlı
+  // Tier hesaplama: Presence, ban rate ve WR bazlı (girdiler zaten ağırlıklı; picks ham kalır)
   // Ban rate çok önemli — perma-ban olan şampiyon S-tier
   function getTier(presence, winRate, picks, banRate) {
     if (picks < 5) return 'C'; // Çok az oynanan outlier
@@ -219,26 +307,28 @@ async function main() {
   }
   
   const champList = Object.entries(stats).map(([key, s]) => {
-    const presence = ((s.picks + s.bans) / totalGames * 100);
-    const winRate = s.picks > 0 ? (s.wins / s.picks * 100) : 0;
-    const pickRate = (s.picks / totalGames * 100);
-    const banRate = (s.bans / totalGames * 100);
+    // Ağırlıklı yüzdeler — GÜNCEL meta önceliğini yansıtır
+    const presence = ((s.wPicks + s.wBans) / weightedTotalGames * 100);
+    const winRate = s.wPicks > 0 ? (s.wWins / s.wPicks * 100) : 0;
+    const pickRate = (s.wPicks / weightedTotalGames * 100);
+    const banRate = (s.wBans / weightedTotalGames * 100);
     
-    // Rol bazlı win rate
+    // Rol bazlı win rate — HAM pick sayısı eşik (>=2), değerler ağırlıklı
     const roleWinRates = {};
     const rolePickRates = {};
     const roleList = [];
     for (const [role, rd] of Object.entries(s.roles)) {
-      if (rd.picks >= 2) { // En az 2 pick olan roller
-        roleWinRates[role] = +(rd.wins / rd.picks * 100).toFixed(1);
-        rolePickRates[role] = +(rd.picks / totalGames * 100).toFixed(1);
+      if (rd.picks >= 2) { // En az 2 (ham) pick olan roller
+        roleWinRates[role] = +(rd.wPicks > 0 ? (rd.wWins / rd.wPicks * 100) : 0).toFixed(1);
+        rolePickRates[role] = +(rd.wPicks / weightedTotalGames * 100).toFixed(1);
         roleList.push(role);
       }
     }
     
     return {
       key, name: s.name, presence, winRate, pickRate, banRate,
-      picks: s.picks, bans: s.bans, wins: s.wins, losses: s.losses,
+      picks: s.picks, bans: s.bans, wins: s.wins, losses: s.losses, // HAM — örneklem güvenilirliği
+      wPicks: s.wPicks, wBans: s.wBans,                              // Ağırlıklı toplamlar (şeffaflık)
       roles: roleList, roleWinRates, rolePickRates, roleData: s.roles,
     };
   });
@@ -267,10 +357,12 @@ async function main() {
   
   // Counter ve sinerji ilişkilerini maç verilerinden çıkar
   // Her oyunda aynı taraftaki şampiyonlar sinerji, karşı taraftaki counter
-  const counterWins = {}; // "A_vs_B" -> { wins, total }
-  const synergyWins = {}; // "A_with_B" -> { wins, total }
+  // Ham (total/wins) örneklem güvenilirliği için, ağırlıklı (wTotal/wWins) güncel meta değeri için
+  const counterWins = {}; // "A_vs_B" -> { wins, total, wWins, wTotal }
+  const synergyWins = {}; // "A_with_B" -> { wins, total, wWins, wTotal }
   
   for (const game of allGames) {
+    const w = getWeight(game.OverviewPage);
     const winner = parseInt(game.Winner);
     const team1Picks = [];
     const team2Picks = [];
@@ -286,14 +378,16 @@ async function main() {
     for (const a of team1Picks) {
       for (const b of team2Picks) {
         const keyAB = `${a}_vs_${b}`;
-        if (!counterWins[keyAB]) counterWins[keyAB] = { wins: 0, total: 0 };
+        if (!counterWins[keyAB]) counterWins[keyAB] = { wins: 0, total: 0, wWins: 0, wTotal: 0 };
         counterWins[keyAB].total++;
-        if (winner === 1) counterWins[keyAB].wins++;
+        counterWins[keyAB].wTotal += w;
+        if (winner === 1) { counterWins[keyAB].wins++; counterWins[keyAB].wWins += w; }
         
         const keyBA = `${b}_vs_${a}`;
-        if (!counterWins[keyBA]) counterWins[keyBA] = { wins: 0, total: 0 };
+        if (!counterWins[keyBA]) counterWins[keyBA] = { wins: 0, total: 0, wWins: 0, wTotal: 0 };
         counterWins[keyBA].total++;
-        if (winner === 2) counterWins[keyBA].wins++;
+        counterWins[keyBA].wTotal += w;
+        if (winner === 2) { counterWins[keyBA].wins++; counterWins[keyBA].wWins += w; }
       }
     }
     
@@ -305,9 +399,10 @@ async function main() {
           const key1 = `${picks[i]}_with_${picks[j]}`;
           const key2 = `${picks[j]}_with_${picks[i]}`;
           for (const k of [key1, key2]) {
-            if (!synergyWins[k]) synergyWins[k] = { wins: 0, total: 0 };
+            if (!synergyWins[k]) synergyWins[k] = { wins: 0, total: 0, wWins: 0, wTotal: 0 };
             synergyWins[k].total++;
-            if (isWinner) synergyWins[k].wins++;
+            synergyWins[k].wTotal += w;
+            if (isWinner) { synergyWins[k].wins++; synergyWins[k].wWins += w; }
           }
         }
       }
@@ -322,6 +417,8 @@ async function main() {
       source: 'Leaguepedia (lol.fandom.com)',
       tournaments: TOURNAMENTS.filter(t => allGames.some(g => g.OverviewPage === t)),
       totalGames,
+      weightedTotalGames: +weightedTotalGames.toFixed(1),
+      recencyModel: 'Turnuva ağırlıklı: MSI 2026 x3.0 (uluslararası zirve), Road to MSI/Split2/Playoffs x1.3-2.2 (güncel büyük bölge), erken sezon/minor x0.25-0.7. presence/winRate/banRate/tier bu ağırlıklarla hesaplanır; örneklem güvenilirliği için ham maç sayıları ayrıca korunur.',
       generatedAt: new Date().toISOString(),
     }
   };
@@ -329,14 +426,16 @@ async function main() {
   for (const champ of champList) {
     if (champ.roles.length === 0 && champ.picks < 2) continue; // Hiç oynamayan
     
-    // Tier - rol bazlı
+    // Tier - rol bazlı (ağırlıklı presence/WR, ham picks örneklem eşiği için)
     const tierByRole = {};
     for (const role of champ.roles) {
       const rd = champ.roleData[role];
-      const rolePresence = ((rd.picks + (champ.bans * (rd.picks / Math.max(champ.picks, 1)))) / totalGames * 100);
-      const roleWR = rd.picks > 0 ? (rd.wins / rd.picks * 100) : 0;
-      const roleBanRate = (champ.bans * (rd.picks / Math.max(champ.picks, 1))) / totalGames * 100;
-      tierByRole[role] = getTier(rolePresence, roleWR, rd.picks, roleBanRate);
+      const roleWPicks = rd.wPicks;
+      const proportionalWBans = champ.wBans * (roleWPicks / Math.max(champ.wPicks, 0.0001));
+      const rolePresence = ((roleWPicks + proportionalWBans) / weightedTotalGames * 100);
+      const roleWR = roleWPicks > 0 ? (rd.wWins / roleWPicks * 100) : 0;
+      const roleBanRate = proportionalWBans / weightedTotalGames * 100;
+      tierByRole[role] = getTier(rolePresence, roleWR, rd.picks, roleBanRate); // rd.picks = HAM eşik
     }
     
     // Eğer hiç rol yoksa ama ban edildiyse, genel tier ver
@@ -344,24 +443,24 @@ async function main() {
       tierByRole['mid'] = getTier(champ.presence, champ.winRate, champ.picks, champ.banRate);
     }
     
-    // Counter ilişkileri (en az 3 maç, WR >= 60%)
+    // Counter ilişkileri (HAM eşik: en az 3 maç, ağırlıklı WR >= 60%)
     const counters = {};
     for (const [key, data] of Object.entries(counterWins)) {
       if (!key.startsWith(`${champ.key}_vs_`)) continue;
-      if (data.total < 3) continue;
-      const wr = data.wins / data.total;
+      if (data.total < 3) continue; // örneklem güvenilirliği — ham maç sayısı
+      const wr = data.wWins / data.wTotal; // güncellik ağırlıklı kazanma oranı
       if (wr >= 0.6) {
         const enemy = key.split('_vs_')[1];
         counters[enemy] = +(wr * 4).toFixed(1); // 0-4 arası puan
       }
     }
     
-    // Sinerji ilişkileri (en az 3 maç, WR >= 60%)
+    // Sinerji ilişkileri (HAM eşik: en az 3 maç, ağırlıklı WR >= 60%)
     const synergies = {};
     for (const [key, data] of Object.entries(synergyWins)) {
       if (!key.startsWith(`${champ.key}_with_`)) continue;
-      if (data.total < 3) continue;
-      const wr = data.wins / data.total;
+      if (data.total < 3) continue; // örneklem güvenilirliği — ham maç sayısı
+      const wr = data.wWins / data.wTotal; // güncellik ağırlıklı kazanma oranı
       if (wr >= 0.6) {
         const ally = key.split('_with_')[1];
         synergies[ally] = +(wr * 3).toFixed(1); // 0-3 arası puan
@@ -370,14 +469,14 @@ async function main() {
     
     const blindSafety = getBlindPickSafety(champ);
     
-    // Rol-spesifik pick sayıları ve prioScore hesapla
+    // Rol-spesifik pick sayıları (HAM — örneklem eşiği) ve prioScore (ağırlıklı — güncel önem)
     const rolePickCounts = {};
     const rolePrioScores = {};
     for (const role of champ.roles) {
       const rd = champ.roleData[role];
-      rolePickCounts[role] = rd.picks;
-      const proportionalBans = champ.bans * (rd.picks / Math.max(champ.picks, 1));
-      rolePrioScores[role] = +((rd.picks + proportionalBans) / totalGames * 100).toFixed(1);
+      rolePickCounts[role] = rd.picks; // HAM — MIN_ROLE_PICKS/getGameCountPenalty gibi eşikler bunu kullanır
+      const proportionalWBans = champ.wBans * (rd.wPicks / Math.max(champ.wPicks, 0.0001));
+      rolePrioScores[role] = +((rd.wPicks + proportionalWBans) / weightedTotalGames * 100).toFixed(1);
     }
     
     // Açıklama
@@ -406,6 +505,8 @@ async function main() {
         bans: champ.bans,
         wins: champ.wins,
         losses: champ.losses,
+        weightedPicks: +champ.wPicks.toFixed(2),
+        weightedBans: +champ.wBans.toFixed(2),
       },
       counters,
       synergies,

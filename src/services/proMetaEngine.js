@@ -94,12 +94,30 @@ export function getChampionProTier(champId) {
 }
 
 // ================================================================
-// 5. HARD BLACKLIST CHECK
-// Presence < 4% → pro draftında hiçbir koşulda önerilmez
+// 4b. ROL-SPESIFIK PRESENCE
+// Önemli: bir şampiyonun GENEL (tüm roller karışık) presence'ı yüksek
+// olabilir ama belirli bir rolde neredeyse hiç oynanmıyor olabilir
+// (örn. Twisted Fate mid'de %11+ iken top'ta %2-3). Skorlama ve blacklist
+// kararları HER ZAMAN rol bazlı rolePrioScore kullanmalı; yoksa genel
+// presence'a düşer (fallback).
 // ================================================================
-export function isProHardBlacklisted(champId) {
+export function getRolePresence(champId, role) {
+  const champ = championMeta[champId];
+  if (!champ) return 0;
+  if (role && champ.rolePrioScore && typeof champ.rolePrioScore[role] === 'number') {
+    return champ.rolePrioScore[role];
+  }
+  return champ.presence || 0;
+}
+
+// ================================================================
+// 5. HARD BLACKLIST CHECK
+// Rol-spesifik presence < 4% → pro draftında hiçbir koşulda önerilmez
+// ================================================================
+export function isProHardBlacklisted(champId, role) {
   const data = championMeta[champId];
-  return !data || (data.presence || 0) < 4;
+  if (!data) return true;
+  return getRolePresence(champId, role) < 4;
 }
 
 // ================================================================
@@ -111,7 +129,9 @@ export function calculateProMetaScore(champId, role) {
   const champ = championMeta[champId];
   if (!champ) return 0;
 
-  const presence      = champ.presence || 0;
+  // Rol-spesifik presence kullanılır (blended genel presence DEĞIL) —
+  // böylece bir şampiyonun başka bir roldeki yüksek presence'ı bu role sızmaz.
+  const presence      = getRolePresence(champId, role);
   const banRate       = champ.banRate  || 0;
   const numRoles      = Array.isArray(champ.roles) ? champ.roles.length : 1;
   const blindSafe     = champ.blindPickSafety || 5;
@@ -121,7 +141,7 @@ export function calculateProMetaScore(champId, role) {
     : (champ.winRate ?? 50);
   const smoothedWR = _bwr(rawWR, rolePickCount);
 
-  // Hard check: presence < 4% → asla önerme
+  // Hard check: rol-spesifik presence < 4% → asla önerme
   const presenceMult = getPresenceMultiplier(presence);
   if (presenceMult === 0) return 0;
 

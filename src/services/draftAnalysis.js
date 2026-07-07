@@ -6,6 +6,7 @@ import {
   getDraftPositionScore,
   isProHardBlacklisted,
   getChampionProTier,
+  getRolePresence,
   TIER_BAN_MULT,
 } from './proMetaEngine';
 
@@ -383,9 +384,10 @@ export function calculateDraftScore(champId, role, blueTeam, redTeam, userTeam, 
   const champ = championMeta[champId];
   if (!champ) return { score: 0, breakdown: {}, reasoning: [], tier: 'D' };
 
-  // ── Hard blacklist: Pro modda presence < 4% → asla önerme ──────────────────
-  if (mode === 'pro' && isProHardBlacklisted(champId)) {
-    return { score: 0, breakdown: {}, reasoning: ['🚫 Pro blacklist: presence < 4%'], tier: 'D' };
+  // ── Hard blacklist: Pro modda ROL-SPESİFİK presence < 4% → asla önerme ──────
+  // (genel/blended presence değil — yoksa başka rolde güçlü bir şampiyon bu role sızıyor)
+  if (mode === 'pro' && isProHardBlacklisted(champId, role)) {
+    return { score: 0, breakdown: {}, reasoning: [`🚫 Pro blacklist: ${role} rolünde presence < 4%`], tier: 'D' };
   }
 
   const rolePickCount = champ.rolePickCounts?.[role] || 0;
@@ -395,7 +397,7 @@ export function calculateDraftScore(champId, role, blueTeam, redTeam, userTeam, 
   const tags      = getChampionTags(champId);
   const isBlind   = phaseInfo?.isBlind ?? true;
   const phase     = phaseInfo?.phase   || 'pick1';
-  const presence  = champ.presence    || 0;
+  const presence  = getRolePresence(champId, role);
   const rawWR     = typeof champ.winRate === 'object'
     ? (champ.winRate[role] ?? Object.values(champ.winRate)[0] ?? 50)
     : (champ.winRate ?? 50);
