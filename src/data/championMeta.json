@@ -1,7 +1,7 @@
 {
   "_meta": {
-    "patch": "16.14",
-    "patchRange": "16.13-16.14",
+    "patch": "16.15",
+    "patchRange": "16.14-16.15",
     "source": "Leaguepedia (lol.fandom.com)",
     "tournaments": [
       "2026 Mid-Season Invitational",
@@ -37,7 +37,7 @@
     "totalGames": 2213,
     "weightedTotalGames": 1872,
     "recencyModel": "Turnuva ağırlıklı: MSI 2026 x3.0 (uluslararası zirve), Road to MSI/Split2/Playoffs x1.3-2.2 (güncel büyük bölge), erken sezon/minor x0.25-0.7. presence/winRate/banRate/tier bu ağırlıklarla hesaplanır; örneklem güvenilirliği için ham maç sayıları ayrıca korunur.",
-    "generatedAt": "2026-07-27T03:09:53.149Z"
+    "generatedAt": "2026-08-03T03:08:57.021Z"
   },
   "Orianna": {
     "name": "Orianna",
