@@ -37,7 +37,7 @@
     "totalGames": 2213,
     "weightedTotalGames": 1872,
     "recencyModel": "Turnuva ağırlıklı: MSI 2026 x3.0 (uluslararası zirve), Road to MSI/Split2/Playoffs x1.3-2.2 (güncel büyük bölge), erken sezon/minor x0.25-0.7. presence/winRate/banRate/tier bu ağırlıklarla hesaplanır; örneklem güvenilirliği için ham maç sayıları ayrıca korunur.",
-    "generatedAt": "2026-08-03T03:08:57.021Z"
+    "generatedAt": "2026-08-10T02:50:22.070Z"
   },
   "Orianna": {
     "name": "Orianna",
